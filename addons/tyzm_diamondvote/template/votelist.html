@@ -1,0 +1,444 @@
+{template 'common/header'}
+{if IMS_VERSION<1}
+<link href="{MODULE_URL}/template/static/css/wq1.0.css" rel="stylesheet">
+{/if}
+<style>
+
+.audit,.lock,.clearposter{cursor:pointer;}
+.table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+white-space: normal;
+word-wrap: break-word;
+word-break: normal;
+}
+.label {
+    line-height: 1.8;
+}
+.MagicThumb img,.MagicThumb-container img{margin:2px;padding:1px;border:1px solid #ccc;}
+.label{margin:3px 0;}
+.we7-margin-right{margin-right: 10px;}
+
+.arrow {
+	display: inline-block;
+	vertical-align: middle;
+	width: 0;
+	height: 0;
+	margin-left: 5px;
+	opacity: 0.66;
+}
+.arrow.asc {
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-bottom: 8px solid #fb0606;
+}
+.arrow.desc {
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-top: 8px solid #fb0606;
+}
+
+</style>
+<script src="{MODULE_URL}/template/static/js/mzp-packed-me.js"></script>
+<div class="main1">
+
+    <div class="we7-page-title">投票管理</div>
+    <ul class="we7-page-tab">
+         <li{if $_GPC['ty'] == '' && $_GPC['do'] == 'votelist' && $_GPC['ranking'] == ''  } class="active"{/if}><a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid']));}">全部投票</a></li>
+    <li{if $_GPC['ty'] == '2'} class="active"{/if}><a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid'],'ty'=>2));}">待审核</a></li>
+	<li{if $_GPC['ty'] == '1'} class="active"{/if}><a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid'],'ty'=>1));}">已审核</a></li>
+	<li{if $_GPC['ranking'] == '0'} class="active"{/if}>
+		{if $_GPC['ranking'] == '0' && $_GPC['sort_order'] == 'asc'}
+			<a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid'],'ranking'=>0,'sort_order'=>'desc'));}">票数排行<span class="arrow asc"></span></a>
+		{elseif $_GPC['ranking'] == '0' && $_GPC['sort_order'] == 'desc'}
+			<a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid'],'ranking'=>0,'sort_order'=>'asc'));}">票数排行<span class="arrow desc"></span></a>
+		{else}
+			<a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid'],'ranking'=>0,'sort_order'=>'desc'));}">票数排行
+		{/if}
+	</li>
+	<li{if $_GPC['ranking'] == '1'} class="active"{/if}>
+		{if $_GPC['ranking'] == '1' && $_GPC['sort_order'] == 'asc'}
+			<a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid'],'ranking'=>1,'sort_order'=>'desc'));}">礼物排行<span class="arrow asc"></span></a>
+		{elseif $_GPC['ranking'] == '1' && $_GPC['sort_order'] == 'desc'}
+			<a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid'],'ranking'=>1,'sort_order'=>'asc'));}">礼物排行<span class="arrow desc"></span></a>
+		{else}
+			<a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid'],'ranking'=>1,'sort_order'=>'desc'));}">礼物排行
+		{/if}
+	</li>
+	<li{if $_GPC['ranking'] == '2'} class="active"{/if}>
+		{if $_GPC['ranking'] == '2' && $_GPC['sort_order'] == 'asc'}
+			<a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid'],'ranking'=>2,'sort_order'=>'desc'));}">浏览排行<span class="arrow asc"></span></a>
+		{elseif $_GPC['ranking'] == '2' && $_GPC['sort_order'] == 'desc'}
+			<a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid'],'ranking'=>2,'sort_order'=>'asc'));}">浏览排行<span class="arrow desc"></span></a>
+		{else}
+			<a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid'],'ranking'=>2,'sort_order'=>'desc'));}">浏览排行
+		{/if}
+	</li>
+	<li{if $_GPC['ranking'] == '3'} class="active"{/if}>
+		{if $_GPC['ranking'] == '3' && $_GPC['sort_order'] == 'asc'}
+			<a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid'],'ranking'=>3,'sort_order'=>'desc'));}">分享排行<span class="arrow asc"></span></a>
+		{elseif $_GPC['ranking'] == '3' && $_GPC['sort_order'] == 'desc'}
+			<a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid'],'ranking'=>3,'sort_order'=>'asc'));}">分享排行<span class="arrow desc"></span></a>
+		{else}
+			<a href="{php echo $this->createWebUrl('votelist',array('rid'=>$_GPC['rid'],'ranking'=>3,'sort_order'=>'desc'));}">分享排行
+		{/if}
+	</li>
+	<li{if $_GPC['do'] == 'giftlist'} class="active"{/if}><a href="{php echo $this->createWebUrl('giftlist',array('rid'=>$_GPC['rid']));}">全部订单</a></li>
+	<li{if $_GPC['do'] == 'votedata'} class="active"{/if}><a href="{php echo $this->createWebUrl('edit',array('id'=>$_GPC['id'],'rid'=>$_GPC['rid']));}">{if $_GPC['id'] > 0}编辑投票用户{else}添加投票用户{/if}</a></li>
+
+
+    </ul>
+
+    <div class="we7-padding-bottom clearfix">
+        <form action="./index.php" method="get" role="form" >
+            <div class="input-group pull-left col-sm-4">
+            <input type="hidden" name="c" value="site" />
+			<input type="hidden" name="a" value="entry" />
+        	<input type="hidden" name="m" value="tyzm_diamondvote" />
+        	<input type="hidden" name="do" value="votelist" />
+			<input type="hidden" name="rid" value="{$_GPC['rid']}" />
+
+            <input type="text" name="keyword" value="{$keyword}" class="form-control" placeholder="输入姓名，手机号或ID"/>
+            <span class="input-group-btn"><button class="btn btn-default"><i class="fa fa-search"></i></button></span>
+            </div>
+        </form>
+        <div class="pull-right">
+			<div class="input-group" style="float: left;">
+				<input type='number' class="form-control" style="width:90px" value="" />
+				<button class="btn btn-primary addvotes" data-id="{$_GPC['page']}">
+					<i class="fa fa-plus"></i> 一键加票
+				</button>
+			</div>
+        <a href="{php echo $this->createWebUrl('uploadvote',array('rid'=>$_GPC['rid']));}" class="btn btn-primary  we7-margin-left">+批量导入用户</a>
+            <a href="{php echo $this->createWebUrl('edit',array('rid'=>$_GPC['rid']));}" class="btn btn-primary  we7-margin-left">+添加投票用户</a>
+            <a href="{php echo $this->createWebUrl('download',array('rid'=>$_GPC['rid']));}" class="btn btn-primary  we7-margin-left">导出用户数据</a>
+        </div>
+    </div>
+        <table class="table we7-table table-hover">
+            <thead class="navbar-inner">
+                <tr>
+				<th>ID</th>
+				<th>用户</th>	
+                <th>用户信息</th>										
+                <th>图片</th>										
+				<th>数据</th>
+				<th>参加时间</th>
+                <th>状态</th>
+                <th width="130">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {loop $list $row}
+                <tr>
+                    <td  class="text-left vertical-middle"><input type="checkbox" name="uid[]" value="{$row['id']}" class="">{$row['id']}</td>
+					<td  class="text-left vertical-middle"><img src="{php  echo tomedia($row['avatar']);}" width="48"><br />{$row['nickname']}
+<br>
+编号：{$row['noid']}
+<br>
+
+
+					</td>
+					
+
+					<td class="text-left vertical-middle" style="max-width:300px;display: inline-block; overflow-x: auto;">
+					<p>姓名：<span class="label label-success">{$row['name']}</span></p>
+					 {loop $row['joindata'] $join}
+					 <p >
+					     {if $join['name']=="性别"}
+						    {$join['name']}：<span class="label label-default">
+						    {if $join['val']==2}
+							  女
+							{else}
+							  男
+							{/if}({$join['val']})
+							</span><br>
+						 {else}
+
+						    {$join['name']}：<span class="label label-default" >{$join['val']}</span><br/>
+						 {/if}
+					 </p>
+					 {/loop}
+					<p>宣言：<span class="label label-default" style="white-space: inherit;">{$row['introduction']}</span></p>
+					</td>										
+                    <td  class="text-left vertical-middle">
+					<a  href="{php  echo tomedia($row['img1']);}" class=" MagicThumb">
+					<img src="{php  echo tomedia($row['img1']);}" width="80" height="80"></a>
+					{if $row['img2']!=""}<a  href="{php  echo tomedia($row['img2']);}" class=" MagicThumb"><img src="{php  echo tomedia($row['img2']);}" width="80" height="80"></a>{/if}
+					{if $row['img3']!=""}<a  href="{php  echo tomedia($row['img3']);}" class=" MagicThumb"><img src="{php  echo tomedia($row['img3']);}" width="80" height="80"></a>{/if}
+					{if $row['img4']!=""}<br/><a  href="{php  echo tomedia($row['img4']);}" class=" MagicThumb"><img src="{php  echo tomedia($row['img4']);}" width="80" height="80"></a>{/if}
+					{if $row['img5']!=""}<a  href="{php  echo tomedia($row['img5']);}" class=" MagicThumb"><img src="{php  echo tomedia($row['img5']);}" width="80" height="80"></a>{/if}
+					</td>
+
+	                <td class="text-left vertical-middle">
+                    <div class="vertical-middle" style="height: 35px;">
+	                票数：
+	                <span class="label label-primary">{$row['votenum']}</span>
+	                <div class="input-group" style="float: right;">
+	                	<input type='number' class="form-control" style="width:90px" value="" />
+	                	<button class="btn btn-default addvote" data-id="{$row['id']}">
+	                		<i class="fa fa-plus"></i>
+	                	</button>
+	                </div>
+                    </div>
+                    <p>
+	                礼物：<span class="label label-success">{$row['giftcount']}元</span>
+                    </p>
+                    <p>
+	                浏览：<span class="label label-info">{$row['pvtotal']}</span>
+</p><p>
+	                分享：<span class="label label-warning">{$row['sharetotal']}</span>
+</p>
+	                </td>
+					<td class="text-left vertical-middle">{php echo date('Y-m-d H:i:s',$row['createtime'])}</td>
+                    <td class="text-left vertical-middle">
+                    <p>
+                    {if $row['status']==0}<span class="label label-info audit" data-id="{$row['id']}" data-s="1">待审核</span> {elseif $row['status']==1}<span class="label label-success audit" data-id="{$row['id']}" data-s="0">已审核</span>{/if}
+					</p>
+					<p>
+					{if $row['locktime']>time() }<span class="label label-danger lock" data-id="{$row['id']}" data-s="1" title="点击解锁">已锁定</span> {elseif $row['locktime']<time()}<span class="label label-success lock" data-id="{$row['id']}" data-s="0"title="点击锁定">非锁定</span>{/if}
+					</p>
+					<p>
+					<span class="label label-danger clearposter" data-id="{$row['id']}" title="点击清除个人海报"title="点击锁定">清除海报</span>
+					</p>
+					<p>
+					</td>
+                    <td  class="text-left vertical-middle">
+					<p>
+					<a class="color-default we7-margin-right" title="投票数据" href="{php echo $this->createWebUrl('votedata',array('rid'=>$row['rid'],'id'=>$row['id'],'ty'=>'votenum'))}" ><i class="fa fa-star-o"></i> 投票数据</a>
+					</p><p>
+					<a class="color-default we7-margin-right" title="钻石数据" href="{php echo $this->createWebUrl('giftlist',array('rid'=>$row['rid'],'id'=>$row['id']))}" ><i class="fa fa-codepen"></i> 礼物订单</a>
+					</p><p>
+					<a class="color-default we7-margin-right" title="编辑" href="{php echo $this->createWebUrl('edit',array('rid'=>$row['rid'],'id'=>$row['id']))}" ><i class="fa fa-edit"></i> 编辑</a>
+					</p><p>
+					
+					<a class="color-default we7-margin-right" rel="tooltip" href="#" onclick="drop_confirm('您确定要删除吗?删除不可恢复，同时删除所有相关数据！', '{php echo $this->createWebUrl('otherset',array('ty'=>'deletevoteuser','id'=>$row['id'],'rid'=>$row['rid']))}');" title="删除"><i class="fa fa-times"></i> 删除</a></p>
+                    </td>
+                </tr>
+                {/loop}
+				<tr>
+			<td><input type="checkbox" name="" onclick="var ck = this.checked;$(':checkbox').each(function(){this.checked = ck});"></td>
+			<td colspan="7"><input type="hidden" name="isstatus" class="btn btn-primary" value="审核"></td>
+		</tr>
+            </tbody>
+        </table>
+		<div class="pull-right">
+		{$pager}
+    </div>
+</div>
+<script>
+$(function(){
+	$('.sort').click(function() {
+		var type = $(this).data('type');
+		var category_id = '{sh:$category_id}';
+		var sort;
+		if ($(this).hasClass('narrwo')) { // 降序
+			$(this).removeClass('sortedASC').addClass('sortedDESC');
+			sort = '-1';
+		} else { // 升序
+			$(this).removeClass('sortedDESC').addClass('sortedASC');
+			sort = '1';
+		}
+	});
+
+	$(".check_all").click(function(){
+		var checked = $(this).get(0).checked;
+		$("input[type=checkbox]").attr("checked", checked);
+	});
+	$("input[name=isstatus]").click(function(){
+
+		var check = $("input:checked");
+				if (check.length < 1){
+		err('请选择要删除的记录!');
+				return false;
+		}
+		if (confirm("确认要删除选择的记录?")){
+		var id = new Array();
+				check.each(function(i){
+				id[i] = $(this).val();
+				});
+				$.post('{php echo create_url('site/entry', array('do' => 'otherset','rid' => $_GPC["rid"],'ty' => 'statusAll', 'm' => 'tyzm_diamondvote'))}', {idArr:id}, function(data){
+				if (data.errno == 0)
+				{
+					location.reload();
+				} else {
+					alert(data.error);
+				}
+				}, 'json');
+		}
+
+	});
+			
+			
+
+$(".audit").click(function(){
+    var clickthis=$(this);
+    var did=clickthis.attr('data-id');
+	var audit=clickthis.attr('data-s');
+	$.ajax({
+		type : "post",
+		url : "{php echo $this->createWebUrl('otherset',array('rid'=>$_GPC['rid'],'ty'=>'audit'))}",
+		data : {
+			id : did,
+			audit : audit,
+		},
+		dataType : "json",
+		success : function(res) {
+			if (res.status == 200) {
+			    clickthis.attr('data-s',(1-audit));
+				if(clickthis.hasClass('label-success')){
+				    clickthis.removeClass("label-success");
+                    clickthis.addClass('label-info');
+					clickthis.html('待审核');
+                }else{
+				    clickthis.removeClass("label-info");
+				    clickthis.addClass('label-success');
+					clickthis.html('已审核');
+				}
+			}
+		}
+
+	});
+});
+
+$(".addvote").click(function(){
+    var t=$(this);
+    var addnum=t.prev().val();
+    var id=t.attr('data-id');
+	if(addnum == 0 || addnum ==""){
+		util.message("请填写需要增加的票数！","","error");
+		return false;
+	}
+	$.ajax({
+		type : "post",
+		url : "{php echo $this->createWebUrl('addnum',array('rid'=>$_GPC['rid']))}",
+		data : {
+			id : id,
+			addnum : addnum,
+		},
+		dataType : "json",
+		success : function(res) {
+			if (res.status == 1) {
+				t.parent().prev().html(res.data.votenum);
+				t.parent().parent().next().next().find('span').html(res.data.pv_total);
+				util.toast(res.msg, "success");
+			}else{
+				util.message(res.msg,location.href,"error");
+			}
+		}
+
+	});
+});
+
+$(".addvotes").click(function(){
+    var t=$(this);
+    var addnum=t.prev().val();
+    var page=t.attr('data-id');
+	if(addnum == 0 || addnum ==""){
+		util.message("请填写需要增加的票数！","","error");
+		return false;
+	}
+	$.ajax({
+		type : "post",
+		url : "{php echo $this->createWebUrl('addnums',array('rid'=>$_GPC['rid']))}",
+		data : {
+			page : page,
+			addnum : addnum,
+		},
+		dataType : "json",
+		success : function(res) {
+			if (res.status == 1) {
+				util.toast(res.msg, "success");
+				location.reload()
+			}else{
+				util.message(res.msg,location.href,"error");
+			}
+		}
+
+	});
+});
+			
+
+$(".lock").click(function(){
+    var clickthis=$(this);
+    var did=clickthis.attr('data-id');
+	var lock=clickthis.attr('data-s');
+	$.ajax({
+		type : "post",
+		url : "{php echo $this->createWebUrl('otherset',array('rid'=>$_GPC['rid'],'ty'=>'lock'))}",
+		data : {
+			id : did,
+			lock : lock,
+		},
+		dataType : "json",
+		success : function(res) {
+			if (res.status == 200) {
+			    clickthis.attr('data-s',(1-lock));
+				if(clickthis.hasClass('label-success')){
+				    clickthis.removeClass("label-success");
+                    clickthis.addClass('label-danger');
+					clickthis.html('已锁定');
+                }else{
+				    clickthis.removeClass("label-danger");
+				    clickthis.addClass('label-success');
+					clickthis.html('非锁定');
+				}
+			}
+		}
+
+	});
+});	
+
+$(".clearposter").click(function(){
+    var clickthis=$(this);
+    var did=clickthis.attr('data-id');
+	$.ajax({
+		type : "post",
+		url : "{php echo $this->createWebUrl('otherset',array('rid'=>$_GPC['rid'],'ty'=>'clearposter'))}",
+		data : {
+			id : did
+		},
+		dataType : "json",
+		success : function(res) {
+			if (res.status == 200) {
+				util.message("清除成功，可以重新生成！","","success");
+			    alert("清除成功，可以重新生成！");
+			}else if(res.status == 404){
+				util.message("该用户还没有生成海报。","","error");
+			}else{
+				util.message("删除失败，请检查是否有删除权限！","","error");
+			}
+		}
+
+	});
+});	
+
+	
+			
+});
+
+
+</script>
+<script>
+	function drop_confirm(msg, url){
+		if (confirm(msg)){
+			window.location = url;
+		}
+	}
+
+</script>
+
+
+
+{if $this->module['config']['giftref']}
+<script>
+	var modalobj = util.dialog("实时礼物订单列表", ["{php echo $this->createWebUrl('floatgift')}"], "", {containerName: "link-container"});
+	modalobj.find('.modal-dialog').css({'cssText':'min-width:220px !important;width:220px;margin:0;'});
+	modalobj.find('.modal-body').css({'height':'400px','overflow-y':'auto','padding':'0'});
+	modalobj.attr('tabindex','');
+	modalobj.modal({backdrop: !1});
+	modalobj.modal('show');
+</script>
+<style>
+	#link-container{height:450px;width:220px;top: auto;}
+<style>
+{/if}
+
+{template 'common/footer'}

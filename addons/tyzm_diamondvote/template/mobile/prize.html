@@ -1,0 +1,35 @@
+﻿{template 'header'}
+{template 'sider'}
+<div id="jiandiv1">
+	<div id="jiandiv2">
+		<div id="jiandiv">活动介绍</div>
+		<div style="padding:0px 0px 10px 10px">
+			{if $reply['eventrule']==""}
+				请至后台编辑活动，设置活动内容！
+			{else}
+				{$reply['eventrule']}
+			{/if}
+		</div>
+	</div>
+	<div id="maodian" name="maodian" class="maodian"></div>
+	<br>
+	<div id="jiandiv2">
+		<div id="jiandiv">奖品设置</div>
+		<div style="padding:0px 0px 10px 10px">
+			{if $reply['prizemsg']==""}
+				请至后台编辑活动，设置活动内容！
+			{else}
+				{$reply['prizemsg']}
+			{/if}
+		</div>
+	</div>
+</div>
+<style>
+#jiandiv{width:100px; height:40px;  position:relative;top:-15px;left:40px; line-height:30px; font-size:16px; color:#2dcc70; text-align:center; font-weight:bold; background:#fff}
+#jiandiv1{margin:0 auto; width:90%;  font-size:14px;  font-family: "Microsoft YaHei";  line-height:30px; text-align:left}
+#jiandiv2{width:100%;  margin-top:20px; border:1px #ccc solid; border-radius:10px; }
+#jiandiv2 img{width:97%;}
+</style>
+{template 'nav_footer'}
+
+{template 'footer'}

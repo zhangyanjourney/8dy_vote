@@ -1,0 +1,276 @@
+{template 'common/header'}
+<style>
+    .table td{ word-break:break-all !important; overflow: visible !important; word-spacing:normal; white-space:normal !important;vertical-align: middle !important}
+    .form-search .form-group{ margin-bottom: 15px !important}
+    .form-search .form-group:last-child{ margin-bottom: 0 !important}
+</style>
+<ul class="nav nav-tabs">
+	<li {if $op=='display'}class="active"{/if}><a href="{php echo $this->createWebUrl('datastates',array('op'=>'display'))}">投票数据</a></li>
+	<li {if $op=='giftlog'}class="active"{/if}><a href="{php echo $this->createWebUrl('datastates',array('op'=>'giftlog'))}">礼物数据</a></li>
+	<li {if $op=='votelog'}class="active"{/if}><a href="{php echo $this->createWebUrl('datastates',array('op'=>'votelog'))}">报名数据</a></li>
+</ul>
+<div class="panel we7-panel ng-scope" ng-controller="display">
+    <div class="panel-heading">筛选</div>
+    <div class="panel-body we7-padding">
+        <form action="./index.php" method="get" class="we7-form" role="form">
+            <input type="hidden" name="c" value="site">
+            <input type="hidden" name="a" value="entry">
+            <input type="hidden" name="op" value="{$op}">
+            <input type="hidden" name="do" value="datastates">
+            <input type="hidden" name="m" value="tyzm_diamondvote">
+			
+            <div class="form-group">
+                <label class="col-sm-1 control-label">参赛选手</label>
+                <div class="col-sm-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="username" value="{$_GPC['username']}" />
+                    </div>
+                </div>
+            </div>
+			{if $op == 'giftlog'}
+            <div class="form-group">
+                <label class="col-sm-1 control-label">支付状态</label>
+                <div class="col-sm-5">
+					<input id="ispay1" type="radio" name="ispaytype" {if $_GPC['ispay']==1 || !$_GPC['ispay']}checked{/if} onclick="changetype(1)">
+					<label for="ispay1">全部</label>
+					<input id="ispay2" type="radio" name="ispaytype" {if $_GPC['ispay']==2}checked{/if} onclick="changetype(2)">
+					<label for="ispay2">已支付</label>
+					<input id="ispay3" type="radio" name="ispaytype" {if $_GPC['ispay']==3}checked{/if} onclick="changetype(3)">
+					<label for="ispay3">未支付</label>
+					<input type="hidden" id="ispay" name="ispay" value="{$_GPC['ispay']}" />
+                </div>
+				<script>
+					changetype = function(type) {
+						$("#ispay").val(type);
+					}
+				</script>
+            </div>
+			{/if}
+            <div class="form-group">
+                <label class="col-sm-1 control-label">搜索时间</label>
+                <div class="col-sm-2">{php echo tpl_form_field_daterange('datelimit', array('start' => $_GPC['datelimit']['start'],'end' => $_GPC['datelimit']['end']), false)}</div>
+                <div class="pull-right col-sm-9">
+                    <button class="btn btn-default"><i class="fa fa-search"></i> 搜索</button>
+					<a class="btn btn-primary" href="{php echo $this->createWebUrl('downloadvote',array('id'=>$_GPC['id'],'rid'=>$_GPC['rid']));}" style="display:none"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> 导出</a>
+                </div>
+            </div>
+        </form>
+		
+		{if $op == 'giftlog'}
+		<div class="alert alert-warning alert-dismissible" style="margin-top: 10px;" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			<strong>礼物汇总：</strong>礼物订单总数：{if $total}{$total}{else}0{/if}单 | 已支付礼物总金额：￥{if $ytotal}{$ytotal}{else}0.00{/if} | 未支付礼物总金额：￥{if $wtotal}{$wtotal}{else}0.00{/if}
+		</div>
+		{/if}
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">共{$total}条记录</div>
+    <div class="panel-body">
+        <form method="post">
+			{if $op == 'display'}
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>参赛选手</th>
+							<th>头像</th>
+							<th>投票用户openid</th>
+							<th>ip</th>
+							<th>时间</th>
+							<th>状态</th>
+						</tr>
+					</thead>
+					<tbody>
+						{if empty($list)}
+							<tr>
+								<td colspan="8" style="text-align: center">暂时没有数据哦~</td>
+							</tr>
+						{else}
+							{loop $list $item}
+								<tr>
+									<td>{$item['id']}</td>
+									<td><a href="{php echo $this->createWebUrl('edit',array('id'=>$item['uid'],'rid'=>$item['rid']))}" target="_blank">{$item['name']}</a></td>
+									<td style="text-align:center"><img src="{media $item['avatar']}" width="48"></td>
+									<td>{$item['nickname']}<br/>{$item['openid']}<button class="btn btn-xs btn-danger" onclick="addblack('{$item['openid']}',0);">加入黑名单</button></td>
+									<td>{$item['ipaddress']}<br/>{$item['user_ip']}<button class="btn btn-xs btn-danger" onclick="addblack('{$item['user_ip']}',1);">加入黑名单</button></td>
+									<td>{php echo date('Y-m-d H:i:s',$item['createtime'])}</td>
+									<td>{if $item['status']==1}<span class="label label-danger setvotestatus" data-id="{$item['id']}" data-s="0">无效</span>{else}<span class="label label-success setvotestatus" data-id="{$item['id']}" data-s="1">有效</span>{/if}</td>
+								</tr>
+							{/loop}
+						{/if}
+					</tbody>
+				</table>
+			{elseif $op == 'giftlog'}
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>参赛选手</th>
+							<th>头像昵称</th>
+							<th>订单信息</th>
+							<th>礼物</th>
+							<th>时间/IP</th>
+							<th>状态</th>
+						</tr>
+					</thead>
+					<tbody>
+						{if empty($list)}
+							<tr>
+								<td colspan="8" style="text-align: center">暂时没有数据哦~</td>
+							</tr>
+						{else}
+							{loop $list $item}
+								<tr>
+									<td>{$item['id']}</td>
+									<td><a href="{php echo $this->createWebUrl('edit',array('id'=>$item['uid'],'rid'=>$item['rid']))}" target="_blank">{$item['name']}</a></td>
+									<td class="text-left vertical-middle"><img src="{$item['avatar']}" width="48"><br/>{$item['nickname']}</td>
+									<td class="text-left vertical-middle">
+										<p>openid：{$item['openid']}</P>
+										<p>订单号：{$item['ptid']}</P>
+										{if $item['uniontid']}<p>商户订单号：{$item['uniontid']}</P>{/if}
+										<p>{if $item['ispay']==0}<span class="label label-danger">未付款</span>{else}<span class="label label-success">已付款</span>{/if}</p>
+										<p>{if $item['isdeal']==0}<span class="label label-danger">未处理</span>{else}<span class="label label-success">已处理</span>{/if}</p>
+									</td>
+									<td class="text-left vertical-middle"><p>
+										<img src="{media $item['gifticon']}" width="48"></p><p><span class="label label-success">{$item['gifttitle']}</span></p>
+										<p><span class="label label-success">{$item['fee']}元</span></p>
+									</td>
+									<td>{php echo date('Y-m-d H:i:s',$item['createtime'])}<p>{$item['user_ip']}</p></td>
+									<td  class="text-left vertical-middle">{if $item['status']==1}<span class="label label-danger setvotestatus" data-id="{$item['id']}" data-s="0">不显示</span> {else}<span class="label label-success setvotestatus" data-id="{$item['id']}" data-s="1">显示</span>{/if}</td>	
+								</tr>
+							{/loop}
+						{/if}
+					</tbody>
+				</table>
+			{elseif $op == 'votelog'}
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>编号</th>
+							<th>昵称/联系方式</th>
+							<th>宣言</th>
+							<th>图片</th>
+							<th>投票数据</th>
+							<th>报名时间</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						{if empty($list)}
+							<tr>
+								<td colspan="8" style="text-align: center">暂时没有数据哦~</td>
+							</tr>
+						{else}
+							{loop $list $item}
+								<tr>
+									<td>{$item['id']}</td>
+									<td>{$item['noid']}</td>
+									<td><a href="{php echo $this->createWebUrl('edit',array('id'=>$item['uid'],'rid'=>$item['rid']))}" target="_blank">{$item['name']}
+										{loop $item['joindata'] $join}
+										<p>
+											 {if $join['name']=="性别"}
+												{$join['name']}：<span class="label label-default">
+												{if $join['val']==2}
+												  女
+												{else}
+												  男
+												{/if}({$join['val']})
+												</span><br>
+											 {else}
+												{$join['name']}：<span class="label label-default" >{$join['val']}</span><br/>
+											 {/if}
+										 </p>
+										 {/loop}</a>
+									</td>
+									<td>{$item['introduction']}</td>									
+									<td class="text-left vertical-middle">
+										<a href="{php  echo tomedia($item['img1']);}" class="MagicThumb">
+										<img src="{php  echo tomedia($item['img1']);}" width="48"></a>
+										{if $item['img2']!=""}<a  href="{php echo tomedia($item['img2']);}" class=" MagicThumb"><img src="{php echo tomedia($item['img2']);}" width="48"></a>{/if}
+										{if $item['img3']!=""}<a  href="{php echo tomedia($item['img3']);}" class=" MagicThumb"><img src="{php echo tomedia($item['img3']);}" width="48"></a>{/if}
+										{if $item['img4']!=""}<a  href="{php echo tomedia($item['img4']);}" class=" MagicThumb"><img src="{php echo tomedia($item['img4']);}" width="48"></a>{/if}
+										{if $item['img5']!=""}<a  href="{php echo tomedia($item['img5']);}" class=" MagicThumb"><img src="{php echo tomedia($item['img5']);}" width="48"></a>{/if}
+									</td>
+									<td class="text-left vertical-middle">
+										<p>票数：<span class="label label-primary">{$item['votenum']}</span></p>
+										<p>礼物：<span class="label label-success">{$item['giftcount']}元</span></p>
+										<p>浏览：<span class="label label-info">{$item['pvtotal']}</span></p>
+										<p>分享：<span class="label label-warning">{$item['sharetotal']}</span></p>
+									</td>
+									<td class="text-left vertical-middle">{php echo date('Y-m-d H:i:s',$item['createtime'])}</td>
+									<td class="text-left vertical-middle">
+										<p>
+										{if $row['status']==0}<span class="label label-info audit" data-id="{$row['id']}" data-s="1">待审核</span> {elseif $row['status']==1}<span class="label label-success audit" data-id="{$row['id']}" data-s="0">已审核</span>{/if}
+										</p>
+										<p>
+										{if $row['locktime']>time() }<span class="label label-danger lock" data-id="{$row['id']}" data-s="1" title="点击解锁">已锁定</span> {elseif $row['locktime']<time()}<span class="label label-success lock" data-id="{$row['id']}" data-s="0"title="点击锁定">非锁定</span>{/if}
+										</p>
+									</td>
+									<td  class="text-left vertical-middle">
+										<p><a class="color-default we7-margin-right" title="投票数据" href="{php echo $this->createWebUrl('votedata',array('rid'=>$row['rid'],'id'=>$row['id'],'ty'=>'votenum'))}" ><i class="fa fa-star-o"></i> 投票数据</a>
+										</p>
+										<p><a class="color-default we7-margin-right" title="钻石数据" href="{php echo $this->createWebUrl('giftlist',array('rid'=>$row['rid'],'id'=>$row['id']))}" ><i class="fa fa-codepen"></i> 礼物订单</a>
+										</p>
+										<p><a class="color-default we7-margin-right" title="编辑" href="{php echo $this->createWebUrl('edit',array('rid'=>$row['rid'],'id'=>$row['id']))}" ><i class="fa fa-edit"></i> 编辑</a></p>
+										<p><a class="color-default we7-margin-right" rel="tooltip" href="#" onclick="drop_confirm('您确定要删除吗?删除不可恢复，同时删除所有相关数据！', '{php echo $this->createWebUrl('otherset',array('ty'=>'deletevoteuser','id'=>$row['id'],'rid'=>$row['rid']))}');" title="删除"><i class="fa fa-times"></i> 删除</a></p>
+									</td>
+								</tr>
+							{/loop}
+						{/if}
+					</tbody>
+				</table>
+			{/if}
+        </form>
+    </div>
+</div>
+{$pager}
+
+
+<script>
+	angular.module('member', []).controller('display', function($scope) {
+		$scope.searchMod = "{$search_mod}";
+		$scope.setSearchMod = function(type) {
+			$scope.searchMod = type;
+		};
+	});
+	$(document).ready(function(){
+        $('.btn').hover(function(){
+            $(this).tooltip('show');
+        },function(){
+            $(this).tooltip('hide');
+        });
+    });
+	function addblack(val,type){
+		$.ajax({
+			type : "post",
+			url : "{php echo $this->createWebUrl('blacklist',array('op'=>'add'))}"+"&val="+val+"&type="+type,
+			dataType : "json",
+			success : function(res) {
+				if (res.type == 'success') { 
+					util.message('添加成功', '', 'success');
+				}else{
+					util.message('已添加', '', 'success');
+				}
+			}
+		});
+	};
+</script>
+{if $this->module['config']['giftref']}
+<script>
+	var modalobj = util.dialog("实时礼物订单列表", ["{php echo $this->createWebUrl('floatgift')}"], "", {containerName: "link-container"});
+	modalobj.find('.modal-dialog').css({'cssText':'min-width:220px !important;width:220px;margin:0;'});
+	modalobj.find('.modal-body').css({'height':'400px','overflow-y':'auto','padding':'0'});
+	modalobj.attr('tabindex','');
+	modalobj.modal({backdrop: !1});
+	modalobj.modal('show');
+</script>
+<style>
+	#link-container{height:450px;width:220px;top: auto;}
+<style>
+{/if}
+
+{template 'common/footer'}

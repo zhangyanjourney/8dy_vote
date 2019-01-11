@@ -101,14 +101,14 @@ word-break: normal;
             </div>
         </form>
         <div class="pull-right">
-			<div class="input-group" style="float: left;">
+<!--			<div class="input-group" style="float: left;">
 				<input type='number' class="form-control" style="width:90px" value="" />
 				<button class="btn btn-primary addvotes" data-id="{$_GPC['page']}">
 					<i class="fa fa-plus"></i> 一键加票
 				</button>
-			</div>
+			</div>-->
         <a href="{php echo $this->createWebUrl('uploadvote',array('rid'=>$_GPC['rid']));}" class="btn btn-primary  we7-margin-left">+批量导入用户</a>
-            <a href="{php echo $this->createWebUrl('edit',array('rid'=>$_GPC['rid']));}" class="btn btn-primary  we7-margin-left">+添加投票用户</a>
+            <!--<a href="{php echo $this->createWebUrl('edit',array('rid'=>$_GPC['rid']));}" class="btn btn-primary  we7-margin-left">+添加投票用户</a>-->
             <a href="{php echo $this->createWebUrl('download',array('rid'=>$_GPC['rid']));}" class="btn btn-primary  we7-margin-left">导出用户数据</a>
         </div>
     </div>
@@ -116,10 +116,15 @@ word-break: normal;
             <thead class="navbar-inner">
                 <tr>
 				<th>ID</th>
-				<th>用户</th>	
-                <th>用户信息</th>										
-                <th>图片</th>										
+				<th>用户</th>
+                <th>宣言</th>
+<!--                <th>图片</th>-->
 				<th>数据</th>
+				<th><div class="input-group" style="float: left;">
+					<button class="btn btn-primary addvotes" data-id="{$_GPC['page']}">
+						<i class="fa fa-plus"></i> 一键加票
+					</button>
+				</div></th>
 				<th>参加时间</th>
                 <th>状态</th>
                 <th width="130">操作</th>
@@ -129,17 +134,34 @@ word-break: normal;
                 {loop $list $row}
                 <tr>
                     <td  class="text-left vertical-middle"><input type="checkbox" name="uid[]" value="{$row['id']}" class="">{$row['id']}</td>
-					<td  class="text-left vertical-middle"><img src="{php  echo tomedia($row['avatar']);}" width="48"><br />{$row['nickname']}
+					<td  class="text-left vertical-middle"><!--<img src="{php  echo tomedia($row['avatar']);}" width="48"><br />-->{$row['nickname']}
 <br>
 编号：{$row['noid']}
 <br>
+<br>姓名：<span class="label label-success">{$row['name']}</span><br>
+<br>
+	{loop $row['joindata'] $join}
 
+		{if $join['name']=="性别"}
+		{$join['name']}：<span class="label label-default">
+			{if $join['val']==2}
+			  女
+			{else}
+			  男
+			{/if}({$join['val']})
+			</span>
+		{else}
 
+		{$join['name']}：<span class="label label-default" >{$join['val']}</span>
+		{/if}
+
+	{/loop}
+<br>
 					</td>
 					
 
 					<td class="text-left vertical-middle" style="max-width:300px;display: inline-block; overflow-x: auto;">
-					<p>姓名：<span class="label label-success">{$row['name']}</span></p>
+					<!--<p>姓名：<span class="label label-success">{$row['name']}</span></p>
 					 {loop $row['joindata'] $join}
 					 <p >
 					     {if $join['name']=="性别"}
@@ -155,28 +177,22 @@ word-break: normal;
 						    {$join['name']}：<span class="label label-default" >{$join['val']}</span><br/>
 						 {/if}
 					 </p>
-					 {/loop}
-					<p>宣言：<span class="label label-default" style="white-space: inherit;">{$row['introduction']}</span></p>
-					</td>										
-                    <td  class="text-left vertical-middle">
+					 {/loop}-->
+					<p><span class="label label-default" style="white-space: inherit;">{$row['introduction']}</span></p>
+					</td>
+                    <!--<td  class="text-left vertical-middle">
 					<a  href="{php  echo tomedia($row['img1']);}" class=" MagicThumb">
 					<img src="{php  echo tomedia($row['img1']);}" width="80" height="80"></a>
 					{if $row['img2']!=""}<a  href="{php  echo tomedia($row['img2']);}" class=" MagicThumb"><img src="{php  echo tomedia($row['img2']);}" width="80" height="80"></a>{/if}
 					{if $row['img3']!=""}<a  href="{php  echo tomedia($row['img3']);}" class=" MagicThumb"><img src="{php  echo tomedia($row['img3']);}" width="80" height="80"></a>{/if}
 					{if $row['img4']!=""}<br/><a  href="{php  echo tomedia($row['img4']);}" class=" MagicThumb"><img src="{php  echo tomedia($row['img4']);}" width="80" height="80"></a>{/if}
 					{if $row['img5']!=""}<a  href="{php  echo tomedia($row['img5']);}" class=" MagicThumb"><img src="{php  echo tomedia($row['img5']);}" width="80" height="80"></a>{/if}
-					</td>
+					</td>-->
 
 	                <td class="text-left vertical-middle">
                     <div class="vertical-middle" style="height: 35px;">
 	                票数：
 	                <span class="label label-primary">{$row['votenum']}</span>
-	                <div class="input-group" style="float: right;">
-	                	<input type='number' class="form-control" style="width:90px" value="" />
-	                	<button class="btn btn-default addvote" data-id="{$row['id']}">
-	                		<i class="fa fa-plus"></i>
-	                	</button>
-	                </div>
                     </div>
                     <p>
 	                礼物：<span class="label label-success">{$row['giftcount']}元</span>
@@ -187,6 +203,14 @@ word-break: normal;
 	                分享：<span class="label label-warning">{$row['sharetotal']}</span>
 </p>
 	                </td>
+					<td>
+						<div class="input-group" style="float: left;">
+							<input type='number' class="form-control" style="width:90px" value="" />
+							<button class="btn btn-default addvote" data-id="{$row['id']}">
+								<i class="fa fa-plus"></i>
+							</button>
+						</div>
+					</td>
 					<td class="text-left vertical-middle">{php echo date('Y-m-d H:i:s',$row['createtime'])}</td>
                     <td class="text-left vertical-middle">
                     <p>
@@ -195,9 +219,9 @@ word-break: normal;
 					<p>
 					{if $row['locktime']>time() }<span class="label label-danger lock" data-id="{$row['id']}" data-s="1" title="点击解锁">已锁定</span> {elseif $row['locktime']<time()}<span class="label label-success lock" data-id="{$row['id']}" data-s="0"title="点击锁定">非锁定</span>{/if}
 					</p>
-					<p>
+<!--					<p>
 					<span class="label label-danger clearposter" data-id="{$row['id']}" title="点击清除个人海报"title="点击锁定">清除海报</span>
-					</p>
+					</p>-->
 					<p>
 					</td>
                     <td  class="text-left vertical-middle">

@@ -12,8 +12,28 @@ if (!empty($_GPC['datelimit'])) {
 	$params[':start'] = $starttime;
 	$params[':end'] = $endtime;
 }
-
-if($op=='display'){
+if($op == 'profit') {
+    global $_W, $_GPC;
+    $dailystarttime = mktime(0, 0, 0);
+    $dailyendtime = mktime(23, 59, 59);
+    $dailytimes = '';
+    $dailytimes .= ' AND createtime >=' . $dailystarttime;
+    $dailytimes .= ' AND createtime <=' . $dailyendtime;
+    $item['dailyjointotal'] = pdo_fetchcolumn('SELECT COUNT(id) FROM ' . tablename($this->tablevoteuser) . " WHERE   uniacid = :uniacid  " . $dailytimes, array(":uniacid" => $_W["uniacid"]));
+    $item['dailyvotetotal'] = pdo_fetchcolumn('SELECT COUNT(id) FROM ' . tablename($this->tablevotedata) . " WHERE   uniacid = :uniacid AND votetype=0 " . $dailytimes, array(":uniacid" => $_W["uniacid"]));
+    $item['dailygiftcount'] = pdo_fetchcolumn('SELECT sum(fee) FROM ' . tablename($this->tablegift) . " WHERE   uniacid = :uniacid AND ispay=1 " . $dailytimes, array(":uniacid" => $_W["uniacid"]));
+    $item['dailygiftnum'] = pdo_fetchcolumn('SELECT COUNT(id) FROM ' . tablename($this->tablegift) . " WHERE   uniacid = :uniacid AND ispay=1 " . $dailytimes, array(":uniacid" => $_W["uniacid"]));
+    $item['dailygiftcount'] = !empty($item['dailygiftcount']) ? $item['dailygiftcount'] : 0;
+    $item['jointotal'] = pdo_fetchcolumn('SELECT COUNT(id) FROM ' . tablename($this->tablevoteuser) . " WHERE   uniacid = :uniacid  ", array(":uniacid" => $_W["uniacid"]));
+    $item['votetotal'] = pdo_fetchcolumn('SELECT COUNT(id) FROM ' . tablename($this->tablevotedata) . " WHERE   uniacid = :uniacid AND votetype=0 ", array(":uniacid" => $_W["uniacid"]));
+    $item['giftcount'] = pdo_fetchcolumn('SELECT sum(fee) FROM ' . tablename($this->tablegift) . " WHERE   uniacid = :uniacid AND ispay=1 ", array(":uniacid" => $_W["uniacid"]));
+    $item['pvtotal'] = pdo_fetchcolumn('SELECT sum(pv_total) FROM ' . tablename($this->tablecount) . " WHERE uniacid = :uniacid ", array(":uniacid" => $_W["uniacid"]));
+    $item['giftcount'] = !empty($item['giftcount']) ? $item['giftcount'] : 0;
+/*    if (IMS_VERSION >= 0.8) {
+        $bucket_datacenter = attachment_alioss_datacenters();
+    }*/
+    //include $this->template("setting");
+} elseif ($op=='display'){
 	$pindex = max(1, intval($_GPC['page']));
 	$psize = 20;
 	$condition="";

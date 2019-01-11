@@ -2023,7 +2023,7 @@ ul {
 	color:#a94442
 }
 .color-default {
-	color:#1ab394!important
+	color:#00BFFF!important
 }
 .color-dark {
 	color:#252424!important
@@ -2156,7 +2156,7 @@ ul {
 	color:#fff
 }
 .label-primary {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .btn-default {
 	border-color:#e7e7eb
@@ -2217,11 +2217,11 @@ ul {
 	margin-right:0
 }
 .we7-btn-group .btn:hover {
-	background-color:#1ab394;
+	background-color:#00BFFF;
 	color:#fff
 }
 .we7-btn-group .btn.active,.we7-btn-group .head .navbar-left>li.btn:hover,.head .we7-btn-group .navbar-left>li.btn:hover,.we7-btn-group .panel-menu .btn.list-group-item:not(.list-group-more):hover,.panel-menu .we7-btn-group .btn.list-group-item:not(.list-group-more):hover {
-	background-color:#1ab394;
+	background-color:#00BFFF;
 	color:#fff
 }
 .we7-body-alert {
@@ -2289,7 +2289,7 @@ ul {
 	margin-right:5px
 }
 .we7-page-alert .wi-info-sign {
-	color:#1ab394
+	color:#00BFFF
 }
 .right-content .we7-page-alert {
 	margin-top:-30px!important;
@@ -2360,7 +2360,7 @@ ul {
 	text-align:center
 }
 .cover-dark .cover-delect:hover,.site-template .cover-lock .cover-delect:hover,.system-template .cover-lock .cover-delect:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .cover-dark .cover-delect i,.site-template .cover-lock .cover-delect i,.system-template .cover-lock .cover-delect i {
 	display:block;
@@ -2531,7 +2531,7 @@ ul {
 	color:#98999a
 }
 .we7-table .manage-option a:hover,.wechat-communication .manage-option a:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .we7-table .manage-option a+a,.wechat-communication .manage-option a+a {
 	border-left:1px solid #e7e7eb;
@@ -2659,7 +2659,7 @@ ul {
 }
 .we7-radio-option.checked:before,.we7-radio-option.we7-check-checked:before {
 	content:'\e94f';
-	color:#1ab394
+	color:#00BFFF
 }
 .we7-checkbox-option:before {
 	content:'\e952';
@@ -2667,7 +2667,7 @@ ul {
 }
 .we7-checkbox-option.checked:before,.we7-checkbox-option.we7-check-checked:before {
 	content:'\e951';
-	color:#1ab394
+	color:#00BFFF
 }
 .we7-form input[type=radio],.we7-form input[type=checkbox] {
 	display:none;
@@ -2729,7 +2729,7 @@ ul {
 	color:#c7c7c7
 }
 .we7-form input[type=radio]:checked+label:after,.we7-form input[type=radio]:checked+label:hover:after {
-	color:#1ab394
+	color:#00BFFF
 }
 .we7-form input[type=checkbox]+label:before {
 	-moz-border-radius:0;
@@ -2746,7 +2746,7 @@ ul {
 	color:#c7c7c7
 }
 .we7-form input[type=checkbox]:checked+label:after,.we7-form input[type=checkbox]:checked+label:hover:after {
-	color:#1ab394
+	color:#00BFFF
 }
 .we7-form input[type=checkbox].we7-toggle {
 	display:inline-block;
@@ -2790,9 +2790,9 @@ ul {
 	box-shadow:0 2px 5px #999
 }
 .we7-form input[type=checkbox]:checked.we7-toggle {
-	-moz-box-shadow:inset 0 0 0 15px #1ab394;
-	-webkit-box-shadow:inset 0 0 0 15px #1ab394;
-	box-shadow:inset 0 0 0 15px #1ab394
+	-moz-box-shadow:inset 0 0 0 15px #00BFFF;
+	-webkit-box-shadow:inset 0 0 0 15px #00BFFF;
+	box-shadow:inset 0 0 0 15px #00BFFF
 }
 .we7-form input[type=checkbox]:checked.we7-toggle:after {
 	left:26px;
@@ -2914,7 +2914,7 @@ select.we7-select[multiple=multiple],select[multiple=multiple] {
 	box-shadow:0 2px 5px #999
 }
 .switchOn,.switchOn:before {
-	background:#1ab394!important
+	background:#00BFFF!important
 }
 .switchOn:after {
 	left:28px!important
@@ -2987,7 +2987,7 @@ select.we7-select[multiple=multiple],select[multiple=multiple] {
 	color:#fff
 }
 .we7-input-img .cut:hover {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .we7-input-img .del {
 	position:absolute;
@@ -2996,7 +2996,7 @@ select.we7-select[multiple=multiple],select[multiple=multiple] {
 	border-radius:100%;
 	text-align:center;
 	line-height:22px;
-	background-color:#1ab394;
+	background-color:#00BFFF;
 	top:-11px;
 	right:-11px
 }
@@ -3090,10 +3090,10 @@ select.we7-select[multiple=multiple],select[multiple=multiple] {
 	color:#252424
 }
 .we7-page-tab li:hover {
-	border-bottom:3px solid #1ab394
+	border-bottom:3px solid #00BFFF
 }
 .we7-page-tab li.active,.we7-page-tab .head .navbar-left>li:hover,.head .we7-page-tab .navbar-left>li:hover,.we7-page-tab .panel-menu li.list-group-item:not(.list-group-more):hover,.panel-menu .we7-page-tab li.list-group-item:not(.list-group-more):hover {
-	border-bottom:3px solid #1ab394
+	border-bottom:3px solid #00BFFF
 }
 .letters-list {
 	padding-bottom:30px;
@@ -3106,10 +3106,10 @@ select.we7-select[multiple=multiple],select[multiple=multiple] {
 	float:left
 }
 .letters-list li:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .letters-list li.active,.letters-list .head .navbar-left>li:hover,.head .letters-list .navbar-left>li:hover,.letters-list .panel-menu li.list-group-item:not(.list-group-more):hover,.panel-menu .letters-list li.list-group-item:not(.list-group-more):hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .letters-list li a {
 	display:block
@@ -3128,7 +3128,7 @@ select.we7-select[multiple=multiple],select[multiple=multiple] {
 	color:#98999a
 }
 .we7-step li.active,.we7-step .head .navbar-left>li:hover,.head .we7-step .navbar-left>li:hover,.we7-step .panel-menu li.list-group-item:not(.list-group-more):hover,.panel-menu .we7-step li.list-group-item:not(.list-group-more):hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .we7-step li:first-child:nth-last-child(2),.we7-step li:first-child:nth-last-child(2)~li {
 	width:50%
@@ -3294,7 +3294,7 @@ select.we7-select[multiple=multiple],select[multiple=multiple] {
 }
 .we7-modal-dialog .nav-pills>li.active>a,.we7-modal-dialog .head .navbar-left.nav-pills>li:hover>a,.head .we7-modal-dialog .navbar-left.nav-pills>li:hover>a,.we7-modal-dialog .panel-menu .nav-pills>li.list-group-item:not(.list-group-more):hover>a,.panel-menu .we7-modal-dialog .nav-pills>li.list-group-item:not(.list-group-more):hover>a,.modal-dialog .nav-pills>li.active>a,.modal-dialog .head .navbar-left.nav-pills>li:hover>a,.head .modal-dialog .navbar-left.nav-pills>li:hover>a,.modal-dialog .panel-menu .nav-pills>li.list-group-item:not(.list-group-more):hover>a,.panel-menu .modal-dialog .nav-pills>li.list-group-item:not(.list-group-more):hover>a {
 	padding:0;
-	color:#1ab394;
+	color:#00BFFF;
 	background-color:transparent
 }
 .we7-modal-dialog .nav-pills>li>a,.modal-dialog .nav-pills>li>a {
@@ -3304,7 +3304,7 @@ select.we7-select[multiple=multiple],select[multiple=multiple] {
 }
 .we7-modal-dialog .nav-pills>li>a:hover,.modal-dialog .nav-pills>li>a:hover {
 	background-color:transparent;
-	color:#1ab394
+	color:#00BFFF
 }
 .we7-modal-dialog .nav-pills>li+li,.modal-dialog .nav-pills>li+li {
 	margin-left:10px
@@ -3318,7 +3318,7 @@ select.we7-select[multiple=multiple],select[multiple=multiple] {
 	margin-right:3px
 }
 .we7-modal-dialog .text-info,.modal-dialog .text-info {
-	color:#1ab394
+	color:#00BFFF
 }
 .modal-success {
 	top:50%;
@@ -3496,7 +3496,7 @@ select.we7-select[multiple=multiple],select[multiple=multiple] {
 	margin-left:30px
 }
 .panel-cut .cut-manage a:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .panel-cut>.panel-body {
 	padding:15px 30px
@@ -3753,7 +3753,7 @@ select.we7-select[multiple=multiple],select[multiple=multiple] {
 .modal-dialog .avatar-browser {
 	min-height:480px;
 	line-height:0;
-	color:#1ab394
+	color:#00BFFF
 }
 .modal-dialog .avatar-browser .thumbnail {
 	display:block;
@@ -3765,12 +3765,12 @@ select.we7-select[multiple=multiple],select[multiple=multiple] {
 	overflow:hidden
 }
 .modal-dialog .avatar-browser .thumbnail:hover {
-	border-color:#1ab394
+	border-color:#00BFFF
 }
 .modal-dialog .avatar-browser {
 	min-height:480px;
 	line-height:0;
-	color:#1ab394
+	color:#00BFFF
 }
 .modal-dialog .avatar-browser .thumbnail {
 	display:block;
@@ -3782,13 +3782,13 @@ select.we7-select[multiple=multiple],select[multiple=multiple] {
 	overflow:hidden
 }
 .modal-dialog .avatar-browser .thumbnail:hover {
-	border-color:#1ab394
+	border-color:#00BFFF
 }
 .pagination {
 	margin:0
 }
 #select .btn-info {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .history-content {
 	text-align:center;
@@ -4858,7 +4858,7 @@ select.we7-select[multiple=multiple],select[multiple=multiple] {
 	content:"\e70b"
 }
 a:hover {
-	color:#1ab394;
+	color:#00BFFF;
 	text-decoration:none
 }
 .head {
@@ -4872,7 +4872,7 @@ a:hover {
 	margin:0
 }
 .head a:hover {
-	color:#1ab394!important
+	color:#00BFFF!important
 }
 .head .navbar-header {
 	width:180px
@@ -4923,7 +4923,7 @@ a:hover {
 }
 .head .navbar-right li:hover {
 	background-color:transparent;
-	color:#1ab394
+	color:#00BFFF
 }
 .head .navbar-right .wi,.head .navbar-right .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .head .navbar-right .ext-apply-item.apply-show:before,.head .navbar-right .cut-list .item.apply-show:before,.cut-list .head .navbar-right .item.apply-show:before,.head .navbar-right .fa {
 	font-size:21px;
@@ -5434,7 +5434,7 @@ a:hover {
 	color:#fff
 }
 .panel-menu .list-group-item:not(.list-group-more).active,.panel-menu .list-group-item:not(.list-group-more):hover,.skin-black .panel-menu .list-group-item:not(.list-group-more):hover,.panel-menu .skin-black .head .navbar-left>li.list-group-item:not(.list-group-more):hover {
-	background-color:#1ab394;
+	background-color:#00BFFF;
 	color:#fff
 }
 .panel-menu .list-group-item:not(.list-group-more).active .wi,.panel-menu .list-group-item:not(.list-group-more):hover .wi,.panel-menu .list-group-item:not(.list-group-more).active .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .panel-menu .list-group-item:not(.list-group-more).active .ext-apply-item.apply-show:before,.panel-menu .list-group-item:not(.list-group-more):hover .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .panel-menu .list-group-item:not(.list-group-more):hover .ext-apply-item.apply-show:before,.panel-menu .list-group-item:not(.list-group-more).active .cut-list .item.apply-show:before,.cut-list .panel-menu .list-group-item:not(.list-group-more).active .item.apply-show:before,.panel-menu .list-group-item:not(.list-group-more):hover .cut-list .item.apply-show:before,.cut-list .panel-menu .list-group-item:not(.list-group-more):hover .item.apply-show:before,.panel-menu .list-group-item:not(.list-group-more).active .fa,.panel-menu .list-group-item:not(.list-group-more):hover .fa {
@@ -5484,7 +5484,7 @@ a:hover {
 	left:15px
 }
 .panel-menu .list-group-more .label-more:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .panel-menu:last-child {
 	border-bottom:10px
@@ -5502,7 +5502,7 @@ a:hover {
 	text-align:right
 }
 .link-group a {
-	color:#1ab394;
+	color:#00BFFF;
 	margin-left:10px
 }
 .link-group a:last-child {
@@ -5576,7 +5576,7 @@ a:hover {
 	margin-right:0
 }
 .cut-wechat-list .cut-wechat-item .cover-dark .manage-fa:hover,.cut-wechat-list .cut-wechat-item .site-template .cover-lock .manage-fa:hover,.site-template .cut-wechat-list .cut-wechat-item .cover-lock .manage-fa:hover,.cut-wechat-list .cut-wechat-item .system-template .cover-lock .manage-fa:hover,.system-template .cut-wechat-list .cut-wechat-item .cover-lock .manage-fa:hover {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .cut-wechat-list .cut-wechat-item .cover-dark .manage,.cut-wechat-list .cut-wechat-item .site-template .cover-lock .manage,.site-template .cut-wechat-list .cut-wechat-item .cover-lock .manage,.cut-wechat-list .cut-wechat-item .system-template .cover-lock .manage,.system-template .cut-wechat-list .cut-wechat-item .cover-lock .manage {
 	position:relative;
@@ -5605,7 +5605,7 @@ a:hover {
 	vertical-align:middle
 }
 .cut-wechat-list .cut-wechat-item .cover-dark .stick:hover,.cut-wechat-list .cut-wechat-item .site-template .cover-lock .stick:hover,.site-template .cut-wechat-list .cut-wechat-item .cover-lock .stick:hover,.cut-wechat-list .cut-wechat-item .system-template .cover-lock .stick:hover,.system-template .cut-wechat-list .cut-wechat-item .cover-lock .stick:hover {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .cut-wechat-list .cut-wechat-item:hover .cover-dark,.cut-wechat-list .cut-wechat-item:hover .site-template .cover-lock,.site-template .cut-wechat-list .cut-wechat-item:hover .cover-lock,.cut-wechat-list .cut-wechat-item:hover .system-template .cover-lock,.system-template .cut-wechat-list .cut-wechat-item:hover .cover-lock {
 	display:block
@@ -5633,7 +5633,7 @@ a:hover {
 	work-break:break-all
 }
 .system-select-dropdown.open>span {
-	color:#1ab394;
+	color:#00BFFF;
 	z-index:1001
 }
 .system-select-dropdown .dropdown-menu {
@@ -5768,7 +5768,7 @@ a:hover {
 	background:rgba(255,255,255,.7);
 	border-radius:4px;
 	position:fixed;
-	right:20%;
+	right:40%;
 	top:20%
 }
 .login-panel .input-group-vertical input,.register-panel .input-group-vertical input {
@@ -5849,7 +5849,7 @@ a:hover {
 .la-ball-clip-rotate {
 	display:block;
 	font-size:0;
-	color:#1ab394;
+	color:#00BFFF;
 	width:64px;
 	height:64px
 }
@@ -6069,7 +6069,7 @@ a:hover {
 	color:#666
 }
 .home .footer a:hover {
-	color:#1ab394;
+	color:#00BFFF;
 	text-decoration:none
 }
 .notice-show {
@@ -6087,7 +6087,7 @@ a:hover {
 	padding-top:28px
 }
 .notice-show .news-detail a {
-	color:#1ab394
+	color:#00BFFF
 }
 .form-control.edui-default {
 	height:auto;
@@ -6361,7 +6361,7 @@ a:hover {
 	font-size:120px
 }
 .creat-wxapp-type .type-list li:hover {
-	background-color:#1ab394;
+	background-color:#00BFFF;
 	color:#fff
 }
 .creat-wxapp-type .type-list li.ban {
@@ -6369,7 +6369,7 @@ a:hover {
 	color:#bebebe
 }
 .creat-wxapp-type .type-list li.active,.creat-wxapp-type .type-list .head .navbar-left>li:hover,.head .creat-wxapp-type .type-list .navbar-left>li:hover,.creat-wxapp-type .type-list .panel-menu li.list-group-item:not(.list-group-more):hover,.panel-menu .creat-wxapp-type .type-list li.list-group-item:not(.list-group-more):hover {
-	background-color:#1ab394;
+	background-color:#00BFFF;
 	color:#fff
 }
 .wxapp-type-cut {
@@ -6413,7 +6413,7 @@ a:hover {
 	cursor:not-allowed
 }
 .wxapp-type-cut .dropdown-menu a.active:hover,.wxapp-type-cut .dropdown-menu .panel-menu a.list-group-item:hover:not(.list-group-more),.panel-menu .wxapp-type-cut .dropdown-menu a.list-group-item:hover:not(.list-group-more) {
-	color:#1ab394;
+	color:#00BFFF;
 	cursor:pointer
 }
 .wxapp-tem-preview {
@@ -6660,7 +6660,7 @@ a:hover {
 	width:64px;
 	height:64px;
 	margin-bottom:10px;
-	background-color:#1ab394;
+	background-color:#00BFFF;
 	border:1px dotted #e7e7eb
 }
 .creat-buttom .nav-img-box img {
@@ -7041,7 +7041,7 @@ a:hover {
 	margin-right:0
 }
 .wxapp-cut-list .cover-dark .manage-fa:hover,.wxapp-cut-list .site-template .cover-lock .manage-fa:hover,.site-template .wxapp-cut-list .cover-lock .manage-fa:hover,.wxapp-cut-list .system-template .cover-lock .manage-fa:hover,.system-template .wxapp-cut-list .cover-lock .manage-fa:hover {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .wxapp-cut-list .cover-dark .manage,.wxapp-cut-list .site-template .cover-lock .manage,.site-template .wxapp-cut-list .cover-lock .manage,.wxapp-cut-list .system-template .cover-lock .manage,.system-template .wxapp-cut-list .cover-lock .manage {
 	position:absolute;
@@ -7067,7 +7067,7 @@ a:hover {
 	font-size:12px
 }
 .wxapp-cut-list .cover-dark .stick:hover,.wxapp-cut-list .site-template .cover-lock .stick:hover,.site-template .wxapp-cut-list .cover-lock .stick:hover,.wxapp-cut-list .system-template .cover-lock .stick:hover,.system-template .wxapp-cut-list .cover-lock .stick:hover {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .wxapp-version-list {
 	margin-left:-15px;
@@ -7107,7 +7107,7 @@ a:hover {
 	font-size:40px
 }
 .wxapp-version-list .item .cover-dark .manage-fa:hover,.wxapp-version-list .item .site-template .cover-lock .manage-fa:hover,.site-template .wxapp-version-list .item .cover-lock .manage-fa:hover,.wxapp-version-list .item .system-template .cover-lock .manage-fa:hover,.system-template .wxapp-version-list .item .cover-lock .manage-fa:hover {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .wxapp-version-list .item .cover-dark .manage,.wxapp-version-list .item .site-template .cover-lock .manage,.site-template .wxapp-version-list .item .cover-lock .manage,.wxapp-version-list .item .system-template .cover-lock .manage,.system-template .wxapp-version-list .item .cover-lock .manage {
 	position:relative;
@@ -7132,7 +7132,7 @@ a:hover {
 	font-size:18px
 }
 .wxapp-version-list .item .cover-dark .manage-fa-del:hover,.wxapp-version-list .item .site-template .cover-lock .manage-fa-del:hover,.site-template .wxapp-version-list .item .cover-lock .manage-fa-del:hover,.wxapp-version-list .item .system-template .cover-lock .manage-fa-del:hover,.system-template .wxapp-version-list .item .cover-lock .manage-fa-del:hover {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .wxapp-version-list .item .cover-dark .manage-del,.wxapp-version-list .item .site-template .cover-lock .manage-del,.site-template .wxapp-version-list .item .cover-lock .manage-del,.wxapp-version-list .item .system-template .cover-lock .manage-del,.system-template .wxapp-version-list .item .cover-lock .manage-del {
 	position:absolute;
@@ -7157,7 +7157,7 @@ a:hover {
 	font-size:18px
 }
 .wxapp-version-list .item .cover-dark .manage-fa-down:hover,.wxapp-version-list .item .site-template .cover-lock .manage-fa-down:hover,.site-template .wxapp-version-list .item .cover-lock .manage-fa-down:hover,.wxapp-version-list .item .system-template .cover-lock .manage-fa-down:hover,.system-template .wxapp-version-list .item .cover-lock .manage-fa-down:hover {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .wxapp-version-list .item .cover-dark .manage-down,.wxapp-version-list .item .site-template .cover-lock .manage-down,.site-template .wxapp-version-list .item .cover-lock .manage-down,.wxapp-version-list .item .system-template .cover-lock .manage-down,.system-template .wxapp-version-list .item .cover-lock .manage-down {
 	position:absolute;
@@ -7246,7 +7246,7 @@ a:hover {
 	margin-bottom:10px
 }
 .modal-dialog .wxapp-module-list .add:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .wxapp-download-procedure {
 	border-top:1px solid #e7e7eb;
@@ -7527,7 +7527,7 @@ a:hover {
 	border-top:1px solid #32374a
 }
 .skin-black .panel-menu>.panel-heading {
-	background-color:#3a3f51;
+	background-color:#191970;
 	color:#7a8199
 }
 .skin-black .panel-menu .list-group-item:not(.list-group-more) {
@@ -7545,7 +7545,7 @@ a:hover {
 	color:#fff
 }
 .skin-black .panel-menu .list-group-item:not(.list-group-more).active,.skin-black .panel-menu .list-group-item:not(.list-group-more):hover {
-	background-color:#1ab394!important
+	background-color:#00BFFF!important
 }
 .skin-black .panel-menu .list-group-item:not(.list-group-more).active .wi,.skin-black .panel-menu .list-group-item:not(.list-group-more):hover .wi,.skin-black .panel-menu .list-group-item:not(.list-group-more).active .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .skin-black .panel-menu .list-group-item:not(.list-group-more).active .ext-apply-item.apply-show:before,.skin-black .panel-menu .list-group-item:not(.list-group-more):hover .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .skin-black .panel-menu .list-group-item:not(.list-group-more):hover .ext-apply-item.apply-show:before,.skin-black .panel-menu .list-group-item:not(.list-group-more).active .cut-list .item.apply-show:before,.cut-list .skin-black .panel-menu .list-group-item:not(.list-group-more).active .item.apply-show:before,.skin-black .panel-menu .list-group-item:not(.list-group-more):hover .cut-list .item.apply-show:before,.cut-list .skin-black .panel-menu .list-group-item:not(.list-group-more):hover .item.apply-show:before,.skin-black .panel-menu .list-group-item:not(.list-group-more).active .fa,.skin-black .panel-menu .list-group-item:not(.list-group-more):hover .fa {
 	color:#fff
@@ -7583,7 +7583,7 @@ a:hover {
 	border:1px dashed #7a8199
 }
 .skin-black .panel-menu .list-group-more .label-more:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .skin-black .panel-menu:last-child {
 	border-bottom:10px
@@ -7610,14 +7610,14 @@ a:hover {
 	text-align:center;
 	color:#fff!important;
 	border-radius:4px;
-	background-color:#1ab394;
-	border:1px solid #1ab394;
+	background-color:#00BFFF;
+	border:1px solid #00BFFF;
 	padding:0 6px;
 	margin-left:5px;
 	margin-bottom:3px
 }
 .skin-black .link-group>a:hover {
-	background-color:#1ab394;
+	background-color:#00BFFF;
 	border-color:#285e8e
 }
 .skin-black .link-group>a:last-child {
@@ -7693,7 +7693,7 @@ a:hover {
 	margin-right:0
 }
 .skin-black .cut-wechat-list .cut-wechat-item .cover-dark .manage-fa:hover,.skin-black .cut-wechat-list .cut-wechat-item .site-template .cover-lock .manage-fa:hover,.site-template .skin-black .cut-wechat-list .cut-wechat-item .cover-lock .manage-fa:hover,.skin-black .cut-wechat-list .cut-wechat-item .system-template .cover-lock .manage-fa:hover,.system-template .skin-black .cut-wechat-list .cut-wechat-item .cover-lock .manage-fa:hover {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .skin-black .cut-wechat-list .cut-wechat-item .cover-dark .manage,.skin-black .cut-wechat-list .cut-wechat-item .site-template .cover-lock .manage,.site-template .skin-black .cut-wechat-list .cut-wechat-item .cover-lock .manage,.skin-black .cut-wechat-list .cut-wechat-item .system-template .cover-lock .manage,.system-template .skin-black .cut-wechat-list .cut-wechat-item .cover-lock .manage {
 	position:relative;
@@ -7722,7 +7722,7 @@ a:hover {
 	vertical-align:middle
 }
 .skin-black .cut-wechat-list .cut-wechat-item .cover-dark .stick:hover,.skin-black .cut-wechat-list .cut-wechat-item .site-template .cover-lock .stick:hover,.site-template .skin-black .cut-wechat-list .cut-wechat-item .cover-lock .stick:hover,.skin-black .cut-wechat-list .cut-wechat-item .system-template .cover-lock .stick:hover,.system-template .skin-black .cut-wechat-list .cut-wechat-item .cover-lock .stick:hover {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .skin-black .cut-wechat-list .cut-wechat-item:hover .cover-dark,.skin-black .cut-wechat-list .cut-wechat-item:hover .site-template .cover-lock,.site-template .skin-black .cut-wechat-list .cut-wechat-item:hover .cover-lock,.skin-black .cut-wechat-list .cut-wechat-item:hover .system-template .cover-lock,.system-template .skin-black .cut-wechat-list .cut-wechat-item:hover .cover-lock {
 	display:block
@@ -8489,7 +8489,7 @@ a:hover {
 	cursor:default
 }
 .keyword-tag:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .keyword-img {
 	max-width:30px
@@ -8556,7 +8556,7 @@ a:hover {
 	z-index:-1
 }
 .keyword-app .keyword-app-info .cover-circle:hover:before {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .NoKeyword-list .keyword-link {
 	margin-right:30px
@@ -8622,10 +8622,10 @@ a:hover {
 }
 .we7-select-msg .add:hover {
 	background-color:#f4f6f9;
-	color:#1ab394
+	color:#00BFFF
 }
 .we7-select-msg .add:hover .wi,.we7-select-msg .add:hover .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .we7-select-msg .add:hover .ext-apply-item.apply-show:before,.we7-select-msg .add:hover .cut-list .item.apply-show:before,.cut-list .we7-select-msg .add:hover .item.apply-show:before {
-	color:#1ab394
+	color:#00BFFF
 }
 .we7-select-msg ul {
 	margin-bottom:0;
@@ -8650,7 +8650,7 @@ a:hover {
 	background-color:#f4f6f9
 }
 .we7-select-msg li:hover .wi,.we7-select-msg li:hover .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .we7-select-msg li:hover .ext-apply-item.apply-show:before,.we7-select-msg li:hover .cut-list .item.apply-show:before,.cut-list .we7-select-msg li:hover .item.apply-show:before,.we7-select-msg li:hover .fa {
-	color:#1ab394
+	color:#00BFFF
 }
 .we7-select-msg .wi,.we7-select-msg .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .we7-select-msg .ext-apply-item.apply-show:before,.we7-select-msg .cut-list .item.apply-show:before,.cut-list .we7-select-msg .item.apply-show:before,.we7-select-msg .fa {
 	vertical-align:middle;
@@ -8737,10 +8737,10 @@ a:hover {
 	margin-bottom:30px
 }
 .mass-list .mass-item:hover .mass-item-time {
-	color:#1ab394
+	color:#00BFFF
 }
 .mass-list .mass-item:hover .mass-content {
-	border-color:#1ab394
+	border-color:#00BFFF
 }
 .mass-list .mass-item-time {
 	font-size:24px;
@@ -8810,11 +8810,11 @@ a:hover {
 	width:31.3%;
 	display:inline-block;
 	text-align:center;
-	color:#1ab394;
+	color:#00BFFF;
 	font-size:21px
 }
 .mass-list .mass-item.active .mass-item-time,.mass-list .head .navbar-left>li.mass-item:hover .mass-item-time,.head .mass-list .navbar-left>li.mass-item:hover .mass-item-time,.mass-list .panel-menu .mass-item.list-group-item:not(.list-group-more):hover .mass-item-time,.panel-menu .mass-list .mass-item.list-group-item:not(.list-group-more):hover .mass-item-time {
-	color:#1ab394
+	color:#00BFFF
 }
 .mass-list .mass-add {
 	display:block;
@@ -8835,16 +8835,16 @@ a:hover {
 	opacity:.3
 }
 .mass-list .mass-add:hover {
-	border-color:#1ab394
+	border-color:#00BFFF
 }
 .mass-list .mass-add:hover:after {
-	color:#1ab394
+	color:#00BFFF
 }
 .skin-black .head {
 	background-color:#3a3f51
 }
 .skin-black .head .navbar-default {
-	background-color:#3a3f51;
+	background-color:#191970;
 	height:50px;
 	line-height:50px;
 	color:#7a8199;
@@ -8860,7 +8860,7 @@ a:hover {
 	width:220px
 }
 .skin-black .head .navbar-header .version {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .skin-black .head .navbar-header .navbar-brand {
 	padding:10px 15px;
@@ -8901,7 +8901,7 @@ a:hover {
 .skin-black .head .navbar-left .active a:after,.panel-menu .skin-black .head .navbar-left .list-group-item:not(.list-group-more):hover a:after,.skin-black .head .navbar-left .panel-menu .list-group-item:not(.list-group-more):hover a:after,.skin-black .panel-menu .head .navbar-left .list-group-item:not(.list-group-more):hover a:after,.skin-black .head .navbar-left>li:hover a:after {
 	content:'';
 	height:3px;
-	background-color:#1ab394;
+	background-color:#00BFFF;
 	position:absolute;
 	bottom:0;
 	left:0;
@@ -9156,7 +9156,7 @@ a:hover {
 	color:#98999a
 }
 .material-appmsg-item .appmsg-opr-item a:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .material-appmsg-item .appmsg-opr-item a .wi,.material-appmsg-item .appmsg-opr-item a .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .material-appmsg-item .appmsg-opr-item a .ext-apply-item.apply-show:before,.material-appmsg-item .appmsg-opr-item a .cut-list .item.apply-show:before,.cut-list .material-appmsg-item .appmsg-opr-item a .item.apply-show:before {
 	font-size:20px;
@@ -9195,7 +9195,7 @@ a:hover {
 	position:relative
 }
 .material-img-item:hover {
-	outline:2px solid #1ab394
+	outline:2px solid #00BFFF
 }
 .material-img-item .appimg-info {
 	width:100%;
@@ -9243,7 +9243,7 @@ a:hover {
 	color:#98999a
 }
 .material-img-item .img-opr-item a:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .material-img-item .img-opr-item a .wi,.material-img-item .img-opr-item a .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .material-img-item .img-opr-item a .ext-apply-item.apply-show:before,.material-img-item .img-opr-item a .cut-list .item.apply-show:before,.cut-list .material-img-item .img-opr-item a .item.apply-show:before {
 	font-size:20px;
@@ -9266,8 +9266,8 @@ a:hover {
 	cursor:pointer
 }
 .material-audio-item:hover {
-	outline:2px solid #1ab394;
-	color:#1ab394
+	outline:2px solid #00BFFF;
+	color:#00BFFF
 }
 .material-audio-item .audio-info {
 	width:100%;
@@ -9324,7 +9324,7 @@ a:hover {
 	color:#98999a
 }
 .material-audio-item .audio-opr-item a:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .material-audio-item .audio-opr-item a .wi,.material-audio-item .audio-opr-item a .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .material-audio-item .audio-opr-item a .ext-apply-item.apply-show:before,.material-audio-item .audio-opr-item a .cut-list .item.apply-show:before,.cut-list .material-audio-item .audio-opr-item a .item.apply-show:before {
 	font-size:20px;
@@ -9453,13 +9453,13 @@ a:hover {
 	text-align:center
 }
 .appmsg-input-area .nav.nav-tabs li a:hover {
-	border-bottom:3px solid #1ab394;
-	color:#1ab394;
+	border-bottom:3px solid #00BFFF;
+	color:#00BFFF;
 	background-color:transparent
 }
 .appmsg-input-area .nav.nav-tabs li.active a,.appmsg-input-area .nav.nav-tabs .head .navbar-left>li:hover a,.head .appmsg-input-area .nav.nav-tabs .navbar-left>li:hover a,.appmsg-input-area .nav.nav-tabs .panel-menu li.list-group-item:not(.list-group-more):hover a,.panel-menu .appmsg-input-area .nav.nav-tabs li.list-group-item:not(.list-group-more):hover a {
-	border-bottom:3px solid #1ab394;
-	color:#1ab394;
+	border-bottom:3px solid #00BFFF;
+	color:#00BFFF;
 	background-color:transparent
 }
 .appmsg-input-area .input-area-head {
@@ -9742,7 +9742,7 @@ a:hover {
 	display:block
 }
 .site-template .active .selected,.site-template .head .navbar-left>li:hover .selected,.head .site-template .navbar-left>li:hover .selected,.site-template .panel-menu .list-group-item:not(.list-group-more):hover .selected,.panel-menu .site-template .list-group-item:not(.list-group-more):hover .selected,.site-template .active .lock,.site-template .head .navbar-left>li:hover .lock,.head .site-template .navbar-left>li:hover .lock,.site-template .panel-menu .list-group-item:not(.list-group-more):hover .lock,.panel-menu .site-template .list-group-item:not(.list-group-more):hover .lock,.system-template .active .selected,.system-template .head .navbar-left>li:hover .selected,.head .system-template .navbar-left>li:hover .selected,.system-template .panel-menu .list-group-item:not(.list-group-more):hover .selected,.panel-menu .system-template .list-group-item:not(.list-group-more):hover .selected,.system-template .active .lock,.system-template .head .navbar-left>li:hover .lock,.head .system-template .navbar-left>li:hover .lock,.system-template .panel-menu .list-group-item:not(.list-group-more):hover .lock,.panel-menu .system-template .list-group-item:not(.list-group-more):hover .lock {
-	color:#1ab394
+	color:#00BFFF
 }
 .site-template .site-template-manage,.system-template .site-template-manage {
 	background-color:#f4f4f4;
@@ -9759,7 +9759,7 @@ a:hover {
 	width:20%
 }
 .site-template .site-template-manage .manage-item:hover,.system-template .site-template-manage .manage-item:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .system-template .cover-lock {
 	padding:0
@@ -9852,7 +9852,7 @@ a:hover {
 	display:inline-block
 }
 .site-edit-nav .site-edit-item a:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .site-edit-nav .site-edit-item.active,.site-edit-nav .head .navbar-left>li.site-edit-item:hover,.head .site-edit-nav .navbar-left>li.site-edit-item:hover,.site-edit-nav .panel-menu .site-edit-item.list-group-item:not(.list-group-more):hover,.panel-menu .site-edit-nav .site-edit-item.list-group-item:not(.list-group-more):hover {
 	color:#252424
@@ -9923,7 +9923,7 @@ a:hover {
 	color:#fff
 }
 .site-slide-list .slide-img .cut:hover {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .site-slide-list .slide-img .del {
 	position:absolute;
@@ -9935,7 +9935,7 @@ a:hover {
 	border-radius:100%;
 	color:#fff;
 	text-align:center;
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .site-slide-list .slide-img .del .fa,.site-slide-list .slide-img .del .wi,.site-slide-list .slide-img .del .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .site-slide-list .slide-img .del .ext-apply-item.apply-show:before,.site-slide-list .slide-img .del .cut-list .item.apply-show:before,.cut-list .site-slide-list .slide-img .del .item.apply-show:before {
 	font-size:14px;
@@ -10011,7 +10011,7 @@ a:hover {
 	font-size:30px
 }
 .homemenu td.edit a {
-	color:#1ab394;
+	color:#00BFFF;
 	margin-left:5px
 }
 .homemenu td.edit a:first-child {
@@ -10882,7 +10882,7 @@ a:hover {
 	z-index:1;
 	left:0;
 	bottom:0;
-	border-bottom:30px solid #1ab394;
+	border-bottom:30px solid #00BFFF;
 	border-right:37px solid transparent
 }
 .ext-apply-list .ext-apply-item.apply-show .manage-show {
@@ -10974,7 +10974,7 @@ a:hover {
 	vertical-align:middle
 }
 .ext-apply-list .cover-dark .mange-goto:hover i,.ext-apply-list .site-template .cover-lock .mange-goto:hover i,.site-template .ext-apply-list .cover-lock .mange-goto:hover i,.ext-apply-list .system-template .cover-lock .mange-goto:hover i,.system-template .ext-apply-list .cover-lock .mange-goto:hover i {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .ext-apply-list .cover-dark .manage-show,.ext-apply-list .site-template .cover-lock .manage-show,.site-template .ext-apply-list .cover-lock .manage-show,.ext-apply-list .system-template .cover-lock .manage-show,.system-template .ext-apply-list .cover-lock .manage-show {
 	width:71px;
@@ -11007,7 +11007,7 @@ a:hover {
 	color:#fff
 }
 .ext-apply-list .cover-dark .manage-show:hover i,.ext-apply-list .site-template .cover-lock .manage-show:hover i,.site-template .ext-apply-list .cover-lock .manage-show:hover i,.ext-apply-list .system-template .cover-lock .manage-show:hover i,.system-template .ext-apply-list .cover-lock .manage-show:hover i,.ext-apply-list .cover-dark .manage-stick:hover i,.ext-apply-list .site-template .cover-lock .manage-stick:hover i,.site-template .ext-apply-list .cover-lock .manage-stick:hover i,.ext-apply-list .system-template .cover-lock .manage-stick:hover i,.system-template .ext-apply-list .cover-lock .manage-stick:hover i {
-	background-color:#1ab394;
+	background-color:#00BFFF;
 	color:#fff
 }
 .ext-apply-list .cover-dark .manage-stick,.ext-apply-list .site-template .cover-lock .manage-stick,.site-template .ext-apply-list .cover-lock .manage-stick,.ext-apply-list .system-template .cover-lock .manage-stick,.system-template .ext-apply-list .cover-lock .manage-stick {
@@ -11031,7 +11031,7 @@ a:hover {
 	font-weight:400
 }
 .ext-apply-list .ext-apply-item.more a:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .combo-list .col-sm-3 {
 	margin-bottom:15px;
@@ -11235,7 +11235,7 @@ a:hover {
 .skin-black .left-menu .left-menu-top {
 	width:100%;
 	display:block;
-	background-color:#3a3f51;
+	background-color:#191970;
 	border-top:1px solid #32374a;
 	color:#7a8199
 }
@@ -11264,7 +11264,7 @@ a:hover {
 	color:#7a8199
 }
 .skin-black .left-menu .left-menu-top .operate a:nth-child(2) {
-	margin:0 40px
+	margin:0 8px
 }
 .skin-black .left-menu .left-menu-top .operate a .wi,.skin-black .left-menu .left-menu-top .operate a .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .skin-black .left-menu .left-menu-top .operate a .ext-apply-item.apply-show:before,.skin-black .left-menu .left-menu-top .operate a .cut-list .item.apply-show:before,.cut-list .skin-black .left-menu .left-menu-top .operate a .item.apply-show:before {
 	font-size:24px
@@ -11273,10 +11273,10 @@ a:hover {
 	color:#fff
 }
 .skin-black .left-menu .left-menu-top .operate .tooltip .tooltip-arrow {
-	border-bottom-color:#1ab394
+	border-bottom-color:#00BFFF
 }
 .skin-black .left-menu .left-menu-top .operate .tooltip .tooltip-inner {
-	background-color:#1ab394
+	background-color:#00BFFF
 }
 .skin-black .left-menu .left-menu-top .account-info-name {
 	height:60px;
@@ -11379,16 +11379,16 @@ a:hover {
 	background-color:#32374a
 }
 .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:hover a {
-	color:#1ab394
+	color:#00BFFF
 }
 .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item.active,.head .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover,.panel-menu .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .panel-menu .list-group-item:not(.list-group-more):hover,.skin-black .panel-menu .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .head .navbar-left>li.list-group-item:hover,.skin-black .head .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover {
 	background-color:#32374a
 }
 .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item.active a,.head .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover a,.panel-menu .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover a,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .panel-menu .list-group-item:not(.list-group-more):hover a,.skin-black .panel-menu .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover a,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .head .navbar-left>li.list-group-item:hover a,.skin-black .head .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover a {
-	color:#1ab394!important
+	color:#00BFFF!important
 }
 .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item.active a .wi,.head .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover a .wi,.panel-menu .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover a .wi,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .panel-menu .list-group-item:not(.list-group-more):hover a .wi,.skin-black .panel-menu .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover a .wi,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .head .navbar-left>li.list-group-item:hover a .wi,.skin-black .head .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover a .wi,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item.active a .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item.active a .ext-apply-item.apply-show:before,.head .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover a .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .head .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover a .ext-apply-item.apply-show:before,.panel-menu .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover a .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .panel-menu .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover a .ext-apply-item.apply-show:before,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .panel-menu .list-group-item:not(.list-group-more):hover a .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .panel-menu .list-group-item:not(.list-group-more):hover a .ext-apply-item.apply-show:before,.skin-black .panel-menu .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover a .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .skin-black .panel-menu .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover a .ext-apply-item.apply-show:before,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .head .navbar-left>li.list-group-item:hover a .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .head .navbar-left>li.list-group-item:hover a .ext-apply-item.apply-show:before,.skin-black .head .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover a .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .skin-black .head .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover a .ext-apply-item.apply-show:before,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item.active a .cut-list .item.apply-show:before,.cut-list .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item.active a .item.apply-show:before,.head .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover a .cut-list .item.apply-show:before,.cut-list .head .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover a .item.apply-show:before,.panel-menu .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover a .cut-list .item.apply-show:before,.cut-list .panel-menu .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover a .item.apply-show:before,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .panel-menu .list-group-item:not(.list-group-more):hover a .cut-list .item.apply-show:before,.cut-list .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .panel-menu .list-group-item:not(.list-group-more):hover a .item.apply-show:before,.skin-black .panel-menu .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover a .cut-list .item.apply-show:before,.cut-list .skin-black .panel-menu .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover a .item.apply-show:before,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .head .navbar-left>li.list-group-item:hover a .cut-list .item.apply-show:before,.cut-list .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .head .navbar-left>li.list-group-item:hover a .item.apply-show:before,.skin-black .head .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover a .cut-list .item.apply-show:before,.cut-list .skin-black .head .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover a .item.apply-show:before,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item.active a .fa,.head .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover a .fa,.panel-menu .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover a .fa,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .panel-menu .list-group-item:not(.list-group-more):hover a .fa,.skin-black .panel-menu .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:not(.list-group-more):hover a .fa,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .head .navbar-left>li.list-group-item:hover a .fa,.skin-black .head .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover a .fa {
-	color:#1ab394!important
+	color:#00BFFF!important
 }
 .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item.active:after,.head .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover:after,.panel-menu .skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:hover:not(.list-group-more):after,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .panel-menu .list-group-item:hover:not(.list-group-more):after,.skin-black .panel-menu .left-menu .plugin-menu .plugin-menu-main .list-group .list-group-item:hover:not(.list-group-more):after,.skin-black .left-menu .plugin-menu .plugin-menu-main .list-group .head .navbar-left>li.list-group-item:hover:after,.skin-black .head .left-menu .plugin-menu .plugin-menu-main .list-group .navbar-left>li.list-group-item:hover:after {
 	background-color:#32374a
@@ -11507,7 +11507,7 @@ a:hover {
 	margin-bottom:3px
 }
 .fans-info .fans-tel {
-	color:#1ab394;
+	color:#00BFFF;
 	margin-left:10px;
 	font-size:17px;
 	vertical-align:middle;
@@ -11795,7 +11795,7 @@ a:hover {
 	margin-bottom:5px
 }
 .advertiser-money-info strong {
-	color:#1ab394
+	color:#00BFFF
 }
 .media-wechat-setting {
 	height:95px;
@@ -12046,7 +12046,7 @@ td.module-img .img .module-img,.select-module .img .module-img,.combo-list-add .
 	top:10px
 }
 .details-versions .details-version .fa-circle-o {
-	color:#1ab394;
+	color:#00BFFF;
 	position:absolute;
 	top:26px;
 	left:90px;
@@ -12080,7 +12080,7 @@ td.module-img .img .module-img,.select-module .img .module-img,.combo-list-add .
 	height:43px;
 	line-height:43px;
 	padding:0 35px;
-	color:#1ab394;
+	color:#00BFFF;
 	font-size:16px;
 	background:#f3f3f3;
 	border-bottom:3px solid #eee;
@@ -12253,7 +12253,7 @@ td.module-img .img .module-img,.select-module .img .module-img,.combo-list-add .
 	transform:scale(1.1,1.1)
 }
 .welcome-container .apply-list .apply-item:hover span {
-	color:#1ab394
+	color:#00BFFF
 }
 .welcome-system-home {
 	padding:30px;
@@ -13680,7 +13680,7 @@ td.module-img .img .module-img,.select-module .img .module-img,.combo-list-add .
 	z-index:1;
 	left:0;
 	top:0;
-	border-top:30px solid #1ab394;
+	border-top:30px solid #00BFFF;
 	border-right:37px solid transparent
 }
 .cut-list .content {
@@ -13756,7 +13756,7 @@ td.module-img .img .module-img,.select-module .img .module-img,.combo-list-add .
 	color:#98999a
 }
 .cut-list .mask .cut-btn:hover .wi,.cut-list .mask .cut-btn:hover .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .cut-list .mask .cut-btn:hover .ext-apply-item.apply-show:before,.cut-list .mask .cut-btn:hover .item.apply-show:before,.cut-list .mask .stick:hover .wi,.cut-list .mask .stick:hover .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .cut-list .mask .stick:hover .ext-apply-item.apply-show:before,.cut-list .mask .stick:hover .item.apply-show:before,.cut-list .mask .cut-show:hover .wi,.cut-list .mask .cut-show:hover .ext-apply-list .ext-apply-item.apply-show:before,.ext-apply-list .cut-list .mask .cut-show:hover .ext-apply-item.apply-show:before,.cut-list .mask .cut-show:hover .item.apply-show:before {
-	color:#1ab394
+	color:#00BFFF
 }
 .cut-list .mask .cut-btn {
 	bottom:50px;
@@ -13857,7 +13857,7 @@ td.module-img .img .module-img,.select-module .img .module-img,.combo-list-add .
 	vertical-align:middle
 }
 .cut-list .cut-select .cut-select-pager .next:hover,.cut-list .cut-select .cut-select-pager .pre:hover {
-	color:#1ab394
+	color:#00BFFF
 }
 .cut-list .cut-select .cut-select-pager .pre {
 	margin-right:20px

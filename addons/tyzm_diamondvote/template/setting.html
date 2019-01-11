@@ -10,12 +10,12 @@
 }
 </style>
  <ul class="we7-page-tab"> 
-	<li{if $_GPC['ty'] == '' || $_GPC['ty'] == '0'  } class="active"{/if}><a href="./index.php?c=profile&a=module&do=setting&m=tyzm_diamondvote">投票数据</a></li>
+	<!--<li{if $_GPC['ty'] == '' || $_GPC['ty'] == '0'  } class="active"{/if}><a href="./index.php?c=profile&a=module&do=setting&m=tyzm_diamondvote">投票数据</a></li>-->
     <li{if $_GPC['ty'] == '1'} class="active"{/if}><a href="./index.php?c=profile&a=module&do=setting&m=tyzm_diamondvote&ty=1">参数设置</a></li>
 </ul>
 
 
-{if $_GPC['ty'] == '' || $_GPC['ty'] == '0'  }
+<!--{if $_GPC['ty'] == '' || $_GPC['ty'] == '0'  }
 <div class="panel we7-panel account-stat">
 		<div class="panel-heading">今日关键指标</div>
 		<div class="panel-body we7-padding-vertical">
@@ -60,7 +60,7 @@
 			</div>
 		</div>
 	</div>
-{/if}
+{/if}-->
 
 {if $_GPC['ty'] == '1'}
 	<form id="reply-form" class="form-horizontal form"  method="post" enctype="multipart/form-data">

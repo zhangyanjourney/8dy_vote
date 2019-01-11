@@ -5,10 +5,59 @@
     .form-search .form-group:last-child{ margin-bottom: 0 !important}
 </style>
 <ul class="nav nav-tabs">
+	<li {if $op=='profit'}class="active"{/if}><a href="{php echo $this->createWebUrl('datastates',array('op'=>'profit'))}">收益汇总</a></li>
 	<li {if $op=='display'}class="active"{/if}><a href="{php echo $this->createWebUrl('datastates',array('op'=>'display'))}">投票数据</a></li>
 	<li {if $op=='giftlog'}class="active"{/if}><a href="{php echo $this->createWebUrl('datastates',array('op'=>'giftlog'))}">礼物数据</a></li>
 	<li {if $op=='votelog'}class="active"{/if}><a href="{php echo $this->createWebUrl('datastates',array('op'=>'votelog'))}">报名数据</a></li>
 </ul>
+
+{if $op == 'profit'}
+<div class="panel we7-panel account-stat">
+	<div class="panel-heading">今日关键指标</div>
+	<div class="panel-body we7-padding-vertical">
+		<div class="col-sm-3 text-center">
+			<div class="title">今日参与</div>
+			<div class="num ng-binding" ng-init="0" ng-bind="fans_kpi.today.new">{$item['dailyjointotal']}</div>
+		</div>
+		<div class="col-sm-3 text-center">
+			<div class="title">今日投票人次</div>
+			<div class="num ng-binding" ng-init="0" ng-bind="fans_kpi.today.cancel">{$item['dailyvotetotal']}</div>
+		</div>
+		<div class="col-sm-3 text-center">
+			<div class="title">今日送礼人次</div>
+			<div class="num ng-binding" ng-init="0" ng-bind="fans_kpi.today.jing_num">{$item['dailygiftnum']}</div>
+		</div>
+		<div class="col-sm-3 text-center">
+			<div class="title">今日收入</div>
+			<div class="num ng-binding" ng-init="0" ng-bind="fans_kpi.today.cumulate">￥ {$item['dailygiftcount']}</div>
+		</div>
+	</div>
+</div>
+
+<div class="panel we7-panel account-stat">
+	<div class="panel-heading">累计指标</div>
+	<div class="panel-body we7-padding-vertical">
+		<div class="col-sm-3 text-center">
+			<div class="title">访问量</div>
+			<div class="num ng-binding" ng-init="0" ng-bind="fans_kpi.today.new">{$item['pvtotal']}</div>
+		</div>
+		<div class="col-sm-3 text-center">
+			<div class="title">投票人次</div>
+			<div class="num ng-binding" ng-init="0" ng-bind="fans_kpi.today.cancel">{$item['votetotal']}</div>
+		</div>
+		<div class="col-sm-3 text-center">
+			<div class="title">选手人次</div>
+			<div class="num ng-binding" ng-init="0" ng-bind="fans_kpi.today.jing_num">{$item['jointotal']}</div>
+		</div>
+		<div class="col-sm-3 text-center">
+			<div class="title">礼物总数</div>
+			<div class="num ng-binding" ng-init="0" ng-bind="fans_kpi.today.cumulate">￥ {$item['giftcount']}</div>
+		</div>
+	</div>
+</div>
+
+{else}
+
 <div class="panel we7-panel ng-scope" ng-controller="display">
     <div class="panel-heading">筛选</div>
     <div class="panel-body we7-padding">
@@ -274,3 +323,5 @@
 {/if}
 
 {template 'common/footer'}
+
+{/if}

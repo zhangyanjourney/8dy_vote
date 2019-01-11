@@ -1,5 +1,5 @@
 {template 'common/header-base'}
-<div class="system-login" {if !empty($_W['setting']['copyright']['background_img'])} style="background-image:url('{php echo tomedia($_W['setting']['copyright']['background_img']);}')" {else} style="background-image: url('./resource/images/gw-bg.jpg');" {/if}>
+<div class="system-login" {if !empty($_W['setting']['copyright']['background_img'])} style="background-image:url('{php echo tomedia($_W['setting']['copyright']['background_img']);}')" {else} style="background-image: url('./resource/images/gw-bg-2.jpg');" {/if}>
 
 	<div class="head">
 		<a href="/" class="logo-version">
@@ -57,9 +57,9 @@
 				<input type="submit" id="submit" name="submit" value="登录" class="btn btn-primary btn-block" />
 				<div class="text-right">
 					{if !$_W['siteclose'] && $setting['register']['open']}
-						{if empty($_GPC['login_type']) || $_GPC['login_type'] == 'system'}
+<!--						{if empty($_GPC['login_type']) || $_GPC['login_type'] == 'system'}
 						<a href="{url 'user/register'}" class="color-default">立即注册</a>
-						{/if}
+						{/if}-->
 						{if $_GPC['login_type'] == 'mobile'}
 						<a href="{php echo url('user/register', array('register_type' => 'mobile'))}" class="color-default">立即注册</a>
 						{/if}
@@ -79,7 +79,7 @@
 		</form>
 	</div>
 </div>
-{template 'common/footer-base'}
+<!--{template 'common/footer-base'}-->
 <script>
 function formcheck() {
 	if($('#remember:checked').length == 1) {

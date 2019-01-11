@@ -337,20 +337,20 @@ function buildframes($framename = ''){
 			if (empty($url) && !empty($entries['cover'])) {
 				$url = url('platform/cover', array('eid' => $entries['cover'][0]['eid'], 'version_id' => $version_id));
 			}
-			$frames['account']['section']['platform_module_common']['menu']['platform_module_entry'] = array(
+/*			$frames['account']['section']['platform_module_common']['menu']['platform_module_entry'] = array(
 				'title' => "<i class='wi wi-reply'></i> 应用入口",
 				'url' => $url,
 				'is_display' => 1,
-			);
+			);*/
 		}
-		if($module['settings']) {
+/*		if($module['settings']) {
 			$frames['account']['section']['platform_module_common']['menu']['platform_module_settings'] = array(
 				'title' => "<i class='fa fa-cog'></i> 参数设置",
 				'url' => url('module/manage-account/setting', array('m' => $modulename, 'version_id' => $version_id)),
 				'is_display' => 1,
 			);
-		}
-		if ($module['permissions'] && ($_W['isfounder'] || $_W['role'] == ACCOUNT_MANAGE_NAME_OWNER)) {
+		}*/
+/*		if ($module['permissions'] && ($_W['isfounder'] || $_W['role'] == ACCOUNT_MANAGE_NAME_OWNER)) {
 			$frames['account']['section']['platform_module_common']['menu']['platform_module_permissions'] = array(
 				'title' => "<i class='fa fa-cog'></i> 权限设置",
 				'url' => url('module/permission', array('m' => $modulename, 'version_id' => $version_id)),
@@ -363,7 +363,7 @@ function buildframes($framename = ''){
 					'url' => url('module/default-entry', array('m' => $modulename, 'version_id' => $version_id)),
 					'is_display' => 1,
 			);
-		}
+		}*/
 		if($entries['home'] && !empty($_W['account']) && in_array($_W['account']['type'], array(ACCOUNT_TYPE_OFFCIAL_NORMAL, ACCOUNT_TYPE_OFFCIAL_AUTH))) {
 			$frames['account']['section']['platform_module_common']['menu']['platform_module_home'] = array(
 				'title' => "<i class='fa fa-home'></i> 微站首页导航",

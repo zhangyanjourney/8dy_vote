@@ -33,14 +33,17 @@
 							<li><a href="{url 'system/updatecache'}" target="_blank"><i class="wi wi-cache color-gray"></i> 更新缓存</a></li>
 							<li class="divider"></li>
 							{/if}
-							<li>
-								<a href="{url 'user/logout'}"><i class="fa fa-sign-out color-gray"></i> 退出系统</a>
-							</li>
 							<li style="margin:0px 0px 0px 20px;">
 								<div class="account-info-name">
 									<a href="<?php  echo url('home/welcome/account')?>"><i class="wi wi-back-circle"></i></a>
 									<span class="account-name"><a href="<?php  echo url('home/welcome/account')?>"><?php  echo $_W['account']['name'];?></a></span>
 								</div>
+							</li>
+							<li>
+								<a href="<?php $modulename = trim($_GPC['m']); $version_id = intval($_GPC['version_id']); echo url('module/manage-account/setting', array('m' => $modulename, 'ty' => 1))?>"><i class='fa fa-cog'></i> 参数设置</a>
+							</li>
+							<li>
+								<a href="{url 'user/logout'}"><i class="fa fa-sign-out color-gray"></i> 退出系统</a>
 							</li>
 						</ul>
 					</li>

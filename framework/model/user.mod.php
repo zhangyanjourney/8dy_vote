@@ -1068,7 +1068,8 @@ function user_after_login_link() {
 
 	switch ($type) {
 		case WELCOME_DISPLAY_TYPE:
-			$url = url('home/welcome/system_home');
+			//url = url('home/welcome/system_home');
+            $url = url('site/entry/manage',array('m'=>'tyzm_diamondvote'));
 			break;
 		case ACCOUNT_DISPLAY_TYPE:
 			$url = url('account/display');

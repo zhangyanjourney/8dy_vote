@@ -17,7 +17,13 @@
 					<li {if FRAME == $nav['name'] && !defined('IN_MODULE')} class="active"{/if}><a href="{if empty($nav['url'])}{php echo url('home/welcome/' . $nav['name']);}{else}{$nav['url']}{/if}" {if !empty($nav['blank'])}target="_blank"{/if}>{$nav['title']}</a></li>
 					{/loop}
 				</ul>-->
+
 				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<label style="margin:10px 50px 0px 20px;">
+							<div class="switch {if false} switchOn{/if}" id="key-gift" ng-click="changeStatus({$row[id]})"></div>
+						</label>
+					</li>
 					{template 'common/header-notice'}
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="wi wi-user color-gray"></i>{$_W['user']['username']} <span class="caret"></span></a>

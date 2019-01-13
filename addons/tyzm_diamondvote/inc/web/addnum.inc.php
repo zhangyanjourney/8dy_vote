@@ -51,7 +51,7 @@ if ($_W['ispost']) {
 		$votenum = pdo_fetchcolumn('SELECT votenum FROM ' . tablename($this->tablevoteuser) . " WHERE   rid = :rid AND id=:id " , array(':rid' => $rid,':id' => $id));
 		$pv_total = pdo_fetchcolumn('SELECT pv_total FROM ' . tablename($this->tablecount) . " WHERE   rid = :rid AND tid=:tid " , array(':rid' => $rid,':tid' => $id));
 		
-		exit(json_encode(array('status'=>1,'msg'=>'加票成功！', 'data'=>array('votenum'=>$votenum, 'pv_total'=>$pv_total))));
+		exit(json_encode(array('status'=>1,'msg'=>'加票成功', 'data'=>array('votenum'=>$votenum, 'pv_total'=>$pv_total))));
 	}else{
 		exit(json_encode(array('status'=>0,'msg'=>'后台记录失败，请联系管理员！')));
 	}

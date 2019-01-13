@@ -105,7 +105,7 @@ class Tyzm_Vote{
         }
 
 
-		$voteuser = pdo_fetch("SELECT id,noid,name,status,oauth_openid,openid,votenum,giftcount,locktime FROM " . tablename($this->tablevoteuser) . " WHERE id = :id AND uniacid=:uniacid AND rid = :rid  ", array(':id' => $id,':uniacid'=>$_W['uniacid'],':rid' => $rid));
+		$voteuser = pdo_fetch("SELECT id,noid,name,status,oauth_openid,openid,real_votenum,giftcount,locktime FROM " . tablename($this->tablevoteuser) . " WHERE id = :id AND uniacid=:uniacid AND rid = :rid  ", array(':id' => $id,':uniacid'=>$_W['uniacid'],':rid' => $rid));
 		
 		if(empty($voteuser)){
 			return array('status' => '0', 'msg' => "没有该编号用户，请检查后再输入！");
@@ -176,14 +176,14 @@ class Tyzm_Vote{
 			if($voteinsertid){
 				//更新票数
 				//pdo_update($this->tablereply, $insert, array('id' => $id));
-				$setvotesql = 'update ' . tablename($this->tablevoteuser) . ' set votenum=votenum+1,lastvotetime='.time().' where id = '.$id;
+				$setvotesql = 'update ' . tablename($this->tablevoteuser) . ' set real_votenum=real_votenum+1,lastvotetime='.time().' where id = '.$id;
 				if(pdo_query($setvotesql)){
 					//今日票数
 					$dailynum=($reply['everyonevote']-$everyonevotetotal-1)<($reply['dailyvote']-$dailyvotetotal-1)?($reply['everyonevote']-$everyonevotetotal-1):($reply['dailyvote']-$dailyvotetotal-1);
 					
 						if(empty($reply['isvotemsg'])){
 							$uservoteurl=$_W['siteroot'].'app/'.murl('entry/module/view',array('m' => 'tyzm_diamondvote','rid'=>$rid,'id' => $id,'i' => $_W['uniacid']));
-							$content='您的好友【'.$nickname.'】给你（'.$voteuser['noid'].'）号【'.$voteuser['name'].'】投了一票！目前'.($voteuser['votenum']+1).'票。<a href=\"'.$uservoteurl.'\">点击查看详情<\/a>';
+							$content='您的好友【'.$nickname.'】给你（'.$voteuser['noid'].'）号【'.$voteuser['name'].'】投了一票！目前'.($voteuser['real_votenum']+1).'票。<a href=\"'.$uservoteurl.'\">点击查看详情<\/a>';
 							m('user') ->sendkfinfo($voteuser['openid'],$content);	
 						}
 								

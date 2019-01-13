@@ -112,7 +112,7 @@ word-break: normal;
             <a href="{php echo $this->createWebUrl('download',array('rid'=>$_GPC['rid']));}" class="btn btn-primary  we7-margin-left">导出用户数据</a>
         </div>
     </div>
-        <table class="table we7-table table-hover">
+        <table class="table we7-table table-hover" id="votelist_tab">
             <thead class="navbar-inner">
                 <tr>
 				<th>ID</th>
@@ -133,7 +133,7 @@ word-break: normal;
             <tbody>
                 {loop $list $row}
                 <tr>
-                    <td  class="text-left vertical-middle"><input type="checkbox" name="uid[]" value="{$row['id']}" class="">{$row['id']}</td>
+                    <td  class="text-left vertical-middle"><input type="checkbox" name="id_array" id="id_array" value="{$row['id']}">{$row['id']}</td>
 					<td  class="text-left vertical-middle"><!--<img src="{php  echo tomedia($row['avatar']);}" width="48"><br />-->{$row['nickname']}
 <br>
 编号：{$row['noid']}
@@ -194,6 +194,10 @@ word-break: normal;
 	                票数：
 	                <span class="label label-primary">{$row['votenum']}</span>
                     </div>
+					<p>
+					实际票数:
+					<span class="label label-primary">{$row['real_votenum']}</span>
+					</p>
                     <p>
 	                礼物：<span class="label label-success">{$row['giftcount']}元</span>
                     </p>
@@ -205,7 +209,7 @@ word-break: normal;
 	                </td>
 					<td>
 						<div class="input-group" style="float: left;">
-							<input type='number' class="form-control" style="width:90px" value="" />
+							<input type='number' class="form-control" style="width:90px" value="" id="addnum_array"/>
 							<button class="btn btn-default addvote" data-id="{$row['id']}">
 								<i class="fa fa-plus"></i>
 							</button>
@@ -249,7 +253,7 @@ word-break: normal;
 </div>
 <script>
 $(function(){
-	$('.sort').click(function() {
+/*	$('.sort').click(function() {
 		var type = $(this).data('type');
 		var category_id = '{sh:$category_id}';
 		var sort;
@@ -260,7 +264,7 @@ $(function(){
 			$(this).removeClass('sortedDESC').addClass('sortedASC');
 			sort = '1';
 		}
-	});
+	});*/
 
 	$(".check_all").click(function(){
 		var checked = $(this).get(0).checked;
@@ -351,7 +355,7 @@ $(".addvote").click(function(){
 	});
 });
 
-$(".addvotes").click(function(){
+/*$(".addvotes").click(function(){
     var t=$(this);
     var addnum=t.prev().val();
     var page=t.attr('data-id');
@@ -370,6 +374,7 @@ $(".addvotes").click(function(){
 		success : function(res) {
 			if (res.status == 1) {
 				util.toast(res.msg, "success");
+				alert(res.msg);
 				location.reload()
 			}else{
 				util.message(res.msg,location.href,"error");
@@ -377,8 +382,51 @@ $(".addvotes").click(function(){
 		}
 
 	});
-});
-			
+});*/
+
+$(".addvotes").click(function(){
+		var t=$(this);
+		var id_array = new Array();
+		var addnum_array = new Array();
+
+		$('#votelist_tab tr td #id_array').each(function (){
+			id_array.push($(this).val());
+		});
+
+		var flag_addnum = false;
+		$('#votelist_tab tr td #addnum_array').each(function (){
+			var value = $(this).val();
+			if (value == "") {
+				value = 0;
+			} else {
+				flag_addnum = true;
+			}
+			addnum_array.push(value);
+		});
+		if(!flag_addnum){
+			util.message("请填写需要增加的票数！","","error");
+			return false;
+		}
+		$.ajax({
+			type : "post",
+			url : "{php echo $this->createWebUrl('addnums',array('rid'=>$_GPC['rid']))}",
+			data : {
+				"addnum_array" : addnum_array,
+				"id_array" : id_array
+			},
+			dataType : "json",
+			success : function(res) {
+				if (res.status == 1) {
+					util.toast(res.msg, "success");
+					location.reload()
+				}else{
+					util.message(res.msg,location.href,"error");
+				}
+			}
+
+		});
+	});
+
 
 $(".lock").click(function(){
     var clickthis=$(this);

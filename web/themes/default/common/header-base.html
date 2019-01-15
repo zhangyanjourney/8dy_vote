@@ -7,7 +7,10 @@
 	<title>{php if(isset($title)) $_W['page']['title'] = $title}{if !empty($_W['page']['title'])}{$_W['page']['title']}{/if}{if empty($_W['page']['copyright']['sitename'])}{if IMS_FAMILY != 'x'}{if !empty($_W['page']['title'])} - {/if}系统 - 公众平台自助引擎{/if}{else}{if !empty($_W['page']['title'])} - {/if}{$_W['page']['copyright']['sitename']}{/if}</title>
 	<meta name="keywords" content="{if empty($_W['page']['copyright']['keywords'])}系统,微信,微信公众平台{else}{$_W['page']['copyright']['keywords']}{/if}" />
 	<meta name="description" content="{if empty($_W['page']['copyright']['description'])}公众平台自助引擎，是一款免费开源的微信公众平台管理系统，是国内最完善移动网站及移动互联网技术解决方案{else}{$_W['page']['copyright']['description']}{/if}" />
+<!--
 	<link rel="shortcut icon" href="{if !empty($_W['setting']['copyright']['icon'])}{$_W['attachurl']}{$_W['setting']['copyright']['icon']}{else}./resource/images/favicon.ico{/if}" />
+-->
+	<link rel="shortcut icon" href="./resource/images/favicon.ico" />
 	<link href="http://ez.tuhaogo.com/web/resource/css/bootstrap.min.css?v=20180203" rel="stylesheet">
 	<link href="http://ez.tuhaogo.com/web/resource/css/common.css?v=20180203" rel="stylesheet">
 	<script type="text/javascript">

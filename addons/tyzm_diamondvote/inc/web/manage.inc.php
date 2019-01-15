@@ -88,7 +88,35 @@ if (!empty($list)) {
 		
 		$item['config']=@unserialize($item['config']);
 	}
-	
+
+	 if (!empty($_GPC['order_field']) || !empty($_GPC['order_flag'])) {
+         switch ($_GPC['order_field']) {
+             case "1":
+                 $sort_key = array_column($list, 'jointotal');
+                 break;
+             case "2":
+                 $sort_key = array_column($list, 'votetotal');
+                 break;
+             case "3":
+                 $sort_key = array_column($list, 'giftcount');
+                 break;
+             case "4":
+                 $sort_key = array_column($list, 'pvtotal');
+                 break;
+             case "5":
+                 $sort_key = array_column($list, 'sharetotal');
+                 break;
+             default:
+                 $sort_key = array_column($list, 'rid');
+                 break;
+         }
+         if (empty($_GPC['order_flag'])) {
+             array_multisort($sort_key,SORT_DESC,$list);
+         } else {
+             array_multisort($sort_key,SORT_ASC,$list);
+         }
+     }
+
 }
 
 $master = pdo_fetchall("SELECT master FROM " . tablename($this->tablereply) . " WHERE uniacid = '{$_W['uniacid']}' AND master != '' GROUP BY master ");

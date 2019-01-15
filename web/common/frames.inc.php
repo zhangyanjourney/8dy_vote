@@ -6,6 +6,7 @@
 defined('IN_IA') or exit('Access Denied');
 global $_W;
 $we7_system_menu = array();
+
 if ($_W['isfounder']) {
 $we7_system_menu['system'] = array(
 	'title' => '系统',
@@ -382,7 +383,7 @@ $we7_system_menu['system'] = array(
 				),
 			)
 		),
-		
+
 		'cache' => array(
 			'title' => '缓存',
 			'menu' => array(
@@ -510,7 +511,7 @@ $we7_system_menu['system'] = array(
 					'permission_name' => 'system_shop_member_chongzhi',
 				),
 			)
-		),	
+		),
 		'webapp' => array(
 			'title' => 'PC',
 			'menu' => array(
@@ -558,7 +559,7 @@ $we7_system_menu['system'] = array(
 				)
 			)
 		),
-		
+
 		'system_statistics' => array(
 			'title' => '统计',
 			'menu' => array(
@@ -691,23 +692,23 @@ $we7_system_menu['account'] = array(
 					'icon' => 'wi wi-data-synchro',
 					'permission_name' => 'profile_app_module_link_uniacid',
 				),
-				
+
 				'bind_domain' => array(
 					'title' => '域名绑定',
 					'url' => url('profile/bind-domain'),
 					'icon' => 'wi wi-bind-domain',
 					'permission_name' => 'profile_bind_domain',
 				),
-				
+
 			),
 		),
-		
+
 		'statistics' => array(
 			'title' => '统计',
 			'menu' => array(
 				'app' => array(
 					'title' => '访问统计',
-					'url' => url('statistics/app'),
+					'url' => url('statistics/site'),
 					'icon' => 'wi wi-statistical',
 					'permission_name' => 'statistics_app',
 				),

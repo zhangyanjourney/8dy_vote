@@ -4,7 +4,10 @@
 <link href="{MODULE_URL}/template/static/css/wq1.0.css" rel="stylesheet">
 {/if}
 <style>
-
+#adapt {
+    width: 200px;
+  height: 120;
+}
 .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
 white-space: normal;
 word-wrap: break-word;
@@ -39,6 +42,24 @@ word-break: normal;
 					</div>
 				</div>
 				<div class="form-group">
+                    <label class="col-sm-1 control-label">排序字段</label>
+                    <div class="col-md-1">
+                        <select class="we7-select ng-pristine ng-valid ng-not-empty ng-touched" name="order_field" style="">
+                            <option value="" >活动ID</option>
+                            <option value="1" {if $_GPC['order_field'] == 1}selected{/if}>参与人数</option>
+                            <option value="2" {if $_GPC['order_field'] == 2}selected{/if}>投票数量</option>
+                            <option value="3" {if $_GPC['order_field'] == 3}selected{/if}>礼物数量</option>
+                            <option value="4" {if $_GPC['order_field'] == 4}selected{/if}>浏 览 量</option>
+                            <option value="4" {if $_GPC['order_field'] == 5}selected{/if}>分 享 量</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 control-label">排序方式</label>
+                    <div class="col-md-1">
+                        <select class="we7-select ng-pristine ng-valid ng-not-empty ng-touched" name="order_flag" style="">
+                            <option value="" >倒序</option>
+                            <option value="1" {if $_GPC['order_flag'] == 1}selected{/if}>正序</option>
+                        </select>
+                    </div>
 					<label class="col-sm-1 control-label">活动状态</label>
 					<div class="col-md-1">
 						<select class="we7-select ng-pristine ng-valid ng-not-empty ng-touched" name="status" style="">
@@ -97,23 +118,25 @@ word-break: normal;
     <table class="table we7-table table-hover site-list">
 
         <tr>
-            <th colspan="2" class="text-left">活动ID：<label class="label label-primary">{$row['rid']}</label>  活动名称({php echo date('Y-m-d H:i:s',$row['createtime'])}) 负责人：<label class="label label-danger">{if $row['master']}{$row['master']}{else}未设置{/if}</label></th>
-            <th class="text-left" width="120px">入口</th>
+            <th colspan="2" class="text-left">活动ID：<label class="label label-primary">{$row['rid']}</label>  活动名称:<label class="label label-primary">{$row['title']}</label> 负责人：<label class="label label-danger">{if $row['master']}{$row['master']}{else}未设置{/if}</label>
+
+            </th>
+            <!--<th class="text-left" width="120px">入口</th>-->
             <th class="text-left" width="180px">数据</th>
             <th class="text-left" width="200px">操作</th>
         </tr>
        
         <tr>
             <td class="text-left vertical-middle">
-                <div class="site-item-img">
-                    <img src="{media $row['thumb']}" width="100px" />
-                </div>
+                <!--<div class="site-item-img">-->
+                    <img src="{media $row['thumb']}" width="120" height="120"/>
+                <!--</div>-->
             </td>
             <td class="text-left"> 
-                <div class="we7-margin-bottom">
+<!--                <div class="we7-margin-bottom">
                     <p class="color-gray">名称</p> 
                     <span class="color-dark">{$row['title']}</span>
-                </div>
+                </div>-->
                 <div class="">
                     <p class="color-gray">时间</p>
                     <a href="javascript:;" class="color-dark" >开始：{php echo date('Y-m-d H:i:s',$row['starttime'])}
@@ -121,13 +144,28 @@ word-break: normal;
                     <br>
                         结束：{php echo date('Y-m-d H:i:s',$row['endtime'])}</a>
                 </div>
-            </td>
-            <td class="text-left">
-                <div class="we7-margin-bottom" style="position: relative;">
-                    <p class="color-gray">活动链接地址</p>
-                    <a href="javascript:;" class="js-clip color-default" data-url="{php echo $_W['siteroot'].'app/' }{php echo $this->createMobileUrl('index',array('rid'=>$row['rid']))}"  >复制活动链接</a>
-
+                <div class="">
+                    <p class="color-gray">活动状态</p>
+                    <label>
+                        {if $row['status']==0}
+                        <div class="switch ng-scope" onclick="drop_confirm('您确定要开始活动吗!', '{php echo $this->createWebUrl('otherset',array('ty'=>'setstatus','rid'=>$row['rid'],'status'=>1))}');"></div>
+                        {else}
+                        <div class="switch ng-scope switchOn" onclick="drop_confirm('您确定要暂停活动吗？', '{php echo $this->createWebUrl('otherset',array('ty'=>'setstatus','rid'=>$row['rid'],'status'=>0))}');"></div>
+                        {/if}
+                    </label>
+                    {if $row['status']==1}
+                    <span class="label label-success">开始</span>
+                    {elseif $row['status']==3}
+                    <span class="label label-warning">未开始</span>
+                    {elseif $row['status']==4}
+                    <span class="label label-default">已结束</span>
+                    {else}
+                    <span class="label label-danger">已关闭</span>
+                    {/if}
                 </div>
+            </td>
+<!--            <td class="text-left">
+
                 <div class="">
                    <p class="color-gray">活动状态</p>
                     <label>
@@ -148,7 +186,7 @@ word-break: normal;
                           <span class="label label-danger">已关闭</span>
                         {/if}
                 </div>
-            </td>
+            </td>-->
             <td class="text-left">
                 <div class="we7-margin-vertical">
                    
@@ -162,11 +200,19 @@ word-break: normal;
 
                 </div>
                 
-            </td>
+            </td>+
 
             <td class="text-left">
+
                 <div class="we7-margin-vertical">
+<!--                    <div class="we7-margin-bottom" style="position: relative;">
+                        <p class="color-gray">活动链接地址</p>
+                        <a href="javascript:;" class="js-clip color-default" data-url="{php echo $_W['siteroot'].'app/' }{php echo $this->createMobileUrl('index',array('rid'=>$row['rid']))}"  >复制活动链接</a>
+
+                    </div>-->
                     <p class="color-gray">管理</p>
+                    <a href="javascript:;" class="js-clip color-default" data-url="{php echo $_W['siteroot'].'app/' }{php echo $this->createMobileUrl('index',array('rid'=>$row['rid']))}"  >复制活动链接</a>
+
                      <a href="{php echo $this->createWebUrl('votelist',array('rid'=>$row['rid']))}" class="color-default we7-margin-right" rel="tooltip" title="选手管理"><i class="fa fa-cog"></i> 选手管理</a>
 
                      <a href="{php echo $this->createWebUrl('giftlist',array('rid'=>$row['rid']))}" class="color-default we7-margin-right" rel="tooltip" title="礼物订单"><i class="fa fa-archive"></i> 礼物订单</a>

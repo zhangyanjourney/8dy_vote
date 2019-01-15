@@ -485,3 +485,7 @@ if ($do == 'change_keyword_status') {
 	}
 	iajax(-1, '更新失败！', '');
 }
+
+if ($do == 'save_setting') {
+
+}

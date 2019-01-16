@@ -26,7 +26,7 @@ if($op == 'profit') {
     $item['dailygiftcount'] = !empty($item['dailygiftcount']) ? $item['dailygiftcount'] : 0;
     $item['jointotal'] = pdo_fetchcolumn('SELECT COUNT(id) FROM ' . tablename($this->tablevoteuser) . " WHERE   uniacid = :uniacid  ", array(":uniacid" => $_W["uniacid"]));
     $item['votetotal'] = pdo_fetchcolumn('SELECT COUNT(id) FROM ' . tablename($this->tablevotedata) . " WHERE   uniacid = :uniacid AND votetype=0 ", array(":uniacid" => $_W["uniacid"]));
-    $item['giftcount'] = pdo_fetchcolumn('SELECT sum(fee) FROM ' . tablename($this->tablegift) . " WHERE   uniacid = :uniacid AND ispay=1 ", array(":uniacid" => $_W["uniacid"]));
+    $item['giftcount'] = pdo_fetchcolumn('SELECT sum(fee) FROM ' . tablename($this->tablegift) . " WHERE uniacid = :uniacid AND ispay=1 ", array(":uniacid" => $_W["uniacid"]));
     $item['pvtotal'] = pdo_fetchcolumn('SELECT sum(pv_total) FROM ' . tablename($this->tablecount) . " WHERE uniacid = :uniacid ", array(":uniacid" => $_W["uniacid"]));
     $item['giftcount'] = !empty($item['giftcount']) ? $item['giftcount'] : 0;
 /*    if (IMS_VERSION >= 0.8) {

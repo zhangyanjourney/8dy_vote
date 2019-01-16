@@ -5,7 +5,7 @@ defined('IN_IA') or exit('Access Denied');
 
 load()->model('statistics');
 
-$dos = array('display', 'app_display', 'get_account_api', 'get_account_app_api');
+$dos = array('display', 'app_display', 'get_account_api', 'get_account_app_api','get_stat_gift_count');
 $do = in_array($do, $dos) ? $do : 'display';
 
 $support_type = array(
@@ -28,6 +28,52 @@ if ($do == 'app_display') {
 	$yesterday_module_api = stat_all_visit_statistics('all_account', $yesterday);
 
 	template('statistics/app-account');
+}
+
+if ($do == 'get_stat_gift_count') {
+    $data = array();
+    $type = trim($_GPC['time_type']);
+    if (!in_array($type, $support_type['time'])) {
+        iajax(-1, '参数错误！');
+    }
+    $daterange = array();
+    if (!empty($_GPC['daterange'])) {
+        $daterange = array(
+            'start' => date('Ymd', strtotime($_GPC['daterange']['startDate'])),
+            'end' => date('Ymd', strtotime($_GPC['daterange']['endDate'])),
+        );
+    }
+    $result = stat_gift_count(1, $type, $daterange);
+    if ($type == 'today') {
+        $data_x = array(date('Ymd'));
+    }
+    if ($type == 'week') {
+        $data_x = stat_date_range(date('Ymd', strtotime('-6 days')), date('Ymd'));
+    }
+    if ($type == 'month') {
+        $data_x = stat_date_range(date('Ymd', strtotime('-29 days')), date('Ymd'));
+    }
+    if ($type == 'daterange') {
+        $data_x = stat_date_range($daterange['start'], $daterange['end']);
+    }
+    if (empty($result)) {
+        foreach ($data_x as $val) {
+            $data_y[] = 0;
+        }
+        iajax(0, array('data_x' => $data_x, 'data_y' => $data_y));
+    }
+    foreach ($data_x as $key => $data) {
+        foreach ($result as $date_key => $val) {
+            if (strtotime($date_key) != strtotime($data)) {
+                continue;
+            }
+            $data_y[$key] = $val;
+        }
+        if (empty($data_y[$key])) {
+            $data_y[$key] = 0;
+        }
+    }
+    iajax(0, array('data_x' => $data_x, 'data_y' => $data_y));
 }
 
 if ($do == 'get_account_api') {

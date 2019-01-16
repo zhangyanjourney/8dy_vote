@@ -56,6 +56,76 @@
 	</div>
 </div>
 
+<div class="panel we7-panel">
+	<div class="panel-body data-view">
+<div id="chartmain" style="width:600px; height: 400px;"></div>
+<script type="text/javascript" src="./resource/js/require.js">
+</script>
+		<div id="main" style="height:400px"></div>
+		<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+		<script type="text/javascript">
+			require.config({
+				paths: {
+					echarts: 'http://echarts.baidu.com/build/dist'
+				}
+			});
+			// 使用
+			require(
+					[
+						'echarts',
+						'echarts/chart/line' // 使用柱状图就加载bar模块，按需加载
+					],
+					function (ec) {
+						var myChart = ec.init(document.getElementById('main'));
+						option = {
+							xAxis: {
+								type: 'category',
+								data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+							},
+							yAxis: {
+								type: 'value'
+							},
+							series: [{
+								data: [820, 932, 901, 934, 1290, 1330, 1320],
+								type: 'line'
+							}]
+						};
+						myChart.setOption(option);
+					}
+			);
+		</script>
+	</div>
+</div>
+
+<!--<div class="api" id="js-statistics-gift-count" ng-controller="CurrentAccountCtrl" ng-cloak>
+	<div class="panel we7-panel">
+	<div class="panel-body data-view">
+		<div class="tab-bar-time clearfrix">
+			<span class="we7-margin-right">时间</span>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default" ng-class="{'active': accountTimeType == 'week'}" ng-click="getModuleApi('week')">周统计</button>
+				<button type="button" class="btn btn-default" ng-class="{'active': accountTimeType == 'month'}" ng-click="getModuleApi('month')">月统计</button>
+				<div class="btn-group" role="group">
+					<button class="btn btn-default daterange daterange-date" we7-date-range-picker ng-model="accountDateRange"><span>{{accountDateRange.startDate}} </span>至<span> {{accountDateRange.endDate}}</span> <i class="fa fa-calendar"></i></button>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-12" id="chart-line" style="height:500px"></div>
+	</div>
+	</div>
+</div>-->
+
+<script>
+	require(['daterangepicker'], function() {
+		angular.module('statisticsApp').value('config', {
+			'links': {
+				'accountApi': "{php echo url('statistics/site/get_stat_gift_count')}",
+			},
+		});
+		angular.bootstrap($('#js-statistics-gift-count'), ['statisticsApp']);
+	})
+</script>
+
 {else}
 
 <div class="panel we7-panel ng-scope" ng-controller="display">

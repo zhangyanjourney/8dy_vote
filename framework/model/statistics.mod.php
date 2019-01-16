@@ -50,6 +50,46 @@ function stat_visit_info($type, $time_type, $module = '', $daterange = array(), 
 	return $result;
 }
 
+function stat_gift_count_info($ispay, $time_type, $daterange = array()) {
+    global $_W;
+    $result = array();
+    if (empty($ispay) || empty($time_type) || !empty($ispay) && !in_array($ispay, array('0', '1'))) {
+        return $result;
+    }
+    $params = array();
+    if ($ispay != 'all') {
+        $params['ispay'] = $ispay;
+    }
+    $params['uniacid'] = $_W['uniacid'];
+    switch ($time_type) {
+        case 'today':
+            $params['date'] = date('Ymd');
+            break;
+        case 'yesterday':
+            $params['date'] = date('Ymd', strtotime('-1 days'));
+            break;
+        case 'week':
+            $params['date >'] = date('Ymd', strtotime('-7 days'));
+            $params['date <='] = date('Ymd');
+            break;
+        case 'month':
+            $params['date >'] = date('Ymd', strtotime('-30 days'));
+            $params['date <='] = date('Ymd');
+            break;
+        case 'daterange':
+            if (empty($daterange)) {
+                return stat_gift_count_info($ispay, 'month', array());
+            }
+            $params['date >='] = date('Ymd', strtotime($daterange['start']));
+            $params['date <='] = date('Ymd', strtotime($daterange['end']));
+            break;
+    }
+    $visit_info = table('statistics')->visitListGiftCount($params);
+    if (!empty($visit_info)) {
+        $result = $visit_info;
+    }
+    return $result;
+}
 
 function stat_visit_app_byuniacid($time_type, $module = '', $daterange = array(), $is_system_stat = false) {
 	$result = array();
@@ -90,10 +130,9 @@ function stat_visit_app_byuniacid($time_type, $module = '', $daterange = array()
 	return $result;
 }
 
-
-function stat_visit_app_bydate($time_type, $module = '', $daterange = array(), $is_system_stat = false) {
+function stat_gift_count($ispay, $time_type, $daterange = array()) {
 	$result = array();
-	$visit_info = stat_visit_info('app', $time_type, $module, $daterange, $is_system_stat);
+	$visit_info = stat_gift_count_info($ispay, $time_type, $daterange);
 	if (empty($visit_info)) {
 		return $result;
 	}

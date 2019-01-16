@@ -6,7 +6,7 @@ defined('IN_IA') or exit('Access Denied');
 load()->model('module');
 load()->model('statistics');
 
-$dos = array('current_account', 'all_account', 'get_account_api');
+$dos = array('current_account', 'all_account', 'get_account_api','get_stat_gift_count');
 $do = in_array($do, $dos) ? $do : 'current_account';
 $support_type = array(
 	'time' => array('today', 'week', 'month', 'daterange'),

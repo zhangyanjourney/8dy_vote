@@ -10,26 +10,27 @@ defined('IN_IA') or exit('Access Denied');
 global $_GPC, $_W;
 
 $modulename = 'tyzm_diamondvote';
-function get_setting_list() {
+
+function saveSettings($dat, $modulename) {
+    global $_W;
+    $pars = array('module' => $modulename, 'uniacid' => $_W['uniacid']);
+
     $settings = pdo_fetchcolumn("SELECT settings FROM ".tablename('uni_account_modules')." WHERE module = :module AND uniacid = :uniacid", array(':module' => $modulename, ':uniacid' => $_W['uniacid']));
     $settings = iunserializer($settings);
-    return $settings;
-}
-if (!empty($_GPC['op']) && in_array($_GPC['op'] , array('start','stop'))) {
-    $settings = get_setting_list();
-    if ($_GPC['op'] == 'start') {
-        $settings['giftref'] = 30;
+    $settings['giftref'] = $dat['giftref'];
+
+    $row = array();
+    $row['settings'] = iserializer($settings);
+
+    cache_build_module_info($modulename);
+    if (pdo_fetchcolumn("SELECT module FROM ".tablename('uni_account_modules')." WHERE module = :module AND uniacid = :uniacid", array(':module' => $modulename, ':uniacid' => $_W['uniacid']))) {
+        return pdo_update('uni_account_modules', $row, $pars) !== false;
     } else {
-        $settings['giftref'] = 0;
-    }
-    $settings = iserializer($settings);
-    pdo_update('uni_account_modules',array('settings'=>$settings),array('module'=>$modulename, 'uniacid'=>$_W['uniacid']));
-    message('保存成功', 'refresh');
-} else if ($_GPC['op'] == 'list'){
-    $settings =  get_setting_list();
-    if (empty($settings)) {
-        return 0;
-    } else {
-        return $settings['giftref'];
+        return pdo_insert('uni_account_modules', array('settings' => iserializer($settings), 'module' => $modulename ,'uniacid' => $_W['uniacid'], 'enabled' => 1)) !== false;
     }
 }
+
+$dat = array('giftref' => trim($_GPC['giftref']));
+saveSettings($dat, $modulename);
+header('location:' . url('site/entry/manage', array('m'=>$modulename)));
+

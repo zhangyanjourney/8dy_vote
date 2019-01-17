@@ -29,6 +29,18 @@
 <div class="we7-page-title">活动管理</div>
 <ul class="we7-page-tab">
     <li{if $_GPC['do'] == 'manage' || $_GPC['do'] == '' } class="active"{/if}><a href="{php echo $this->createWebUrl('manage');}">活动管理</a></li>
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    <li>
+        <label class="hdzt">
+            {if $this->module['config']['giftref']}
+            <div class="switch ng-scope switchOn" onclick="drop_confirm('您确定要关闭实时开关？', '{php echo $this->createWebUrl('giftref',array('giftref'=>0))}');"></div>
+            {else}
+            <div class="switch ng-scope" onclick="drop_confirm('您确定要开启实时开关!', '{php echo $this->createWebUrl('giftref',array('giftref'=>30))}');"></div>
+            {/if}
+        </label>
+    </li>
 </ul>
 <div class="panel panel-default">
     <div class="panel-heading">筛选</div>

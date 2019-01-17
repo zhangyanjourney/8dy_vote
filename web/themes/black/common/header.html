@@ -25,9 +25,13 @@
 
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						{php  $giftref=false;}
-						<label style="margin:10px 50px 0px 20px;">
-							<div class="switch {if $giftref} switchOn{/if}" id="key-gift" ng-click="changeStatus({$row[id]})"></div>
+						{php $giftref = $this->createWebUrl('giftref',array('op'=>'list'));}
+						<label class="hdzt">
+							{if empty($giftref)}
+							<div class="switch ng-scope" onclick="drop_confirm('您确定要开启实时开关!', '{php echo $this->createWebUrl('giftref',array('op'=>'start', 'giftref'=>1))}');"></div>
+							{else}
+							<div class="switch ng-scope switchOn" onclick="drop_confirm('您确定要关闭实时开关？', '{php echo $this->createWebUrl('giftref',array('op'=>'stop', 'giftref'=>0))}');"></div>
+							{/if}
 						</label>
 					</li>
 

@@ -16,11 +16,11 @@
                         {loop $list $item}
                             <tr>
 								<td>
-									<label class="label label-{$item['status_style']}">{$item['status_cn']}</label> 
+									<label class="label label-{$item['status_style']}">{$item['status_cn']}</label>
 									<label class="label label-info">{$item['fee']}元</label>
-									<a href="{php echo $this->createWebUrl('votelist',array('m'=>'tyzm_diamondvote','rid'=>$item['rid'],'ranking'=>1));}" rel="tooltip" title="查看活动" target="_blank"><span class="oh" style="margin-top:3px">{$item['rtitle']}</span></a>
-									<a href="{php echo $this->createWebUrl('edit',array('rid'=>$item['rid'],'id'=>$item['tid']))}" rel="tooltip" title="查看选手" target="_blank"><span class="oh"><i class="fa fa-cog"></i>{$item['uname']}</span></a>
-									<span class="oh">{$item['createtime']}</span>
+									<a style="display: inline-block" href="{php echo $this->createWebUrl('votelist',array('m'=>'tyzm_diamondvote','rid'=>$item['rid'],'ranking'=>1));}" rel="tooltip" title="查看活动" target="_blank"><span class="oh" style="margin-top:3px">{$item['rtitle']}</span></a>
+									<a style="display: inline-block"href="{php echo $this->createWebUrl('edit',array('rid'=>$item['rid'],'id'=>$item['tid']))}" rel="tooltip" title="查看选手" target="_blank"><span class="oh"><i class="fa fa-cog"></i>{$item['uname']}</span></a>
+									<span style="display: inline-block"class="oh">{$item['createtime']}</span>
 								</td>
                             </tr>
                         {/loop}
@@ -46,9 +46,9 @@ function refresh(){
 					str += "<tr><td>";
 					str += "<label class=\"label label-"+val.status_style+"\">"+val.status_cn+"</label> ";
 					str += "<label class=\"label label-info\">"+val.fee+"元</label>";
-					str += "<a href=\"./index.php?c=site&a=entry&ranking=1&do=votelist&m=tyzm_diamondvote&rid="+val.rid+"\" rel=\"tooltip\" title=\"查看活动\" target=\"_blank\"><span class=\"oh\" style=\"margin-top:3px\">"+val.rtitle+"</span></a>";
-					str += "<a href=\"./index.php?c=site&a=entry&rid="+val.rid+"&id="+val.tid+"&do=edit&m=tyzm_diamondvote\" rel=\"tooltip\" title=\"查看选手\" target=\"_blank\"><span class=\"oh\"><i class=\"fa fa-cog\"></i>"+val.uname+"</span></a>";
-					str += "<span class=\"oh\">"+val.createtime+"</span>";
+					str += "<a  style='display: inline-block'href=\"./index.php?c=site&a=entry&ranking=1&do=votelist&m=tyzm_diamondvote&rid="+val.rid+"\" rel=\"tooltip\" title=\"查看活动\" target=\"_blank\"><span class=\"oh\" style=\"margin-top:3px\">"+val.rtitle+"</span></a>";
+					str += "<a   style='display: inline-block'href=\"./index.php?c=site&a=entry&rid="+val.rid+"&id="+val.tid+"&do=edit&m=tyzm_diamondvote\" rel=\"tooltip\" title=\"查看选手\" target=\"_blank\"><span class=\"oh\"><i class=\"fa fa-cog\"></i>"+val.uname+"</span></a>";
+					str += "<span  style='display: inline-block'class=\"oh\">"+val.createtime+"</span>";
 					str += "</td></tr>";
 				})
 			}else{

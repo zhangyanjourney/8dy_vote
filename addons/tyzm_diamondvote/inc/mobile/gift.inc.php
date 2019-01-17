@@ -105,8 +105,8 @@ if($ty['ispost']){
 		$acid=$_SESSION['acid'];
 		$uniacid=$_W['uniacid'];
 	}
-	
 
+    $createtime = time();
 	$giftdata = array(
 			'rid'=>$rid, 
 			'tid'=>$id,
@@ -124,7 +124,8 @@ if($ty['ispost']){
 			'ptid'=>$tid,
 			'ispay'=>0,
 			'status'=>0,
-			'createtime'=>time()
+			'createtime'=>time(),
+            'day'=>date('Ymd', $createtime)
 	);
 	if(pdo_insert($this->tablegift, $giftdata)){
 		// if(empty($reply['defaultpay'])){

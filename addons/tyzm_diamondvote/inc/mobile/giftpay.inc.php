@@ -84,6 +84,7 @@ $voteuser = pdo_fetch("SELECT * FROM " . tablename($this->tablevoteuser) . " WHE
 		'user' => $_W['member']['uid'],
 		'module' => $this->module['name'],
 	);
+	    $createtime = time();
 		$giftdata = array(
 				'rid'=>$rid, 
 				'tid'=>$id,
@@ -101,8 +102,9 @@ $voteuser = pdo_fetch("SELECT * FROM " . tablename($this->tablevoteuser) . " WHE
 				'ptid'=>$tid,
 				'ispay'=>0,
 				'status'=>0,
-				'createtime'=>time(),
-				'jy'=>$_GPC['jy']
+				'createtime'=>$createtime,
+				'jy'=>$_GPC['jy'],
+                'day'=>date('Ymd', $createtime)
 		);
 		if(pdo_insert($this->tablegift, $giftdata)){
 		$out['status'] = 'success';

@@ -52,9 +52,11 @@ if (!empty($reply['minnumpeople'])) {
 }
 
 $tid = date('YmdHi') . random(12, 1);
+$createtime = time();
+$day = date('Ymd',$createtime);
 if($_GPC['giftid']==-1){
 	$params = array('tid' => $tid, 'ordersn' => $tid, 'title' => '投票送礼付款', 'fee' => sprintf('%.2f', $_GPC['giftnum']), 'user' => $_W['member']['uid'], 'module' => $this->module['name']);
-	$giftdata = array('rid' => $rid, 'tid' => $id, 'uniacid' => $_W['uniacid'], 'oauth_openid' => $userinfo['oauth_openid'], 'openid' => $userinfo['openid'], 'avatar' => $userinfo['avatar'], 'nickname' => $userinfo['nickname'], 'user_ip' => $_W['clientip'], 'gifticon' => "", 'giftcount' => 1, 'gifttitle' => "自定义".$_GPC['giftnum'], 'giftvote' => $_GPC['giftnum'] * 3, 'fee' => $params['fee'], 'ptid' => $tid, 'ispay' => 0, 'status' => 0, 'jy' => $_GPC['jy'], 'createtime' => time());
+	$giftdata = array('rid' => $rid, 'tid' => $id, 'uniacid' => $_W['uniacid'], 'oauth_openid' => $userinfo['oauth_openid'], 'openid' => $userinfo['openid'], 'avatar' => $userinfo['avatar'], 'nickname' => $userinfo['nickname'], 'user_ip' => $_W['clientip'], 'gifticon' => "", 'giftcount' => 1, 'gifttitle' => "自定义".$_GPC['giftnum'], 'giftvote' => $_GPC['giftnum'] * 3, 'fee' => $params['fee'], 'ptid' => $tid, 'ispay' => 0, 'status' => 0, 'jy' => $_GPC['jy'], 'createtime' => $createtime, 'day'=>$day);
 }else{
 	$gift = $giftdata[$_GPC['giftid']];
 	$diamondsy = $reply['everyonediamond'] - $voteuser['giftcount'];
@@ -66,7 +68,7 @@ if($_GPC['giftid']==-1){
 		}
 	}
 	$params = array('tid' => $tid, 'ordersn' => $tid, 'title' => '投票送礼付款', 'fee' => sprintf('%.2f', $gift['giftprice'] * $count), 'user' => $_W['member']['uid'], 'module' => $this->module['name']);
-	$giftdata = array('rid' => $rid, 'tid' => $id, 'uniacid' => $_W['uniacid'], 'oauth_openid' => $userinfo['oauth_openid'], 'openid' => $userinfo['openid'], 'avatar' => $userinfo['avatar'], 'nickname' => $userinfo['nickname'], 'user_ip' => $_W['clientip'], 'gifticon' => $gift['gifticon'], 'giftcount' => $count, 'gifttitle' => $gift['gifttitle'], 'giftvote' => $gift['giftvote'] * $count, 'fee' => $params['fee'], 'ptid' => $tid, 'ispay' => 0, 'status' => 0, 'jy' => $_GPC['jy'], 'createtime' => time());
+	$giftdata = array('rid' => $rid, 'tid' => $id, 'uniacid' => $_W['uniacid'], 'oauth_openid' => $userinfo['oauth_openid'], 'openid' => $userinfo['openid'], 'avatar' => $userinfo['avatar'], 'nickname' => $userinfo['nickname'], 'user_ip' => $_W['clientip'], 'gifticon' => $gift['gifticon'], 'giftcount' => $count, 'gifttitle' => $gift['gifttitle'], 'giftvote' => $gift['giftvote'] * $count, 'fee' => $params['fee'], 'ptid' => $tid, 'ispay' => 0, 'status' => 0, 'jy' => $_GPC['jy'], 'createtime' => $createtime, 'day'=>$day);
 }
 
 

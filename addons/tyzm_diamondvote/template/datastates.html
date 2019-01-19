@@ -58,7 +58,6 @@
 
 <div class="panel we7-panel">
 	<div class="panel-body data-view">
-<div id="chartmain" style="width:600px; height: 400px;"></div>
 <script type="text/javascript" src="./resource/js/require.js">
 </script>
 		<div id="main" style="height:400px"></div>
@@ -76,21 +75,39 @@
 						'echarts/chart/line' // 使用柱状图就加载bar模块，按需加载
 					],
 					function (ec) {
-						var myChart = ec.init(document.getElementById('main'));
-						option = {
-							xAxis: {
-								type: 'category',
-								data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-							},
-							yAxis: {
-								type: 'value'
-							},
-							series: [{
-								data: [820, 932, 901, 934, 1290, 1330, 1320],
-								type: 'line'
-							}]
-						};
-						myChart.setOption(option);
+                        $.ajax({
+                            type : "post",
+                            url : "{php echo $this->createWebUrl('stat_gift_count')}",
+                            dataType : "json",
+                            success : function(res) {
+                                let arr = res.data;
+                                let a = [];
+                                let b = [];
+                                for (x in arr){
+                                    let m = arr[x]['day'];
+                                    a.push(m);
+                                    let n = arr[x]['sum(fee)'];
+                                    b.push(n);
+								}
+                                var myChart = ec.init(document.getElementById('main'));
+                                option = {
+                                    xAxis: {
+                                        type: 'category',
+                                        data: a
+                                    },
+                                    yAxis: {
+                                        type: 'value',
+										name:'礼物总数'
+                                    },
+                                    series: [{
+                                        data: b,
+                                        type: 'line',
+                                        itemStyle : { normal: {label : {show: true}}}
+                                    }]
+                                };
+                                myChart.setOption(option);
+                            }
+                        });
 					}
 			);
 		</script>

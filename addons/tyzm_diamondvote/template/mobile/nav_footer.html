@@ -15,6 +15,8 @@
 
 {/if}
 <li><a href="{php echo $this->createMobileUrl('ranking', array('rid' => $rid))}" {if $_GPC['do'] == 'ranking' }class="on"{/if} ><div class='nav'><div class='if ispr'></div><p>排行</p></div></a></li>
+    <li><a style="display: block;color: #8c8f94" onclick="get_ap()">报名</a></li>
+    <li><a href="javascript:;" id="jubao"  style="color: #8c8f94 " data-id="{$rid}" data-title="{if !empty($_W['page']['sitename'])}{$_W['page']['sitename']}{else}{$_W['account']['name']}{/if}{if !empty($title)}{$title} {/if}">举报</a></li>
 <!-- 自定义菜单start 
 图标大小建议 48*48，地址为 addons/tyzm_diamondvote/template/static/images/shield30.png
 -->
@@ -23,6 +25,12 @@
 </ul>
 </div>
 <script type="text/javascript">
+    $("#jubao").click(function(){
+        var h=$(window).height();
+        $("#votetousu").css("min-height",h+"px");
+        $("#votetousu").show();
+        $("#votedetails").hide();
+    });
 function get_ap(){
   {if $aptime==1}
       dialog2("未开始报名！报名时间为：</br> {php echo date('Y-m-d',$reply['apstarttime'])} 至 {php echo date('Y-m-d ',$reply['apendtime'])}");

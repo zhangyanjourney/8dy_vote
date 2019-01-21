@@ -1,4 +1,4 @@
-﻿{template 'header'}
+{template 'header'}
 {if $reply['isindexslide']==1}
 {template 'sider'}
 {/if}
@@ -8,12 +8,13 @@
 {if $reply['topimg']}<div class="divmain1"><img src="{php echo tomedia($reply['topimg']);}" alt="shareImg"></div>{/if}
 
 <div class="num_box assa">
-	<ul class="num_box_ul">
-		<li><span class="text"><i class="glyphicon glyphicon-paperclip"></i> 参与选手</span> <span>{$jointotal}</span></li>
-		<li><span class="text"> <i class="glyphicon glyphicon-thumbs-up"></i> 累计投票</span> <span>{$votetotal}</span></li>
-		<li><span class="text"><i class="glyphicon glyphicon-eye-open"></i> 访问量</span> <span>{$pvtotal}</span></li>
-		<div style="clear:both"></div>
-
+	<ul class="num_box_ul" >
+		<div style="width: 90%;margin: auto;background-color: #7CC7EA;padding: 16px 0;color: white">
+			<li><span style="color: white"><i class="glyphicon glyphicon-paperclip"></i> 参与选手</span> <span style="color: white">{$jointotal}</span></li>
+			<li><span style="color: white"> <i class="glyphicon glyphicon-thumbs-up"></i> 累计投票</span> <span style="color: white">{$votetotal}</span></li>
+			<li><span style="color: white"><i class="glyphicon glyphicon-eye-open"></i> 访问量</span> <span style="color: white">{$pvtotal}</span></li>
+			<div style="clear:both"></div>
+		</div>
 	<script type="text/javascript">
 	{if $reply['showendtime']}
 	var intDiff = parseInt({php echo $reply['showendtime']-time();});//倒计时总秒数量
@@ -43,19 +44,19 @@
 	});
 	{/if}
 </script>
-<nav id="article">
+<nav id="article" style="margin:32px auto ;width: 90%;background-color: #7CC7EA;padding: 16px 0;color: white">
 	<div id="faq">
 		<ul><li style="width: 100%;">
-			<div id="article_pic"><img src="{MODULE_URL}/template/static/images/tubiao_02.png"></div>
-			<div id="article_word">投票日期：{if $reply['showtarttime']}{php echo date('m-d H:i',$reply['showtarttime'])}{else}{php echo date('m-d H:i',$reply['votestarttime'])}{/if} 到 <span style="display: inline;">{if $reply['showendtime']}{php echo date('m-d H:i',$reply['showendtime'])}{else}{php echo date('m-d H:i',$reply['voteendtime'])}{/if}</span></div>
+			<div id="article_pic" style="margin-left: 10%"><img src="{MODULE_URL}/template/static/images/tubiao_02.png"></div>
+			<div id="article_word" style="color: white">投票日期：{if $reply['showtarttime']}{php echo date('m-d H:i',$reply['showtarttime'])}{else}{php echo date('m-d H:i',$reply['votestarttime'])}{/if} 到 <span style="display: inline;color: white">{if $reply['showendtime']}{php echo date('m-d H:i',$reply['showendtime'])}{else}{php echo date('m-d H:i',$reply['voteendtime'])}{/if}</span></div>
 		</li></ul>
 		{if $reply['showendtime']}
-		<dl style="width: 100%;"><a href="javascript:;" onclick="window.location.href=''"><dt><div id="article_pic"><img src="{MODULE_URL}/template/static/images/tubiao_02.png" style="width:20px;height:20px;"></div><div id="article_word" style="padding-left:10px;">活动剩余：
-			<span id="djs">
+		<dl style="width: 100%;"><a href="javascript:;" onclick="window.location.href=''"><dt><div id="article_pic" style="margin-left: 10%"><img src="{MODULE_URL}/template/static/images/tubiao_02.png" style="width:20px;height:20px;"></div><div id="article_word" style="padding-left:10px;color: white">活动剩余：
+			<span id="djs" style="color: white">
 				<strong id="day_show">0天</strong>
 				<strong id="hour_show">0时</strong>
 				<strong id="minute_show">0分</strong>
-				<strong id="second_show" style="display:none">0秒</strong>
+				<!--<strong id="second_show" style="display:none">0秒</strong>-->
 			</span>
 		</div></dt></a></dl>
 		{/if}
@@ -130,18 +131,18 @@
 </div>
 
 <div id="zbottom">
-	<span onclick="guize()">规则/奖品</span>
-	<span onclick="btnclick()"> 比赛排名</span>
-	<span onclick="get_ap()">我要报名</span>
+	<!--<span onclick="guize()">规则/奖品</span>
+	<span onclick="btnclick()"> 比赛排名</span>-->
+	<!--<span onclick="get_ap()">我要报名</span>-->
 </div>
 <div style="clear:both;"></div>
 
-<div id="setdiv">
+<!--<div id="setdiv">
 	<dl id="J_setTabANav" class="tabnav" style="width:100%">
-		<dd id="new" class="tab-menu {if $_GPC['type'] == 'all' || $_GPC['type'] == ''}hover{/if}" style="width:50%" onclick="change('all')"><span>人气选手</span></dd>
+		&lt;!&ndash;<dd id="new" class="tab-menu {if $_GPC['type'] == 'all' || $_GPC['type'] == ''}hover{/if}" style="width:50%" onclick="change('all')"><span>人气选手</span></dd>&ndash;&gt;
 		<dd id="all" class="tab-menu {if $_GPC['type'] == 'new'}hover{/if}" style="width:50%" onclick="change('new')"><span>最新参与</span></dd>
 	</dl>
-</div>
+</div>-->
 
 <section class="content" id="toupiao">
 <div id="pageCon" style="padding-bottom: 10px">
@@ -225,7 +226,7 @@ function get_list(ty){
 							+'<a href="'+list[i]['url']+'" class="img"><img src="'+list[i]['img1']+'"></a>'
 							+'<div class="clearfix eee"><p>'+list[i]['name']+'</p>'
 							/*+'<a href="'+list[i]['url']+'" class="vote">投票</a></div>'*/
-							+'</div><div id="content_result"><a href="'+list[i]['url']+'"><div id="content_rebu"><button class="STYLE1" id="content_button" style="background-color:#ccc">投票</button></div></a><div id="content_piao">'+list[i]['votenum']+'票</div><div style="clear:both"></div></div>'
+							+'</div><div id="content_result"><a href="'+list[i]['url']+'"><div id="content_rebu"><button class="STYLE1" id="content_button" style="background-color:#7CC7EA;color: white">投票</button></div></a><div id="content_piao">'+list[i]['votenum']+'票</div><div style="clear:both"></div></div>'
 							+'</li>';
 							
 						}

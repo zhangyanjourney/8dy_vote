@@ -1284,6 +1284,7 @@ abstract class WeModuleSite extends WeBase {
 				$dir .= 'web/';
 				$fun = strtolower(substr($name, 5));
 			}
+
 			if($isMobile) {
 				$dir .= 'mobile/';
 				$fun = strtolower(substr($name, 8));

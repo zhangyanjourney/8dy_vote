@@ -84,27 +84,28 @@
 <body>
 
 <ul class="Side_nav">
-	<li style=""><a href="{php echo $this->createMobileUrl('index', array('rid' => $rid))}" class="Side_navf">首页</a></li>
-	<li><a href="javascript:;" id="jubao" class="Side_navf" data-id="{$rid}" data-title="{if !empty($_W['page']['sitename'])}{$_W['page']['sitename']}{else}{$_W['account']['name']}{/if}{if !empty($title)}{$title} {/if}">举报</a></li>
+	<li><a href="javascript:;" id="jubao1" class="Side_navf" data-id="{$rid}" data-title="{if !empty($_W['page']['sitename'])}{$_W['page']['sitename']}{else}{$_W['account']['name']}{/if}{if !empty($title)}{$title} {/if}">举报</a></li>
 </ul>
 <div id="votetousu" style="background: rgb(242, 242, 242); min-height: 572px; display: none;">
     <!--返回部分-->
-    <header class="page-header zindex3 sgyingyin" style="margin:0 auto">
+    <!--<header class="page-header zindex3 sgyingyin" style="margin:0 auto">
         <a class="arrow-wrap" href="javascript:;" id="tousufanhui">
             <span class="arrow-lefts"></span><i class="fanhuib">返回</i>
         </a>
         <div class="toptext">我要举报</div>
-    </header>
+    </header>-->
     <form>
     <!--投诉原因选择-->
     <div class="complaint" style="display: block;">
         <div class="complaint01">请选择您要举报该网页的原因：</div>
         <ol class="complaint02">
-            <li><span class="selected">虚假活动、活动不真实</span><em></em></li>
-            <li><span>诱导分享、诱导关注</span><em></em></li>
-            <li><span>欺诈、违法</span><em></em></li>
-            <li><span>色情、暴力</span><em></em></li>
-            <li><span>其他</span><em></em></li>
+            <li><span class="selected">网页包含欺诈信息  （如： 假红包）</span><em></em></li>
+            <li><span>网页包含色情信息</span><em></em></li>
+            <li><span>网页包含暴力恐怖信息</span><em></em></li>
+            <li><span>网页包含政治敏感信息</span><em></em></li>
+            <li><span>网页在搜集个人隐私信息 （如： 钓鱼网站）</span><em></em></li>
+            <li><span>网页包含诱导分享/关注性质内容</span><em></em></li>
+            <li><span>网页包含谣言信息</span><em></em></li>
         </ol>
     </div>
     <!--describe：描述-->
@@ -125,7 +126,7 @@
     <div class="success">
         <div class="success01"><img src="{MODULE_URL}/template/static/images/correct.png"></div>
         <div class="success02">投诉已提交</div>
-        <span class="success03">我们将尽快核实，并通过手机号通知您审核结果。感谢您的支持。</span>
+        <span class="success03">微信团队会尽快核实，并通过"微信团队"通知你审核结果。感谢你的支持。</span>
         <div class="success04">关闭</div>
     </div>
     </form>
@@ -157,7 +158,6 @@
 .page-header {
     position: relative;
     height: 44px;
-    background-color: #ed414a;
 }
 .zindex3 {
     z-index: 3;
@@ -341,7 +341,7 @@
 .describe .describe06 {
     width: 96%;
     margin-left: 2%;
-    background-color: #ed414a;
+    background-color: #2dcc70;
     color: #fff;
     height: 45px;
     text-align: center;
@@ -392,7 +392,7 @@
 .success .success04 {
     width: 90%;
     margin-left: 5%;
-    background-color: #ed414a;
+    background-color:#2dcc70;
     color: #fff;
     height: 45px;
     text-align: center;
@@ -474,7 +474,7 @@ $("#tousufanhui").click(function(){
 	$("#votetousu").hide();
 	$("#votedetails").show();
 });
-$("#jubao").click(function(){
+$("#jubao1").click(function(){
 	var h=$(window).height();
 	$("#votetousu").css("min-height",h+"px");
 	$("#votetousu").show();
@@ -484,7 +484,7 @@ $("#jubao").click(function(){
 
 <div id="votedetails" class="container container-fill" {if $reply['notice']} style="padding-top:36px;" {/if}>
 {if $reply['notice']}
-<div class="notice"><marquee style="WIDTH: 100%; HEIGHT: 18px" scrollamount="6" Align="Middle"  hspace="0" direction="Left" >{$reply['notice']}</marquee></div>
+<div class="notice"><marquee style="WIDTH: 100%;  HEIGHT: 18px" scrollamount="6" Align="Middle"  hspace="0" direction="Left" >{$reply['notice']}</marquee></div>
 {/if}
 {if $reply['status']==0 || $reply['status']=="" || $reply['endtime']< TIMESTAMP }
 <div id="replystatus" >

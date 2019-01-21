@@ -1,0 +1,83 @@
+{template 'common/header'}
+<div class="we7-page-title">用户管理 </div>
+<div class="keyword-list-head clearfix we7-margin-bottom">
+<!--    <form action="" method="get">
+        <input type="hidden" name="c" value="user">
+        <input type="hidden" name="a" value="display">
+        <input type="hidden" name="do" value="{$_GPC['do']}">
+        <div class="input-group pull-left col-sm-4">
+            <input type="text" name="username" id="" value="{$_GPC['username']}" class="form-control" placeholder="搜索用户名"/>
+            <span class="input-group-btn"><button class="btn btn-default"><i class="fa fa-search"></i></button></span>
+        </div>
+    </form>-->
+    <div class="pull-right">
+<!--
+        {if $_GPC['do'] == 'display' || $_GPC['do'] == ''}<a href="{url 'user/myxiajiadd'}" class="btn btn-primary">+添加用户</a>{/if}
+-->
+        <a href="{php echo $this->createWebUrl('childadd',array())}" class="btn btn-primary">+添加用户</a>
+    </div>
+</div>
+<table class="table we7-table table-hover table-manage vertical-middle" id="js-users-display" ng-controller="UsersDisplay" ng-cloak>
+    <col width="120px"/>
+    <col width="120px">
+    <col width="200px"/>
+    <tr>
+        <th class="text-left">用户名</th>
+        <th>使用公众号</th>
+        <th class="text-right">操作</th>
+    </tr>
+    <tr ng-repeat="user in users" ng-if="users">
+        <td class="text-left" ng-bind="user.username">{$user['username']}</td>
+        <td class="text-left" ng-bind="user.name">{$user['name']}</td>
+        <td>
+            <div class="link-group">
+                <a ng-href="{{links.edit}}uid={{user.uid}}">编辑</a>
+<!--                <a ng-href="{{links.deny}}uid={{user.uid}}" data-toggle="tooltip" data-placement="left" title="禁用后可在用户回收站查找到并重新启用。">禁用</a>
+                <a ng-href="{{links.checkPass}}uid={{user.uid}}" ng-if="do == 'check_display'">通过</a>
+                <a ng-href="{{links.deny}}uid={{user.uid}}" ng-if="do == 'check_display'" data-toggle="tooltip" data-placement="left" title="拒绝后可在用户回收站查找到并启用。">拒绝</a>
+                <a ng-href="{{links.recycleRestore}}uid={{user.uid}}" ng-if="do == 'recycle_display'">启用</a>
+                <a ng-href="{{links.recycleDel}}uid={{user.uid}}" class="del" ng-if="do == 'recycle_display'">删除</a>
+                <a ng-href="{{links.sq}}uid={{user.uid}}">授权</a>-->
+                <a ng-href="{{links.recycleDel}}uid={{user.uid}}">删除</a>
+            </div>
+        </td>
+    </tr>
+    <tr ng-if="!users">
+        <td colspan="7" class="text-center">暂无数据</td>
+    </tr>
+</table>
+<div class="text-right">
+    {$pager}
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    angular.module('userManageApp').value('config', {
+        do: "{php echo !empty($_GPC['do']) ? $_GPC['do'] : 'display'}",
+        users: {php echo !empty($users) ? json_encode($users) : 'null'},
+    usergroups: {php echo !empty($usergroups) ? json_encode($usergroups) : 'null'},
+/*    links: {
+        chongzhi: "{php echo url('shop/member/chongzhi')}",
+            record: "{php echo url('shop/member/record')}",
+            recycleDel: "{php echo url('user/myxiaji/recycle_delete')}",
+            recycleRestore: "{php echo url('user/myxiaji/recycle_restore')}",
+            checkPass: "{php echo url('user/myxiaji/check_pass')}",
+            deny: "{php echo url('user/myxiaji/recycle')}",
+            edit: "{php echo url('user/myxiajiedit')}",
+            sq: "{php echo url('user/sq')}",
+    },*/
+    links: {
+        chongzhi: "{php echo url('shop/member/chongzhi')}",
+            record: "{php echo url('shop/member/record')}",
+            recycleDel: "{php echo url('user/myxiaji/recycle_delete')}",
+            recycleRestore: "{php echo url('user/myxiaji/recycle_restore')}",
+            checkPass: "{php echo url('user/myxiaji/check_pass')}",
+            deny: "{php echo url('user/myxiaji/recycle')}",
+            edit: "{php echo $this->createWebUrl('childadd',array( 'op'=>'edit'))."&"}",
+            sq: "{php echo url('user/sq')}",
+    },
+    });
+    angular.bootstrap($('#js-users-display'), ['userManageApp']);
+</script>
+{template 'common/footer'}

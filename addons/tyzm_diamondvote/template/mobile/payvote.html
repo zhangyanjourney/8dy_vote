@@ -9,17 +9,22 @@
 {/if}
 </style>
 <div class="pay_top">
-	<div class="pay_img"><img width="100%" src="{media $voteuser['avatar']}" alt="{$voteuser['name']}"></div>
+	<div class="pay_img"><img width="100%" height="100%" src="{media $voteuser['avatar']}" alt="{$voteuser['name']}"></div>
 	<div id="pay_title" class="pay_title">为{$voteuser['noid']}号 {$voteuser['name']} 送<font id="zval">5</font>{$reply['giftunit']} = <font id="vote" style="color:red;"><?php echo 15 * $reply['giftscale'];?></font>票</div>
 </div>
 <div class="pay_price">
 	<ul>
 		{loop $giftlist  $item}
 			{loop $item $index $rom}
-				<li onclick="clickz({php echo $rom['giftprice']*$reply['giftscale'];},this)" class="pay_btn" data_id="{$index}"><font>{php echo $rom['giftprice']*$reply['giftscale'];}</font> {$reply['giftunit']}</li>
+		<!--<p>{php print_r($rom)}</p>-->
+		<li onclick="clickz({php echo $rom['giftprice']*$reply['giftscale'];},this)" class="pay_btn" data_id="{$index}">
+			<img style="width: 100%;height: 50%" src="{php echo $rom['gifticon']}">
+			<font>{php echo $rom['giftprice']*$reply['giftscale'];}</font> {$reply['giftunit']}
+		</li>
 			{/loop}
 		{/loop}
-		<li onclick="clickz(0,this)" style="padding:2px 0px;" class="pay_btn pay_zdy" data_id="-1"><b>自定义</b></li>
+		<li onclick="clickz(0,this)" style="padding:2px 0px;" class="pay_btn pay_zdy" data_id="-1">
+			<img style="width: 100%;height: 50%" src="http://wx.diouy.cn//addons/tyzm_diamondvote/template/static/images/diamond.png "><b>自定义</b></li>
 	</ul>
 	<div style="clear:both;"></div>
 </div>

@@ -15,8 +15,8 @@
 
 {/if}
 <li><a href="{php echo $this->createMobileUrl('ranking', array('rid' => $rid))}" {if $_GPC['do'] == 'ranking' }class="on"{/if} ><div class='nav'><div class='if ispr'></div><p>排行</p></div></a></li>
-    <li><a style="display: block;color: #8c8f94" onclick="get_ap()">报名</a></li>
-    <li><a href="javascript:;" id="jubao"  style="color: #8c8f94 " data-id="{$rid}" data-title="{if !empty($_W['page']['sitename'])}{$_W['page']['sitename']}{else}{$_W['account']['name']}{/if}{if !empty($title)}{$title} {/if}">举报</a></li>
+    <li><a style="display: block;color: #8c8f94" onclick="get_ap()"><div class='nav'><div class='ic ispr'></div><p>报名</p></div></a></li>
+    <li><a href="javascript:;" id="jubao"  style="color: #8c8f94 " data-id="{$rid}" data-title="{if !empty($_W['page']['sitename'])}{$_W['page']['sitename']}{else}{$_W['account']['name']}{/if}{if !empty($title)}{$title} {/if}"><div class='nav'><div class='im ispr'></div><p>举报</p></div></a></li>
 <!-- 自定义菜单start 
 图标大小建议 48*48，地址为 addons/tyzm_diamondvote/template/static/images/shield30.png
 -->

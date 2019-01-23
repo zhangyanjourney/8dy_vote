@@ -54,6 +54,7 @@ if (!empty($handle)) {
 		}
 	}
 }
+
 if (!in_array($controller, $controllers)) {
 	$controller = 'home';
 }

@@ -13,6 +13,13 @@ $do = in_array($do, $dos) ? $do: 'display';
 
 $_W['page']['title'] = '子母账号 - 用户管理';
 
+//获取管理员账号下所拥有的公众号
+$pindex = max(1, intval($_GPC['page']));
+$psize = 15;
+
+$account_table = table('account');
+$account_table->searchWithType(array(ACCOUNT_TYPE_OFFCIAL_NORMAL, ACCOUNT_TYPE_OFFCIAL_AUTH));
+$account_count = $account_table->searchAccountList();
 
 if (in_array($do, array('display', 'recycle_display', 'check_display', 'add'))) {
 /*    switch ($do) {
@@ -30,7 +37,6 @@ if (in_array($do, array('display', 'recycle_display', 'check_display', 'add'))) 
             break;
     }*/
     $condition = ' WHERE u.status = 2';
-    $pindex = max(1, intval($_GPC['page']));
     $psize = 20;
     $params = array();
 /*    $params[':agentid'] = $_W['uid'];*/

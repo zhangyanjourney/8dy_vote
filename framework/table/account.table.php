@@ -33,6 +33,7 @@ class AccountTable extends We7Table {
 				->where('b.isdeleted !=', '1');
 
 				if (!user_is_founder($_W['uid']) || user_is_vice_founder()) {
+
 			$this->query->leftjoin('uni_account_users', 'c')->on(array('a.uniacid' => 'c.uniacid'))
 						->where('a.default_acid !=', '0')->where('c.uid', $_W['uid']);
 		} else {

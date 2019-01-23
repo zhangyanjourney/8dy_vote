@@ -19,7 +19,7 @@ function table($name) {
 	load()->classs('table');
 	load()->table($name);
 	$service = false;
-	
+
 	$class_name = "{$name}Table";
 	if (class_exists($class_name)) {
 		$service = new $class_name();

@@ -133,13 +133,19 @@ function _forward($c, $a) {
 	return $file;
 }
 function _calc_current_frames(&$frames) {
-	global $controller, $action;
+	global $controller, $action, $_W;
+
+
 	if (!empty($frames['section']) && is_array($frames['section'])) {
 		foreach ($frames['section'] as &$frame) {
 			if (empty($frame['menu'])) {
 				continue;
 			}
 			foreach ($frame['menu'] as $key => &$menu) {
+                if ($_W['username'] != '金鼎文化传播' && strpos($menu['title'] ,'子母账号')  > 0) {
+                    $menu['is_display'] = 0;
+                }
+
 				$query = parse_url($menu['url'], PHP_URL_QUERY);
 				parse_str($query, $urls);
 				if (empty($urls)) {

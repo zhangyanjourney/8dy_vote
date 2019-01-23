@@ -24,63 +24,57 @@ if(checksubmit()) {
     if(istrlen($user['password']) < 8) {
         message('必须输入密码，且密码长度不得低于8位。');
     }
-    $user['uniacid'] = intval($_GPC['uniacid']) ? intval($_GPC['uniacid']) : message('请选择所属公众号');
-    /*    $group = pdo_fetch("SELECT id,timelimit,price FROM ".tablename('users_group')." WHERE id = :id", array(':id' => $user['groupid']));
-    if(empty($group)) {
-        message('会员组不存在');
+    $user['salt'] = random(8);
+    $user['password'] = user_hash($user['password'], $user['salt']);
+    $user['joinip'] = CLIENT_IP;
+    $user['joindate'] = TIMESTAMP;
+    $user['lastip'] = CLIENT_IP;
+    $user['lastvisit'] = TIMESTAMP;
+    if (empty($user['status'])) {
+        $user['status'] = 2;
     }
-    $timelimit = intval($group['timelimit']);
-    $timeadd = 0;
-    if($timelimit > 0) {
-        $timeadd = strtotime($timelimit . ' days');
+    if (empty($user['type'])) {
+        $user['type'] = USER_TYPE_COMMON;
     }
-    $now = time();
-    if(empty($timeadd)){
-        $timeadd = $now + 7 * 24 * 3600;
-    }
+
+    /*$user['uniacid'] = intval($_GPC['uniacid']) ? intval($_GPC['uniacid']) : message('请选择所属公众号');*/
+    $user['uniacid'] = $_W['uniacid'];
     $user['starttime'] = TIMESTAMP;
-    $user['endtime'] = $timeadd;
-    */
-    $user['starttime'] = TIMESTAMP;
-/*    if(!$_W['isfounder']){
-        $user['agentid']=$_W['uid'];
-        $price =$group['price'];
-        $credit =$_W['user']['credit2']-$price;
-        if($credit < 0){message('账户余额不足，开通本用户组会员需花费'.$price,url('shop/member/member'));}
-        pdo_update('users',array('credit2'=>$credit),array('uid'=>$_W['uid']));
-        $data =array(
-            'uid'=>$_W['uid'],
-            'credittype'=>'credit2',
-            'num'=>-$price,
-            'createtime'=>TIMESTAMP,
-            'remark'=>'添加用户'
-        );
-        pdo_insert('users_credits_record',$data);
-    }*/
-    //$uid = user_register($user);
+
+
     if ($op == 'edit') {
         $uid = pdo_update('users', $user, array('uid'=>$_GPC['uid']));
-        //$uid = $ret == 0 ? $_GPC['uid'] : 0;
+        message('用户更新成功！', $this->createWebUrl('child', array()));
     } else {
         $uid = pdo_insert('users', $user);
-    }
-    if($uid > 0) {
-        unset($user['password']);
-/*        message('用户增加成功！', url('user/myxiaji', array('uid' => $uid)));*/
-        message('用户增加成功！', $this->createWebUrl('child', array()));
-    }
-    message('增加用户失败，请稍候重试或联系网站管理员解决！');
-}
-//$groups = pdo_fetchall("SELECT id, name FROM ".tablename('users_group')." ORDER BY id ASC");
+        if($uid > 0) {
+            unset($user['password']);
 
-$uniacid_list = pdo_fetchall("SELECT * FROM".tablename('account_wechats'). "ORDER BY uniacid ASC");
+            $account_data = array();
+            $account_data['uniacid'] = $_W['uniacid'];
+            $account_data['role'] = 'owner';
+            $account_data['uid'] = pdo_insertid();
+            $account_uid = pdo_insert('uni_account_users', $account_data);
+
+            if($account_uid > 0) {
+                message('用户增加成功！', $this->createWebUrl('child', array()));
+            } else {
+                pdo_delete('users', array('uid'=>$account_data['uid']));
+                message('增加用户失败，请稍候重试或联系网站管理员解决！');
+            }
+        } else {
+            message('增加用户失败，请稍候重试或联系网站管理员解决！');
+        }
+    }
+}
 
 if ($op == 'edit') {
-    $condition = ' WHERE u.uid = '.$_GPC['uid'];
-    $user_edit = pdo_fetch("SELECT u.*, a.name  FROM ".tablename('users')." u LEFT JOIN ".tablename('account_wechats'). " a ON u.uniacid=a.acid" . $condition);
+    $condition = ' WHERE uid = '.$_GPC['uid'];
+    $user_edit = pdo_fetch("SELECT * FROM ".tablename('users'). $condition);
+
 } else if ($op == 'del') {
     pdo_delete(users, array('uid'=>$_GPC['uid']));
-    pdo_delete(account_wechats, array('uniacid'=>$_GPC['uid']));
+    pdo_delete(uni_account_users, array('uid'=>$_GPC['uid']));
     header('Location:' . $this->createWeburl('child'));
     exit;
 }

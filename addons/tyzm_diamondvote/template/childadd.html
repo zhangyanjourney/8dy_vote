@@ -28,9 +28,6 @@
     });
 </script>
 <div class="clearfix">
-<!--
-    <form action="{php echo url('user/myxiajiadd')}" method="post" class="form-horizontal ajaxfrom" role="form" id="form-user">
--->
     <form action="{php echo $this->createWebUrl('childadd',array('op'=>$_GPC['op'], 'uid'=>$_GPC['uid']))}" method="post" class="form-horizontal ajaxfrom" role="form" id="form-user">
         <div class="form-group">
             <label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">用户名</label>
@@ -57,7 +54,7 @@
                 <span class="help-block">重复输入密码，确认正确输入</span>
             </div>
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
             <label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">所属公众号</label>
             <div class="col-sm-10 col-lg-9 col-xs-12">
                 <select name="uniacid" class="form-control" id="uniacid">
@@ -67,7 +64,7 @@
                     {/loop}
                 </select>
             </div>
-        </div>
+        </div>-->
         <div class="form-group">
             <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-1 col-xs-12 col-sm-10 col-md-10 col-lg-11">
                 <input type="submit" class="btn btn-primary span3" name="submit" value="确认添加" />

@@ -90,10 +90,11 @@
                 <label class="col-sm-1 control-label">活动负责人</label>
                 <div class="col-md-1">
                     <select class="we7-select ng-pristine ng-valid ng-not-empty ng-touched" name="master" style="">
-                        <option value="">请选择&nbsp;</option>
+<!--                        <option value="">请选择&nbsp;</option>
                         {loop $master $row}
                         <option value="{$row['master']}" {if $row['master'] == $_GPC['master']}selected{/if}>{$row['master']}</option>
-                        {/loop}
+                        {/loop}-->
+                        <option value="{$_W['username']}">{$_W['username']}&nbsp;</option>
                     </select>
                 </div>
                 <label class="col-sm-1 control-label">今日开场</label>

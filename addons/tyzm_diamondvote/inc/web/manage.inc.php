@@ -30,6 +30,10 @@ if (isset($_GPC['status']) && $_GPC['status'] != "") {
 
 if (!empty($_GPC['master'])) {
 	$condition .= " AND master = '{$_GPC['master']}'";
+} else {
+    if ($_W['username'] != '金鼎文化传播') {
+        $condition .= " AND master = '{$_W['username']}'";
+    }
 }
 
 $beginToday=mktime(0,0,0,date('m'),date('d'),date('Y'));

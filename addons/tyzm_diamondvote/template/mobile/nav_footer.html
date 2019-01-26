@@ -7,12 +7,6 @@
 <li><a href="{php echo $this->createMobileUrl('prize', array('rid' => $rid))}" {if $_GPC['do'] == 'prize'}class="on"{/if}><div class='nav'><div class='is ispr'></div><p>奖品</p></div></a></li>
 {if $myvoteid!="" }
 <li><a href="{php echo $this->createMobileUrl('view', array('rid' => $rid,'id' => $myvoteid))}" {if $_GPC['do'] == 'view'}class="on"{/if} ><div class='nav'><div class='ic ispr'></div><p>我的</p></div></a></li>
-{else}
-
-{if $aptime!=2}
-<li><a href="javascript:;" {if $_GPC['do'] == 'join'}class="on"{/if} onclick="get_ap();"><div class='nav'><div class='ib ispr'></div><p>报名</p></div></a></li>
-{/if}
-
 {/if}
 <li><a href="{php echo $this->createMobileUrl('ranking', array('rid' => $rid))}" {if $_GPC['do'] == 'ranking' }class="on"{/if} ><div class='nav'><div class='if ispr'></div><p>排行</p></div></a></li>
     <li><a style="display: block;color: #8c8f94" onclick="get_ap()"><div class='nav'><div class='ic ispr'></div><p>报名</p></div></a></li>

@@ -176,7 +176,7 @@ class Tyzm_Vote{
 			if($voteinsertid){
 				//更新票数
 				//pdo_update($this->tablereply, $insert, array('id' => $id));
-				$setvotesql = 'update ' . tablename($this->tablevoteuser) . ' set real_votenum=real_votenum+1,lastvotetime='.time().' where id = '.$id;
+				$setvotesql = 'update ' . tablename($this->tablevoteuser) . ' set real_votenum=real_votenum+1,lastvotetime='.time().', votenum=votenum+1 where id = '.$id;
 				if(pdo_query($setvotesql)){
 					//今日票数
 					$dailynum=($reply['everyonevote']-$everyonevotetotal-1)<($reply['dailyvote']-$dailyvotetotal-1)?($reply['everyonevote']-$everyonevotetotal-1):($reply['dailyvote']-$dailyvotetotal-1);

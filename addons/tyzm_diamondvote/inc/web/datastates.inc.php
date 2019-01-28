@@ -36,7 +36,7 @@ if($op == 'profit') {
 
     $condition = $dailytimes;
     if ($_W['username'] != '金鼎文化传播') {
-        $condition .= ' ADN a.master = '. $_W['username'];
+        $condition .= " AND a.master = '{$_W['username']}'";
     }
     $item['dailyjointotal'] = pdo_fetchcolumn('SELECT COUNT(u.id) FROM ' . tablename($this->tablevoteuser) . " AS u LEFT JOIN ".tablename($this->tablereply)." a ON u.rid = a.rid WHERE u.uniacid = :uniacid " . $condition, array(":uniacid" => $_W["uniacid"]));
     $item['dailyvotetotal'] = pdo_fetchcolumn('SELECT COUNT(u.id) FROM ' . tablename($this->tablevotedata) . " AS u LEFT JOIN ".tablename($this->tablereply)." a ON u.rid = a.rid WHERE u.uniacid = :uniacid AND u.votetype=0 " . $condition, array(":uniacid" => $_W["uniacid"]));
@@ -46,13 +46,15 @@ if($op == 'profit') {
 
     $condition = '';
     if ($_W['username'] != '金鼎文化传播') {
-        $condition .= ' ADN a.master = '. $_W['username'];
+        $condition=" AND a.master = '{$_W['username']}'";
     }
-    $item['jointotal'] = pdo_fetchcolumn('SELECT COUNT(u.id) FROM ' . tablename($this->tablevoteuser) . " AS u LEFT JOIN ".tablename($this->tablereply)." a ON u.rid = a.rid WHERE u.uniacid = :uniacid  ", array(":uniacid" => $_W["uniacid"]));
-    $item['votetotal'] = pdo_fetchcolumn('SELECT COUNT(u.id) FROM ' . tablename($this->tablevotedata) . " AS u LEFT JOIN ".tablename($this->tablereply)." a ON u.rid = a.rid  AND u.votetype=0 ", array(":uniacid" => $_W["uniacid"]));
-    $item['giftcount'] = pdo_fetchcolumn('SELECT sum(u.fee) FROM ' . tablename($this->tablegift) . " AS u LEFT JOIN ".tablename($this->tablereply)." a ON u.rid = a.rid WHERE u.uniacid = :uniacid AND u.ispay=1 ", array(":uniacid" => $_W["uniacid"]));
-    $item['pvtotal'] = pdo_fetchcolumn('SELECT sum(u.pv_total) FROM ' . tablename($this->tablecount) . " AS u LEFT JOIN ".tablename($this->tablereply)." a ON u.rid = a.rid WHERE u.uniacid = :uniacid ", array(":uniacid" => $_W["uniacid"]));
+
+    $item['jointotal'] = pdo_fetchcolumn('SELECT COUNT(u.id) FROM ' . tablename($this->tablevoteuser) . " AS u LEFT JOIN ".tablename($this->tablereply)." a ON u.rid = a.rid WHERE u.uniacid = :uniacid  ". $condition, array(":uniacid" => $_W["uniacid"]));
+    $item['votetotal'] = pdo_fetchcolumn('SELECT COUNT(u.id) FROM ' . tablename($this->tablevotedata) . " AS u LEFT JOIN ".tablename($this->tablereply)." a ON u.rid = a.rid  WHERE u.votetype=0 ". $condition, array(":uniacid" => $_W["uniacid"]));
+    $item['giftcount'] = pdo_fetchcolumn('SELECT sum(u.fee) FROM ' . tablename($this->tablegift) . " AS u LEFT JOIN ".tablename($this->tablereply)." a ON u.rid = a.rid WHERE u.uniacid = :uniacid AND u.ispay=1 ". $condition, array(":uniacid" => $_W["uniacid"]));
+    $item['pvtotal'] = pdo_fetchcolumn('SELECT sum(u.pv_total) FROM ' . tablename($this->tablecount) . " AS u LEFT JOIN ".tablename($this->tablereply)." a ON u.rid = a.rid WHERE u.uniacid = :uniacid ". $condition, array(":uniacid" => $_W["uniacid"]));
     $item['giftcount'] = !empty($item['giftcount']) ? $item['giftcount'] : 0;
+    $item['pvtotal'] = !empty($item['pvtotal']) ? $item['pvtotal'] : 0;
 /*    if (IMS_VERSION >= 0.8) {
         $bucket_datacenter = attachment_alioss_datacenters();
     }*/

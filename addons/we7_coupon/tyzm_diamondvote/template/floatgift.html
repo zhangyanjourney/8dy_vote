@@ -1,0 +1,67 @@
+<style>
+    .table td{ word-break:break-all !important; overflow: visible !important; word-spacing:normal; white-space:normal !important;vertical-align: middle !important}
+	.oh{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 163px;display: block;}
+	.oh .fa{display: inline-block;font: normal normal normal 14px/1 FontAwesome;font-size: inherit  !important;text-rendering: auto;-webkit-font-smoothing: antialiased;}
+</style>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form method="post">
+            <table class="table">
+                <tbody id="floatgift">
+                    {if empty($list)}
+                        <tr>
+                            <td colspan="1" style="text-align: center">暂时没有数据哦~</td>
+                        </tr>
+                    {else}
+                        {loop $list $item}
+                            <tr>
+								<td>
+									<label class="label label-{$item['status_style']}">{$item['status_cn']}</label> 
+									<label class="label label-info">{$item['fee']}元</label>
+									<a href="{php echo $this->createWebUrl('votelist',array('m'=>'tyzm_diamondvote','rid'=>$item['rid'],'ranking'=>1));}" rel="tooltip" title="查看活动" target="_blank"><span class="oh" style="margin-top:3px">{$item['rtitle']}</span></a>
+									<a href="{php echo $this->createWebUrl('edit',array('rid'=>$item['rid'],'id'=>$item['tid']))}" rel="tooltip" title="查看选手" target="_blank"><span class="oh"><i class="fa fa-cog"></i>{$item['uname']}</span></a>
+									<span class="oh">{$item['createtime']}</span>
+								</td>
+                            </tr>
+                        {/loop}
+                    {/if}
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<script>
+{if $this->module['config']['giftref']}
+setInterval(refresh, {$giftref}000);
+{/if}
+function refresh(){
+    $.ajax({
+		type: "POST",
+		url: "{php echo $this->createWebUrl('floatgift')}",
+		dataType: "json",
+		success: function(res) {
+			if(res.status){
+				var str = '';
+				$.each(res.data, function (i, val) {
+					str += "<tr><td>";
+					str += "<label class=\"label label-"+val.status_style+"\">"+val.status_cn+"</label> ";
+					str += "<label class=\"label label-info\">"+val.fee+"元</label>";
+					str += "<a href=\"./index.php?c=site&a=entry&ranking=1&do=votelist&m=tyzm_diamondvote&rid="+val.rid+"\" rel=\"tooltip\" title=\"查看活动\" target=\"_blank\"><span class=\"oh\" style=\"margin-top:3px\">"+val.rtitle+"</span></a>";
+					str += "<a href=\"./index.php?c=site&a=entry&rid="+val.rid+"&id="+val.tid+"&do=edit&m=tyzm_diamondvote\" rel=\"tooltip\" title=\"查看选手\" target=\"_blank\"><span class=\"oh\"><i class=\"fa fa-cog\"></i>"+val.uname+"</span></a>";
+					str += "<span class=\"oh\">"+val.createtime+"</span>";
+					str += "</td></tr>";
+				})
+			}else{
+				str += "<tr><td style=\"text-align:center\">接口数据错误，请联系管理员~</td></tr>";
+			}
+			
+			$("#floatgift").html(str);
+			
+		},
+		error: function(err) {
+			console.log('实时列表刷新失败！');
+			//util.message('实时列表刷新失败！');
+		}
+	});
+}
+</script>

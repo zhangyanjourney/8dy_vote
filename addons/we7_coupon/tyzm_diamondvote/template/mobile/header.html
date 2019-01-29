@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>{if !empty($_W['page']['sitename'])}{$_W['page']['sitename']}{else}{$_W['account']['name']}{/if}{if !empty($title)}{$title} {/if}</title>
+	<meta name="format-detection" content="telephone=no, address=no">
+	<meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+	<meta name="apple-touch-fullscreen" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="keywords" content="{if empty($_W['page']['keywords'])}{else}{$_W['page']['keywords']}{/if}" />
+	<meta name="description" content="{if empty($_W['page']['description'])}{else}{$_W['page']['description']}{/if}" />
+	<link rel="shortcut icon" href="{$_W['siteroot']}{$_W['config']['upload']['attachdir']}/{if !empty($_W['setting']['copyright']['icon'])}{$_W['setting']['copyright']['icon']}{else}images/global/wechat.jpg{/if}" />  
+	<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	<script type="text/javascript" src="{$_W['siteroot']}app/resource/js/app/util.js"></script>
+	<script src="{$_W['siteroot']}app/resource/js/require.js"></script>
+	<script type="text/javascript" src="{$_W['siteroot']}app/resource/js/lib/jquery-1.11.1.min.js?v=20160906"></script>
+	<script type="text/javascript" src="{$_W['siteroot']}app/resource/js/lib/mui.min.js?v=20160906"></script>
+	<script type="text/javascript" src="{$_W['siteroot']}app/resource/js/app/common.js?v=20160906"></script>
+	<link href="{$_W['siteroot']}app/resource/css/bootstrap.min.css?v=20160906" rel="stylesheet">
+	<link href="{$_W['siteroot']}app/resource/css/common.min.css?v=20160906" rel="stylesheet">
+	<link href="{MODULE_URL}/template/static/css/weui1.0.1.min.css" rel="stylesheet">
+	<link href="{MODULE_URL}/template/static/css/index.css?a=11" rel="stylesheet"> 
+	<script type="text/javascript">
+	if(navigator.appName == 'Microsoft Internet Explorer'){
+		if(navigator.userAgent.indexOf("MSIE 5.0")>0 || navigator.userAgent.indexOf("MSIE 6.0")>0 || navigator.userAgent.indexOf("MSIE 7.0")>0) {
+			alert('您使用的 IE 浏览器版本过低, 推荐使用 Chrome 浏览器或 IE8 及以上版本浏览器.');
+		}
+	}
+	window.sysinfo = {
+		{if !empty($_W['uniacid'])}'uniacid': '{$_W['uniacid']}',{/if}
+		{if !empty($_W['acid'])}'acid': '{$_W['acid']}',{/if}{if !empty($_W['openid'])}'openid': '{$_W['openid']}',{/if}
+		{if !empty($_W['uid'])}'uid': '{$_W['uid']}',{/if}
+		'siteroot': '{$_W['siteroot']}',
+		'siteurl': '{$_W['siteurl']}',
+		'attachurl': '{$_W['attachurl']}',
+		'attachurl_local': '{$_W['attachurl_local']}',
+		'attachurl_remote': '{$_W['attachurl_remote']}',
+		{if defined('MODULE_URL')}'MODULE_URL': '{MODULE_URL}',{/if}
+		'cookie' : {'pre': '{$_W['config']['cookie']['pre']}'}
+	};
+	// jssdk config 对象
+	jssdkconfig = {php echo json_encode($_W['account']['jssdkconfig']);} || {};
+	// 是否启用调试
+	jssdkconfig.debug = false;
+	jssdkconfig.jsApiList = [
+		'checkJsApi',
+		'onMenuShareTimeline',
+		'onMenuShareAppMessage',
+		'onMenuShareQQ',
+		'onMenuShareWeibo',
+		'hideMenuItems',
+		'showMenuItems',
+		'hideAllNonBaseMenuItem',
+		'showAllNonBaseMenuItem',
+		'translateVoice',
+		'startRecord',
+		'stopRecord',
+		'onRecordEnd',
+		'playVoice',
+		'pauseVoice',
+		'stopVoice',
+		'uploadVoice',
+		'downloadVoice',
+		'chooseImage',
+		'previewImage',
+		'uploadImage',
+		'downloadImage',
+		'getNetworkType',
+		'openLocation',
+		'getLocation',
+		'hideOptionMenu',
+		'showOptionMenu',
+		'closeWindow',
+		'scanQRCode',
+		'chooseWXPay',
+		'openProductSpecificView',
+		'addCard',
+		'chooseCard',
+		'openCard'
+	];
+	</script>
+</head>
+<body>
+
+<ul class="Side_nav">
+	<li style=""><a href="{php echo $this->createMobileUrl('index', array('rid' => $rid))}" class="Side_navf">首页</a></li>
+	<li><a href="javascript:;" id="jubao" class="Side_navf" data-id="{$rid}" data-title="{if !empty($_W['page']['sitename'])}{$_W['page']['sitename']}{else}{$_W['account']['name']}{/if}{if !empty($title)}{$title} {/if}">举报</a></li>
+</ul>
+<div id="votetousu" style="background: rgb(242, 242, 242); min-height: 572px; display: none;">
+    <!--返回部分-->
+    <header class="page-header zindex3 sgyingyin" style="margin:0 auto">
+        <a class="arrow-wrap" href="javascript:;" id="tousufanhui">
+            <span class="arrow-lefts"></span><i class="fanhuib">返回</i>
+        </a>
+        <div class="toptext">我要举报</div>
+    </header>
+    <form>
+    <!--投诉原因选择-->
+    <div class="complaint" style="display: block;">
+        <div class="complaint01">请选择您要举报该网页的原因：</div>
+        <ol class="complaint02">
+            <li><span class="selected">虚假活动、活动不真实</span><em></em></li>
+            <li><span>诱导分享、诱导关注</span><em></em></li>
+            <li><span>欺诈、违法</span><em></em></li>
+            <li><span>色情、暴力</span><em></em></li>
+            <li><span>其他</span><em></em></li>
+        </ol>
+    </div>
+    <!--describe：描述-->
+    <div class="describe" style="display: none;">
+        <div class="describe01">举报描述</div>
+        <div class="describe02">
+            <textarea class="describe021" id="feedbackmark" placeholder="请输入举报具体内容，最少20字。"></textarea>
+            <div class="describe022"><em>0</em><span>/200</span></div>
+        </div>
+        <div class="describe03">联系方式</div>
+        <div class="describe04">
+            <input type="number" id="feedbacktel" pattern="[0-9]*" placeholder="请填写您的手机号，以便联系">
+        </div>
+        <div class="describe06">提交</div>
+        <div class="describe05">上一步</div>
+    </div>
+    <!--success：投诉成功-->
+    <div class="success">
+        <div class="success01"><img src="{MODULE_URL}/template/static/images/correct.png"></div>
+        <div class="success02">投诉已提交</div>
+        <span class="success03">我们将尽快核实，并通过手机号通知您审核结果。感谢您的支持。</span>
+        <div class="success04">关闭</div>
+    </div>
+    </form>
+
+</div>
+<style>
+.Side_nav {
+    overflow: hidden;
+    position: fixed;
+    top: 45px;
+    right: 3%;
+    z-index: 111;
+}
+.Side_nav li {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    background: rgba(0,0,0,.6);
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-align: center;
+}
+.Side_navf {
+    font-size: 14px;
+    color: #fff;
+    line-height: 40px;
+    display: block;
+}
+.page-header {
+    position: relative;
+    height: 44px;
+    background-color: #ed414a;
+}
+.zindex3 {
+    z-index: 3;
+}
+.arrow-wrap {
+    float: left;
+    height: 100%;
+    width: 62px;
+    padding: 0 16px;
+    position: relative;
+}
+.toptext {
+    margin: 0 100px;
+    text-align: center;
+    line-height: 44px;
+    font-size: 18px;
+    color: #fff;
+}
+.arrow-lefts {
+    display: block;
+    width: 13px;
+    height: 13px;
+    margin-top: 15px;
+    border: 2px solid #fff;
+    border-width: 2px 0 0 2px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.fanhuib {
+    color: #fff;
+    font-style: normal;
+    position: absolute;
+    left: 30px;
+    top: 11px;
+}
+.complaint {
+    width: 100%;
+    height: auto !important;
+    display: block
+}
+
+.complaint .complaint01 {
+    height: 30px;
+    line-height: 30px;
+    width: 94%;
+    margin-left: 3%;
+    font-size: 13px;
+    color: #999
+}
+
+.complaint .complaint02 {
+    height: auto !important;
+    background-color: #fff;
+    border: 1px #eee solid
+}
+
+.complaint02>li {
+    height: 45px;
+    line-height: 45px;
+    width: 94%;
+    margin-left: 3%;
+    border-bottom: 1px #eee solid;
+    box-sizing: border-box;
+    color: #666;
+    position: relative
+}
+
+.complaint02>li>em {
+    width: 7px;
+    height: 7px;
+    border: 1px #ccc solid;
+    border-width: 1px 0px 0px 1px;
+    float: right;
+    transform: rotate(135deg);
+    margin-top: 20px;
+    margin-right: 10px
+}
+
+.complaint02>li .duihao {
+    background: url(../images/select.png) no-repeat;
+    background-size: 20px
+}
+
+.complaint02>li:last-child {
+    border-bottom: 0px #eee solid
+}
+
+.describe {
+    width: 100%;
+    height: auto !important;
+    display: none
+}
+
+.describe .describe01 {
+    height: 30px;
+    line-height: 30px;
+    width: 94%;
+    margin-left: 3%;
+    font-size: 13px;
+    color: #999
+}
+
+.describe .describe02 {
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    padding-top: 10px
+}
+
+.describe .describe02 em {
+    font-style: normal;
+}
+
+.describe02 .describe021 {
+    width: calc(88% - 2px);
+    margin-left: 3%;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    height: 100px;
+    font-size: 14px;
+    line-height: 24px;
+    overflow: scroll;
+    padding: 4px 3% 0;
+    -webkit-appearance: none
+}
+
+.describe02 .describe022 {
+    float: right;
+    margin-right: 3%;
+    margin-top: -25px;
+    z-index: 100;
+    font-size: 14px;
+    color: #999
+}
+
+.describe .describe03 {
+    height: 30px;
+    line-height: 30px;
+    width: 94%;
+    margin-left: 3%;
+    font-size: 13px;
+    color: #999
+}
+
+.describe .describe04 {
+    height: 45px;
+    line-height: 45px;
+    width: 100%;
+    color: #999;
+    background-color: #fff;
+    border: 1px solid #eee
+}
+
+.describe04>input {
+    border: 0px;
+    width: 94%;
+    margin-left: 3%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px
+}
+
+.describe .describe05 {
+    width: 96%;
+    margin-left: 2%;
+    background-color: #ccc;
+    color: #fff;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 25px
+}
+
+.describe .describe06 {
+    width: 96%;
+    margin-left: 2%;
+    background-color: #ed414a;
+    color: #fff;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 25px
+}
+
+.success {
+    width: 100%;
+    height: auto !important;
+    display: none;
+    background: #fff;
+    padding-bottom: 25px
+}
+
+.success .success01 {
+    width: 100%;
+    height: auto !important;
+    text-align: center;
+    padding-top: 20px
+}
+
+.success01>img {
+    margin: 15px 0px;
+    width: 27%
+}
+
+.success .success02 {
+    width: 100%;
+    height: auto !important;
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px
+}
+
+.success .success03 {
+    display: inline-block;
+    width: 90%;
+    height: auto !important;
+    margin-left: 5%;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 20px
+}
+
+.success .success04 {
+    width: 90%;
+    margin-left: 5%;
+    background-color: #ed414a;
+    color: #fff;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 25px
+}
+</style>
+<script>
+$(".describe06").click(function(){
+	var self = $(this);
+	var text=self.text();
+	//正在处理
+	if(self.hasClass("doing")) {
+		return false;
+	}
+	self.addClass("doing").text('正在处理中...');
+	$.ajax({
+		url: "{php echo $this->createMobileUrl('feedback')}&t="+Date.parse(new Date())/1000,
+		type: "post",
+		dataType: "json",
+		data: {
+			rid: $("#jubao").data("id"),
+			title:$(".complaint02 .selected").html(),
+			feedbackmark: $("#feedbackmark").val(),
+			feedbacktel: $("#feedbacktel").val(),
+			rtitle:$("#jubao").data("title")
+		},
+		success: function(i) {
+			if (i.status == "1") {
+				$(".describe").css("display","none");
+				$(".success").css("display","block");
+			}else if(i.status == "0"){
+                alert('提交失败请稍后再试')
+            }
+			self.removeClass("doing").text(text);
+		},
+        error:function(){
+            alert('网络异常请稍后再试');
+        }
+	})	
+	return false;
+});
+//为投诉页面选择投诉原因：
+$(".complaint02>li").click(function(){
+	$(this).children("span").addClass("selected");
+	$(this).parents(".complaint").css("display","none");
+	$(".describe").css("display","block");
+});
+$(".describe05").click(function(){
+	$(".describe").css("display","none");
+	$(".complaint").css("display","block");						
+});
+//投诉成功之后，关闭页面
+$(".success04").click(function(){
+	wx.closeWindow();
+});
+//多行文本框限制输入的内容
+$(".describe021").keyup(function(){
+	var text_len=$(this).val().length;
+	if(text_len<=200){
+		$(".describe022>em").text(text_len);
+	}else{
+		var vals=$(".describe021").val().substr(0,200);
+		$(".describe021").val(vals);				
+	};
+});
+$(".describe021").blur(function(){
+	var text_len=$(this).val().length;
+	if(text_len<=200){
+		$(".describe022>em").text(text_len);
+	}else{
+		var vals=$(".describe021").val().substr(0,200);
+		$(".describe021").val(vals);				
+	};
+});
+$("#tousufanhui").click(function(){
+	$("#votetousu").hide();
+	$("#votedetails").show();
+});
+$("#jubao").click(function(){
+	var h=$(window).height();
+	$("#votetousu").css("min-height",h+"px");
+	$("#votetousu").show();
+	$("#votedetails").hide();
+});
+</script>
+
+<div id="votedetails" class="container container-fill" {if $reply['notice']} style="padding-top:36px;" {/if}>
+{if $reply['notice']}
+<div class="notice"><marquee style="WIDTH: 100%; HEIGHT: 18px" scrollamount="6" Align="Middle"  hspace="0" direction="Left" >{$reply['notice']}</marquee></div>
+{/if}
+{if $reply['status']==0 || $reply['status']=="" || $reply['endtime']< TIMESTAMP }
+<div id="replystatus" >
+<div class="alert alert-danger alert-dismissible" style="text-align:center;position: fixed;top:40%;z-index: 2; width:80%;margin:0 10%;z-index:9000000" role="alert">
+  <button type="button" class="close"  onclick="hidemod('replystatus')" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <strong>活动已结束！</strong>
+  
+</div>
+<div class="weui-mask"></div>
+</div>
+{/if}
+
+
+
+
+

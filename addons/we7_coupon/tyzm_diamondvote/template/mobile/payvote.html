@@ -1,0 +1,292 @@
+{template 'header'}
+
+{template 'sider'}
+
+<link rel="stylesheet" href="{MODULE_URL}/template/static/css/donate.css?a=12">
+<style type="text/css">
+{if $reply['diamondmodel']==1 || $reply['isshowgift']>2}
+.divbottommenu .divitem{width:33.333%;}
+{/if}
+</style>
+<div class="pay_top">
+	<div class="pay_img"><img width="100%" src="{media $voteuser['avatar']}" alt="{$voteuser['name']}"></div>
+	<div id="pay_title" class="pay_title">为{$voteuser['noid']}号 {$voteuser['name']} 送<font id="zval">5</font>{$reply['giftunit']} = <font id="vote" style="color:red;"><?php echo 15 * $reply['giftscale'];?></font>票</div>
+</div>
+<div class="pay_price">
+	<ul>
+		{loop $giftlist  $item}
+			{loop $item $index $rom}
+				<li onclick="clickz({php echo $rom['giftprice']*$reply['giftscale'];},this)" class="pay_btn" data_id="{$index}"><font>{php echo $rom['giftprice']*$reply['giftscale'];}</font> {$reply['giftunit']}</li>
+			{/loop}
+		{/loop}
+		<li onclick="clickz(0,this)" style="padding:2px 0px;" class="pay_btn pay_zdy" data_id="-1"><b>自定义</b></li>
+	</ul>
+	<div style="clear:both;"></div>
+</div>
+<div class="pay_foot">
+	<div class="pay_note"><b>注：</b>1元打赏1{$reply['giftunit']}，1{$reply['giftunit']}等于3票</div>
+	<div><input type="text" oninput="jsgb()" value="" placeholder="请输入要购买的{$reply['giftunit']}数量" id="zuan" data_id="-1"></div>
+	<div class="pay_wxpay"><img width="100%" src="{MODULE_URL}/template/static/images/zhong1.png"></div>
+</div>
+<div class="donate">
+    <textarea name="jy" placeholder="请输入礼物寄语！"></textarea>
+	<div class="donate_bank_p">
+
+        {if empty($reply['defaultpay'])}
+
+        <a href="javascript:;" class="weui-btn weui-btn_primary js-wechat-pay">去支付</a>
+
+		{else}
+
+        <a href="javascript:;" id="weixin" class="weui-btn weui-btn_primary">去支付</a>
+
+        {/if}
+
+	</div>
+</div>
+<style>
+.pay_img{width:80px;height:80px;overflow: hidden;border-radius: 50%;margin-left:-moz-calc((100% - 80px)/2);margin-left:-webkit-calc((100% - 80px)/2);margin-left:calc((100% - 80px)/2);margin-top:50px;}
+.pay_title{text-align:center;padding:10px 0px;font-weight:bold;}
+.pay_price ul{list-style:none;padding-left:10px;}
+.pay_btn{line-height:45px;font-size:16px;width:30px;border: solid 1px #ddd;color:#F35E56;margin-left:10px;width:-moz-calc((100% - 60px)/3);width:-webkit-calc((100% - 60px)/3);width:calc((100% - 60px)/3);text-align:center;float:left;margin-top:10px;background-color:#fff;}
+.pay_btn font{font-size:28px;font-style:italic;}
+.pay_note{text-align:center;padding:20px 0px;}
+.pay_foot input{width:80%;margin:0px 5%;font-size:18px;border-radius: 5px;border: solid 1px #ddd;padding:12px 5%;display:none;}
+.pay_wxpay{border: solid 1px #ddd;margin:20px 0px;}
+.to_pay{background-color:#44b549;color:#fff;text-align:center;margin:0px 30px;padding:10px 0px;border-radius: 5px;}
+.pay_btns{color:#fff;background-color:#F35E56;}
+</style>
+<div id="qshuli" class="donate_alert_mask" onclick="document.getElementById('qshuli').style.display='none';"><div class="donate_alert"><div class="donate_alert_msg">请选择你要赠送的礼物</div><div class="donate_alert_btns"><div class="donate_alert_btn ok">确定</div></div></div></div>
+<br></br>
+<script>
+var pay = true;
+var znum =  5;
+var giftid="";
+var zuan_rate = Number("{$reply['giftscale']}");
+function jsgb(){
+	var price = document.getElementById("zuan").value;
+	var val = Number(price);
+	if(!check(price)){
+		if(!check(val)){znum = '';val = 0;}document.getElementById("zuan").value = znum;
+	}else{znum = price;}
+	if(val < 1){
+		document.getElementsByClassName('js-wechat-pay')[0].style.backgroundColor = '#ddd';
+		pay = false;
+	}else{
+		document.getElementsByClassName('js-wechat-pay')[0].style.backgroundColor = '#44b549';
+		pay = true;
+	}
+	document.getElementById("zval").innerHTML=val;
+	document.getElementById("vote").innerHTML=val * zuan_rate*3;
+}
+function clickz(v,obj){
+	document.getElementById("zuan").value = '';
+	giftid = v;
+	var val = Number(v);
+	znum = val;
+	document.getElementById("zval").innerHTML=val;
+	document.getElementById("vote").innerHTML=val * zuan_rate*3;
+	
+	var pay_btn = document.getElementsByClassName('pay_btn');
+	for(var i=0;i<pay_btn.length;i++){
+		pay_btn[i].className = "pay_btn";
+	}
+	obj.className = "pay_btn pay_btns";
+	
+	if(val < 1){
+		document.getElementById("zuan").style.display = 'block';
+		document.getElementsByClassName('to_pay')[0].style.backgroundColor = '#ddd';
+		pay = false;
+	}else{
+		document.getElementById("zuan").style.display = 'none';
+		document.getElementsByClassName('to_pay')[0].style.backgroundColor = '#44b549';
+		pay = true;
+	}
+}
+
+function check(v)
+{
+	var a=/^[1-9]{1}[0-9]{0,3}$/;
+	if(!a.test(v)){return false;}else{return true;}
+}
+function yspost(url,post){	 
+	var xhr = new XMLHttpRequest(); 
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.onreadystatechange = function(){
+		var XMLHttpReq = xhr;
+		if (XMLHttpReq.readyState == 4) {
+			if (XMLHttpReq.status == 200) {
+				var text = XMLHttpReq.responseText;
+				return text;
+			}else{
+				return false;
+			}
+		}
+	};
+	xhr.send(post);
+}
+	
+$(document).ready(function(){
+
+    var giftid="";
+
+	$(".donate_money_choose .donate_money").click(function(){
+
+		var tip = $(this).attr("dada-tip"); 
+
+		$(".donate_money_edit_text").text(tip); 
+
+		giftid=$(this).attr("dada-key"); 
+
+		$(".donate_money_choose .donate_money").removeClass("active");
+
+		$(this).addClass("active");
+
+    });
+
+
+
+{if empty($reply['defaultpay'])}
+
+    //
+
+    //发起微信支付，微信支付依赖于 WeixinJSBridge 组件，所以发起时应该在ready事件中进行
+
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+
+   
+
+        $('.js-wechat-pay').removeClass('mui-disabled');
+
+        $('.js-wechat-pay').click(function(){
+
+            var count=$("select[name='count']").val();
+
+            var jy=$("textarea[name='jy']").val();
+
+			giftid = $('.pay_btns').attr('data_id');
+			
+        	if(giftid=="" || giftid==undefined){dialog2("请选择你要赠送的礼物");return false;exit();}
+			
+			if(giftid == -1){
+				var giftnum = $("#zuan").val();
+			}
+
+            loadingToast("奋力加载");
+
+            console.log(giftid);
+
+            $.ajax({
+
+                type: "POST",
+
+                url: "{php echo $this->createMobileUrl('pay', array('rid' => $reply['rid'],'id' => $voteuser['id'],'ty' => 1,'type'=>1))}",
+
+                data: {'giftid':giftid,'giftnum':giftnum,'count':count,'jy':jy},
+
+                dataType: "json",
+
+                success: function(str) {
+
+                    hidemod("loadingToast");
+
+                    if(str!=null && str!='' && str.error!=1){
+
+                            payment = str.message.message;
+
+                            WeixinJSBridge.invoke("getBrandWCPayRequest", {
+
+                                    appId: payment.appId,
+
+                                    timeStamp: payment.timeStamp,
+
+                                    nonceStr: payment.nonceStr,
+
+                                    "package": payment["package"],
+
+                                    signType: payment.signType,
+
+                                    paySign: payment.paySign
+
+                            },
+
+                           function(res){     
+
+                               if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+
+                                    toast("支付成功");
+
+                                    setTimeout(location.href ="{php echo $this->createMobileUrl('view', array('rid' => $reply['rid'],'id' => $voteuser['id']))}",3000); 
+
+                                    
+
+                               }else if(res.err_msg == "get_brand_wcpay_request:cancel"){
+
+                                    dialog2("已取消支付");return false;
+
+                               }else{
+
+                                    dialog2(res.err_msg);return false;
+
+                               }
+
+                           }
+
+                           );
+
+
+
+                    }else{
+
+                        dialog2(str.msg);
+
+                    }
+
+                },
+
+                error: function(err) {
+
+                    hidemod("loadingToast");
+
+                    dialog2("发生错误，请刷新后重试！(1)");
+
+                }
+
+            });
+
+        });
+
+        $('.js-wechat-pay').html('微信支付');
+
+    });
+
+
+
+{else}
+
+
+
+    $("#weixin").click(function(){
+
+        var count=$("select[name='count']").val();
+        var jy=$("textarea[name='jy']").val();
+
+    	if(giftid==""){dialog2("请选择你要赠送的礼物");return false;}
+
+    	    location.href ="{php echo $this->createMobileUrl('gift', array('rid' => $reply['rid'],'id' => $voteuser['id'],'ty' => 1))}&type=1&giftid="+giftid+"&count="+count;
+
+    });
+
+
+
+{/if}
+
+});
+
+
+
+</script>
+
+{template 'footer'}
+

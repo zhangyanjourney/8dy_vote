@@ -1,0 +1,62 @@
+{template 'header'}
+{if $reply['isindexslide']==1}
+	{template 'sider'}
+{/if}
+<style type="text/css">
+	.slide{ border-bottom: 1px solid #000;}
+</style>
+{if $reply['topimg']}
+	<div class="divmain1"><img src="{php echo tomedia($reply['topimg']);}" alt="shareImg"></div>
+{/if}
+<style>
+#alert{font-size: 30px;font-weight: bold;line-height: 70px;text-align:center}
+#zbtn{border:1px solid #949494;border-radius:5px;width:40%;margin: 10px 0 10px 30%;line-height:35px;}
+#zjs{width:70%;margin:50px 15% 40px 15%;text-align:left;line-height: 20px;}
+#zewm{width:70%;margin-left:15%;}
+#zewm_l{float:left;width:50%;}
+#zewm_r{float:left;width:50%;text-align:left;line-height: 20px;}
+
+#xtop{bottom: 60px;left: 50%;margin-left: -100px;position: fixed;z-index: 100;}
+	
+#tk{z-index:150;}
+#tk3{top:50%;left:50%;z-index:200;margin:-50px 0 0 -50px;}
+</style>
+<style>
+#jiandiv{width:100px; height:40px;  position:relative;top:-15px;left:40px; line-height:30px; font-size:16px; color:#2dcc70; text-align:center; font-weight:bold; background:#fff}
+#jiandiv1{margin:0 auto; width:90%;  font-size:14px;  font-family: "Microsoft YaHei";  line-height:30px; text-align:left}
+#jiandiv2{width:100%;  margin-top:20px; border:1px #ccc solid; border-radius:10px; }
+#jiandiv2 img{width:97%;}
+</style>
+<div id="div">
+	<!--内容 -->
+	<div id="alert">
+		给{$voteuser['noid']}号投票成功
+	</div>
+	<div style="text-align:center;">     
+		<img width="60px" src="{MODULE_URL}/template/static/images/zuan_03.png">
+	</div>
+	<div style="text-align:center;font-size:16px;">亲，再送我个钻石呗！</div> 
+	<div style="background-color: #ffa603;border:solid 1px #000;;text-align:center" id="zbtn">       
+		<a href="{php echo $this->createMobileUrl('gift', array('rid' => $reply['rid'],'id' => $voteuser['id']))}" style="font-size:18px;color:#000;ptext-align:center">送钻石</a>
+	</div>
+	<div style="background-color: #fff;border:solid 1px #000;;text-align:center" id="zbtn">               
+		<a href="{php echo $this->createMobileUrl('index', array('rid' => $reply['rid']))}" style="font-size:18px;color:#000">返回活动</a>
+	</div>
+	<div style="margin:40px 5% 0px;width:90%;" id="jiandiv2">
+	  <div style="margin-left:25%;" id="jiandiv">
+		 奖品设置
+	  </div>
+	  <div style="padding:0px 0px 10px 10px">
+		{if $reply['prizemsg']==""}
+			请至后台编辑活动，设置活动内容！
+		{else}
+			{$reply['prizemsg']}
+		{/if}
+	  </div>
+	</div>
+
+	</if>
+</div>
+
+{template 'nav_footer'}
+{template 'footer'}

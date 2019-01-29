@@ -1,0 +1,110 @@
+{template 'header'}
+{template 'sider'} 
+{if $reply['status']==0 || $reply['status']==""}
+<div class="alert alert-warning" style="text-align:center;position: fixed;top:40%;z-index: 2; width:80%;margin:0 10%;">活动已禁用！</div>
+<div class="weui_mask"></div>
+{/if}
+<script type="text/javascript">
+var intDiff = parseInt({php echo $reply['endtime']-time();});//倒计时总秒数量
+function timer(intDiff){
+	window.setInterval(function(){
+	var day=0,
+		hour=0,
+		minute=0,
+		second=0;//时间默认值		
+	if(intDiff > 0){
+		day = Math.floor(intDiff / (60 * 60 * 24));
+		hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+		minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+		second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+	}
+	if (minute <= 9) minute = '0' + minute;
+	if (second <= 9) second = '0' + second;
+	$('#day_show').html(day+"天");
+	$('#hour_show').html('<s id="h"></s>'+hour+'时');
+	$('#minute_show').html('<s></s>'+minute+'分');
+	$('#second_show').html('<s></s>'+second+'秒');
+	intDiff--;
+	}, 1000);
+} 
+
+$(function(){
+	timer(intDiff);
+});	
+</script>
+<style>
+#contentla{
+background-color:#fff;
+width:100%;
+height:auto;
+padding-top:10px;
+margin:0 auto;
+color: #000;
+}
+#ddtab{margin-left:5%;text-align:center; line-height:30px; background-color:#FFF; color:#000; margin:0 auto; border-bottom:1px #ccc solid}
+</style>
+
+<div id="contentla">
+	<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" id="ddtab" style="border-bottom:0px;">
+		<tbody class="paihang2">
+			<tr style="background-color:#fc6; line-height:38px;">
+				<td>排名</td>
+				<td>姓名</td>
+				<td>票数</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="divviewg"><ins data-revive-zoneid="6" data-revive-id="cf5521a0c29a35de7f416d220fe367e7"></ins>
+</div>
+  <div id="list_more" class="box" style="margin-top: 16px; text-align: center;margin-bottom: 40px;"><span class="am-text-secondary" onclick="get_list();">点击加载数据</span></div>
+  <script> 
+var limit = 1;
+function get_list(){	
+	$("#list_more").html('<div class="am-text-secondary"><span class="am-icon-spinner am-icon-spin"></span> 卖命加载中...</div>');
+	$.ajax({
+	    type : "post",
+	    url : "{php echo $this->createMobileUrl('ranking',array('rid'=>$rid,'ty'=>$_GPC['ty']))}",
+	    data : {
+	    	limit:limit,
+	    },
+        dataType : "json",		
+	    success : function(data) {
+	    	if(data.status==200){
+						var list = data.content;
+						var content = '';
+						$(".paihang2").append(list);
+						for(var i=0; i<list.length; i++){
+							  content = '<tr><td>'+(i+1)+'</td><td>'+list[i]['name']+'</td><td>'+list[i]['votenum']+'</td></tr>';
+							$(".paihang2").append(content);
+						}
+						/*
+						if(list.length==10){
+							$("#list_more").html('<span class="am-text-secondary" onclick="get_list();">查看更多</span>');
+						}else{
+							$("#list_more").html('<span></span>');
+						}
+						*/
+						$("#list_more").html('<span></span>');
+						limit++;		
+		    }else if(data.status==-103){
+	    		$("#list_more").html('<span>没有更多记录！</span>');
+	    	}else{
+			    $("#list_more").html('<span>没有更多记录！</span>');
+			}    	
+	    },
+	    error : function(xhr, type) {
+
+	    }
+	});
+}
+get_list();
+</script>
+<style>
+
+.datalist .item3:nth-child(3) {color:#444}
+
+</style>
+{template 'nav_footer'}
+
+{template 'footer'}

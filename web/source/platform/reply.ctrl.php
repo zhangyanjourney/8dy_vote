@@ -164,6 +164,7 @@ if ($do == 'post') {
 	if ($m == 'keyword' || $m == 'userapi' || !in_array($m, $sysmods)) {
 		$module['title'] = '关键字自动回复';
 		if ($_W['isajax'] && $_W['ispost']) {
+
 			$keyword = safe_gpc_string($_GPC['keyword']);
 			$sensitive_word = detect_sensitive_word($keyword);
 			if (!empty($sensitive_word)) {

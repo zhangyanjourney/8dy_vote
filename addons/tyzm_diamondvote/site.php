@@ -109,6 +109,8 @@ class tyzm_diamondvoteModuleSite extends WeModuleSite
 		}
 		$this->json_exit(1, "获取机器人列表成功！", $list);
 	}
+
+	/*
 	public function doMobileRobotsrun()
 	{
 		ignore_user_abort();
@@ -141,7 +143,43 @@ class tyzm_diamondvoteModuleSite extends WeModuleSite
 		}else{
 			$this->json_exit(0, "加票用户不存在！活动ID：".$rid.",用户编号：".$noid);
 		}
-	}
+	}*/
+
+/*	//随机加票，参考上面函数
+    public function doMobileRobotsrun()
+    {
+        ignore_user_abort();
+        set_time_limit(0);
+        global $_W, $_GPC;
+        //$_GPC['pwd']!='666666' && $this->json_exit(0, "机器人密码错误！", $list);
+        $robotid = $_GPC['robotid']?intval($_GPC['robotid']):0;
+        $rid = $_GPC['rid']?intval($_GPC['rid']):0;
+        $noid = $_GPC['noid']?intval($_GPC['noid']):0;
+        $vote_num = rand(0,5);
+        $res = pdo_update($this->tablevoteuser, array('votenum +='=>$vote_num), array('noid' => $noid, 'rid' => $rid));
+        if(!empty($res)){
+            pdo_update($this->tablerobots, array('sumadd +='=>$vote_num), array('id' => $robotid));
+
+            $tid = pdo_fetchcolumn("SELECT id FROM " . tablename($this->tablevoteuser) . " WHERE noid = :noid AND rid = :rid ", array(':noid' => $noid, ':rid' => $rid));
+            $setpv = 'update ' . tablename($this->tablecount) . ' set pv_total=pv_total+'.$vote_num.' where tid = '.$tid.' AND rid='.$rid.' AND uniacid='.$_W['uniacid'];
+            if(!pdo_query($setpv)){
+                $count=pdo_fetch("SELECT * FROM " . tablename($this->tablecount) . " WHERE tid = :tid AND rid = :rid ", array(':tid' => $tid,':rid' => $rid));
+                if(empty($count)){
+                    $indata=array(
+                        'tid'=>$tid,
+                        'rid'=>$rid,
+                        'uniacid'=>$_W['uniacid'],
+                        'pv_total'=>$vote_num,
+                    );
+                    pdo_insert($this->tablecount, $indata);
+                }
+
+            }
+            $this->json_exit(1, "加票成功！");
+        }else{
+            $this->json_exit(0, "加票用户不存在！活动ID：".$rid.",用户编号：".$noid);
+        }
+    }*/
 	
 	/*占用大量服务器资源 - 弃用*/
 	/*public function doMobileRobotsrun()
@@ -195,6 +233,61 @@ class tyzm_diamondvoteModuleSite extends WeModuleSite
 		}
 		return $i;
 	}*/
+
+	//随机加票，参考上面的函数
+    public function doMobileRobotsrun()
+{
+    ignore_user_abort();
+    set_time_limit(0);
+    global $_W, $_GPC;
+    //$_GPC['pwd']!='666666' && exit("机器人密码错误！\n\r");
+
+    $list = pdo_fetchall("SELECT * FROM " . tablename($this->tablerobots) . " WHERE starttime < :time AND endtime > :time ORDER BY `id` DESC", array(':time' => time()));
+    foreach($list as &$val){
+        $users = explode(',', $val['voteuser']);
+        foreach($users as &$user){
+            $num += $this->addrun($user, $val['voterid'], $val['randomlow'], $val['randomhigh'], $val['endtime'], $val['id']);
+        }
+    }
+    echo "机器人加票成功，一共增加".$this->addnum."票！\n\r";
+}
+
+public function addrun($noid, $rid = 0, $l = 0, $h = 10, $endtime, $robotid=0)
+{
+    global $_W, $_GPC;
+    $t = time();
+    $i = 0;
+    $vote_num = rand(0,5);
+
+    while ($t + 20 > time() && $endtime > time()) {
+        sleep(rand($l, $h));
+        $res = pdo_update($this->tablevoteuser, array('votenum +='=>$vote_num), array('noid' => $noid, 'rid' => $rid));
+        if(!empty($res)){
+
+            pdo_update($this->tablerobots, array('sumadd +='=>$vote_num), array('id' => $robotid));
+
+            $tid = pdo_fetchcolumn("SELECT id FROM " . tablename($this->tablevoteuser) . " WHERE noid = :noid AND rid = :rid ", array(':noid' => $noid, ':rid' => $rid));
+            $setpv = 'update ' . tablename($this->tablecount) . ' set pv_total=pv_total+'.$vote_num1.' where tid = '.$tid.' AND rid='.$rid.' AND uniacid='.$_W['uniacid'];
+            if(!pdo_query($setpv)){
+                $count=pdo_fetch("SELECT * FROM " . tablename($this->tablecount) . " WHERE tid = :tid AND rid = :rid ", array(':tid' => $tid,':rid' => $rid));
+                if(empty($count)){
+                    $indata=array(
+                        'tid'=>$tid,
+                        'rid'=>$rid,
+                        'uniacid'=>$_W['uniacid'],
+                        'pv_total'=>$vote_num,
+                    );
+                    pdo_insert($this->tablecount, $indata);
+                }
+            }
+
+            $this->addnum += $vote_num;
+            ++$i;
+        }
+    }
+    return $i;
+}
+
 	
 	public function doMobileRrcodeurl()
 	{

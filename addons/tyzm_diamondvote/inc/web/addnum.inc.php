@@ -42,12 +42,12 @@ if ($_W['ispost']) {
 			pdo_insert($this->tablecount, $indata); 
 		}
 	}
-	
-	
-	
+
+
+
 	if (!empty($result)) {
 		pdo_update($this->tablevoteuser, $instdata, array('id' => $id));
-		
+
 		$votenum = pdo_fetchcolumn('SELECT votenum FROM ' . tablename($this->tablevoteuser) . " WHERE   rid = :rid AND id=:id " , array(':rid' => $rid,':id' => $id));
 		$pv_total = pdo_fetchcolumn('SELECT pv_total FROM ' . tablename($this->tablecount) . " WHERE   rid = :rid AND tid=:tid " , array(':rid' => $rid,':tid' => $id));
 		

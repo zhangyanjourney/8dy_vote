@@ -399,11 +399,20 @@ function buildframes($framename = ''){
 			foreach($entries['menu'] as $key => $row) {
 				if(empty($row)) continue;
 				foreach($row as $li) {
-					$frames['account']['section']['platform_module_menu']['menu']['platform_module_menu'.$row['eid']] = array(
-						'title' => "<i class='wi wi-appsetting'></i> {$row['title']}",
-						'url' => $row['url'] . '&version_id=' . $version_id,
-						'is_display' => 1,
-					);
+				    if($_W['username'] == '金鼎文化传播') {
+                        $frames['account']['section']['platform_module_menu']['menu']['platform_module_menu'.$row['eid']] = array(
+                            'title' => "<i class='wi wi-appsetting'></i> {$row['title']}",
+                            'url' => $row['url'] . '&version_id=' . $version_id,
+                            'is_display' => 1,
+                        );
+                    } else {
+                        $is_display = $row['title'] == '数据汇总' ? 0 : 1;
+                        $frames['account']['section']['platform_module_menu']['menu']['platform_module_menu'.$row['eid']] = array(
+                            'title' => "<i class='wi wi-appsetting'></i> {$row['title']}",
+                            'url' => $row['url'] . '&version_id=' . $version_id,
+                            'is_display' => $is_display,
+                        );
+                    }
 				}
 			}
 		}

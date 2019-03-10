@@ -120,11 +120,29 @@ word-break: normal;
                 <th>宣言</th>
 <!--                <th>图片</th>-->
 				<th>数据</th>
+				{if $_W['username'] == '金鼎文化传播'}
 				<th><div class="input-group" style="float: left;">
 					<button class="btn btn-primary addvotes" data-id="{$_GPC['page']}">
 						<i class="fa fa-plus"></i> 一键加票
 					</button>
+				</div>
+				<th><div class="input-group" style="float: left;">
+					<button class="btn btn-primary addvotes_random" data-id="{$_GPC['page']}">
+						<i class="fa fa-plus"></i> 随机加票
+					</button>
 				</div></th>
+				{else}
+				<th hidden="hidden"><div class="input-group" style="float: left;">
+					<button class="btn btn-primary addvotes" data-id="{$_GPC['page']}">
+						<i class="fa fa-plus"></i> 一键加票
+					</button>
+				</div>
+				<th hidden="hidden"><div class="input-group" style="float: left;">
+					<button class="btn btn-primary addvotes_random" data-id="{$_GPC['page']}">
+						<i class="fa fa-plus"></i> 随机加票
+					</button>
+				</div></th>
+				{/if}
 				<th>参加时间</th>
                 <th>状态</th>
                 <th width="130">操作</th>
@@ -207,6 +225,7 @@ word-break: normal;
 	                分享：<span class="label label-warning">{$row['sharetotal']}</span>
 </p>
 	                </td>
+					{if $_W['username'] == '金鼎文化传播'}
 					<td>
 						<div class="input-group" style="float: left;">
 							<input type='number' class="form-control" style="width:90px" value="" id="addnum_array"/>
@@ -215,6 +234,32 @@ word-break: normal;
 							</button>
 						</div>
 					</td>
+					<td>
+						<div class="input-group" style="float: left;">
+							<input type='number' class="form-control" style="width:90px" value="" id="addnum_array" disabled="disabled"/>
+							<button class="btn btn-default addvote" data-id="{$row['id']}" disabled="disabled">
+								<i class="fa fa-plus"></i>
+							</button>
+						</div>
+					</td>
+					{else}
+					<td hidden="hidden">
+						<div class="input-group" style="float: left;">
+							<input type='number' class="form-control" style="width:90px" value="" id="addnum_array"/>
+							<button class="btn btn-default addvote" data-id="{$row['id']}">
+								<i class="fa fa-plus"></i>
+							</button>
+						</div>
+					</td>
+					<td hidden="hidden">
+						<div class="input-group" style="float: left;">
+							<input type='number' class="form-control" style="width:90px" value="" id="addnum_array" disabled="disabled"/>
+							<button class="btn btn-default addvote" data-id="{$row['id']}" disabled="disabled">
+								<i class="fa fa-plus"></i>
+							</button>
+						</div>
+					</td>
+					{/if}
 					<td class="text-left vertical-middle">{php echo date('Y-m-d H:i:s',$row['createtime'])}</td>
                     <td class="text-left vertical-middle">
                     <p>
@@ -354,6 +399,45 @@ $(".addvote").click(function(){
 
 	});
 });
+
+	function random_int(n, m){
+		var random = Math.floor(Math.random()*(m-n+1)+n);
+		return random;
+	}
+
+	$(".addvotes_random").click(function(){
+		var t=$(this);
+		var id_array = new Array();
+
+		var addnum_array = new Array();
+
+		$('#votelist_tab tr td #id_array').each(function (){
+			id_array.push($(this).val());
+		});
+
+		$('#votelist_tab tr td #addnum_array').each(function (){
+			var value = random_int(3,5);
+			addnum_array.push(value);
+		});
+		$.ajax({
+			type : "post",
+			url : "{php echo $this->createWebUrl('addnums',array('rid'=>$_GPC['rid']))}",
+			data : {
+				"addnum_array" : addnum_array,
+				"id_array" : id_array
+			},
+			dataType : "json",
+			success : function(res) {
+				if (res.status == 1) {
+					util.toast(res.msg, "success");
+					location.reload()
+				}else{
+					util.message(res.msg,location.href,"error");
+				}
+			}
+
+		});
+	});
 
 /*$(".addvotes").click(function(){
     var t=$(this);

@@ -23,7 +23,6 @@ if($do == 'display') {
 	$_W['page']['title'] = '公众号 - 应用模块 - 更多应用';
 	$pageindex = max(1, intval($_GPC['page']));
 	$pagesize = 30;
-
 	if (user_is_vice_founder()) {
 		$uni_modules = uni_modules_by_uniacid($_W['uniacid']);
 		$modules = user_modules($_W['uid']);
